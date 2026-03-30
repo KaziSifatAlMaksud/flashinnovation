@@ -1,0 +1,161 @@
+    *{
+      font-family: Arial, sans-serif !important;
+    }
+    body {
+      background-color: #eaf3e2;
+      font-family: Arial, sans-serif;
+    }
+
+      .large-heading {
+      font-size: 3rem; /* You can adjust the size */
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 6rem 0;
+    }
+
+
+    .hero-section h1 {
+      font-weight: 700;
+      font-size: 3rem;
+    }
+    .hero-section p {
+      font-size: 1.1rem;
+    }
+    .hero-section .btn-primary {
+      background-color: #1b1b1b;
+      border: none;
+      padding: 12px 30px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    .hero-section .btn-primary:hover {
+      background-color: #333;
+    }
+
+    /* Features Cards */
+    .features .card {
+      background-color: #83c966; /* light green */
+      color: #fff; /* white text */
+      border: none;
+      border-radius: 10px;
+      border-left: #fff solid 4px ;
+      padding: 15px 10px 0 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(212, 203, 203, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+
+
+    /* .features .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    } */
+
+    /* Vending Image */
+    .vending-image img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background-color: #1a3d1a;
+      color: #fff;
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .stats-section h2 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .stats-section .stat {
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 992px) {
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+    }
+    @media (max-width: 576px) {
+      .hero-section {
+        padding: 4rem 1rem;
+      }
+    }
+
+
+
+    /* contact use */
+
+
+
+    .badge-custom {
+      background-color: #c5e8a8;
+      color: #356b1a;
+      font-weight: 600;
+      border-radius: 20px;
+      padding: 5px 15px;
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    .title {
+      color: #1f3d1a;
+      font-weight: 700;
+    }
+
+    .info-box {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .icon-box {
+      width: 40px;
+      height: 40px;
+      background: #c5e8a8;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .highlight-bar {
+      background-color: #6dc04b;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .form-card {
+      background: #f7f7f7;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .form-control {
+      border-radius: 8px;
+      border: 1px solid #c5e8a8;
+    }
+
+    .btn-custom {
+      background-color: #6dc04b;
+      color: white;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .btn-custom:hover {
+      background-color: #5aad3f;
+    }
