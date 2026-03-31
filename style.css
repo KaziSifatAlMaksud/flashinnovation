@@ -17,6 +17,7 @@
     .hero-section {
       background-color: #6DC04B;
       color: #fff;
+      
     }
 
 
@@ -54,6 +55,7 @@
 
     .left-side {
       background-color: #6dc04b; /* green */
+      padding: 0px 0px 0px 40px;
     }
 
     .right-side {
