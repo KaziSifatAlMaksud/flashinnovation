@@ -52,7 +52,12 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-
+     p{
+      color: #3A6A2B;
+     }
+     h2{
+      color: #1A3C1A;
+     }
     .left-side {
       background-color: #6dc04b; /* green */
       padding: 0px 0px 0px 40px;
