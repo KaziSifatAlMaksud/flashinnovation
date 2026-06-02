@@ -104,9 +104,15 @@
    .industry-card { position: relative; border-radius: 6px; overflow: hidden; cursor: pointer; }
    .industry-card img { width: 100%; height: 160px; object-fit: cover; display: block; transition: transform .3s; }
    .industry-card:hover img { transform: scale(1.05); }
-   .industry-icon-wrap { position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%); width: 44px; height: 44px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; }
+   .industry-icon-wrap { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 44px; height: 44px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; }
+
+   .industry-white-bg { position: absolute;  padding:0px;margin:0px; bottom: 0; left: 0; right: 0; height: 40px; background: #fff; opacity: 0.9; }
+
+
+
+
    .industry-icon-wrap i { color: #fff; font-size: 1.1rem; }
-   .industry-label { text-align: center; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-top: .5rem; }
+   .industry-label { text-align: center; font-size: .95rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-top: .5rem; }
 
    /* ── IMPACT ── */
    .impact-section { padding: 4rem 0; background: var(--light-bg); }
