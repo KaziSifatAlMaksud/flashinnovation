@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us – Flash Innovations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #6ab04c;
+      --green-dark: #4e8a36;
+      --dark: #1a1a2e;
+      --light-bg: #f9f9f9;
+      --text-muted-custom: #666;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; margin: 0; overflow-x: hidden; }
+    h1,h2,h3,h4,h5,h6,.nav-link { font-family: 'Montserrat', sans-serif; }
+
+    /* NAVBAR */
+    .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+    .navbar-nav .nav-link { font-weight: 600; font-size: .85rem; color: #333 !important; padding: .5rem 1rem; text-transform: uppercase; letter-spacing: .5px; position: relative; }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover { color: var(--green) !important; }
+    .navbar-nav .nav-link.active::after { content:''; position:absolute; bottom:-2px; left:1rem; right:1rem; height:2px; background:var(--green); }
+    .btn-assess { background: var(--green); color: #fff !important; border-radius: 4px; padding: .5rem 1.1rem !important; font-size: .8rem !important; font-weight: 700 !important; white-space: nowrap; }
+    .btn-assess:hover { background: var(--green-dark); }
+    .navbar-toggler { border: none; box-shadow: none !important; }
+
+    /* PAGE HERO */
+    .page-hero {
+      background: linear-gradient(135deg, #111 0%, #1a2a18 100%);
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&q=60') center/cover no-repeat;
+      opacity: .12;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: #fff; }
+    .page-hero h1 span { color: var(--green); }
+    .page-hero p { color: #ccc; font-size: 1rem; max-width: 560px; }
+    .breadcrumb-item, .breadcrumb-item a { color: #aaa; font-size: .8rem; text-decoration: none; }
+    .breadcrumb-item.active { color: var(--green); }
+    .breadcrumb-divider { color: #666; }
+
+    /* SECTIONS */
+    .section-title { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .5px; margin-bottom: .4rem; }
+    .section-underline { width: 50px; height: 3px; background: var(--green); margin-bottom: 2rem; }
+    .section-underline.center { margin-left: auto; margin-right: auto; }
+
+    /* WHO WE ARE */
+    .who-we-are { padding: 5rem 0; background: #fff; }
+    .who-we-are .lead-text { font-size: 1rem; line-height: 1.8; color: #444; }
+    .who-highlight { border-left: 4px solid var(--green); padding-left: 1.2rem; margin: 1.5rem 0; }
+    .who-highlight p { font-size: .95rem; font-style: italic; color: #333; font-weight: 600; margin: 0; }
+    .about-img { border-radius: 10px; width: 100%; object-fit: cover; height: 380px; }
+
+    /* VALUES */
+    .values { padding: 5rem 0; background: var(--light-bg); }
+    .value-card { background: #fff; border-radius: 8px; padding: 2rem 1.5rem; text-align: center; height: 100%; box-shadow: 0 2px 16px rgba(0,0,0,.06); transition: transform .2s, box-shadow .2s; }
+    .value-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,.1); }
+    .value-icon { width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--green); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; }
+    .value-icon i { color: var(--green); font-size: 1.5rem; }
+    .value-card h5 { font-size: .85rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: .6rem; }
+    .value-card p { font-size: .82rem; color: var(--text-muted-custom); line-height: 1.7; margin: 0; }
+
+    /* TEAM */
+    .team { padding: 5rem 0; background: #fff; }
+    .team-card { text-align: center; }
+    .team-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--green); margin-bottom: 1rem; }
+    .team-card h5 { font-size: .95rem; font-weight: 800; margin-bottom: .2rem; }
+    .team-card .role { font-size: .78rem; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: .5px; margin-bottom: .6rem; }
+    .team-card p { font-size: .8rem; color: var(--text-muted-custom); line-height: 1.6; }
+
+    /* STATS */
+    .stats-bar { background: var(--dark); padding: 3rem 0; }
+    .stat-item { text-align: center; }
+    .stat-item .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: var(--green); line-height: 1; }
+    .stat-item .label { font-size: .7rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .5px; margin-top: .3rem; }
+    .stat-divider { border-left: 1px solid rgba(255,255,255,.15); }
+
+    /* MISSION */
+    .mission { padding: 5rem 0; background: var(--light-bg); }
+    .mission-block { background: var(--dark); border-radius: 10px; padding: 2.5rem 2rem; color: #fff; height: 100%; }
+    .mission-block h4 { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--green); margin-bottom: 1rem; }
+    .mission-block p { font-size: .88rem; color: #ccc; line-height: 1.8; margin: 0; }
+
+    /* CHARITY */
+    .charity { padding: 5rem 0; background: #fff; }
+    .charity-badge { background: var(--light-bg); border-radius: 10px; padding: 2rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+
+    /* CTA */
+    .cta-bar { background: var(--green); padding: 3rem 0; }
+    .cta-bar h3 { color: #fff; font-weight: 900; font-size: clamp(1.1rem, 2.5vw, 1.5rem); margin-bottom: .3rem; }
+    .cta-bar p { color: rgba(255,255,255,.85); font-size: .88rem; margin: 0; }
+    .btn-cta-white { background: #fff; color: var(--green); border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .82rem; padding: .8rem 1.6rem; text-transform: uppercase; letter-spacing: .5px; display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; text-decoration: none; transition: all .2s; }
+    .btn-cta-white:hover { background: var(--dark); color: #fff; }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: #aaa; padding: 3rem 0 1rem; }
+    footer h6 { color: #fff; font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer ul li { margin-bottom: .5rem; }
+    footer ul li a { color: #aaa; text-decoration: none; font-size: .82rem; transition: color .2s; }
+    footer ul li a:hover { color: var(--green); }
+    footer .contact-item { display: flex; align-items: flex-start; gap: .6rem; font-size: .82rem; margin-bottom: .5rem; }
+    footer .contact-item i { color: var(--green); font-size: .9rem; margin-top: 2px; flex-shrink: 0; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); margin-top: 2rem; padding-top: 1rem; font-size: .75rem; }
+    .footer-impact-tag { color: var(--green); font-weight: 700; }
+    .footer-impact-txt { font-size: .8rem; }
+    .social-icons a { color: #aaa; font-size: 1.2rem; margin-right: .7rem; transition: color .2s; }
+    .social-icons a:hover { color: var(--green); }
+    .footer-learn-btn { display: inline-block; border: 2px solid var(--green); color: var(--green); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: .4rem 1rem; border-radius: 3px; text-decoration: none; margin-top: .8rem; transition: all .2s; }
+    .footer-learn-btn:hover { background: var(--green); color: #fff; }
+
+    @media (max-width: 575px) {
+      .stat-divider { border-left: none; border-top: 1px solid rgba(255,255,255,.15); padding-top: 1.2rem; margin-top: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="flash-innovations.html">
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <div style="background:#1a2a18;padding:6px 8px;border-radius:4px">
+          <i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.4rem"></i>
+        </div>
+        <div>
+          <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.05rem;color:#1a1a1a;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+          <div style="font-size:.55rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="flash-innovations.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Our Solution</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Industries</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Our Impact</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="nav-link btn-assess" href="#">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb mb-0" style="background:none;padding:0">
+        <li class="breadcrumb-item"><a href="flash-innovations.html">Home</a></li>
+        <li class="breadcrumb-item active">About Us</li>
+      </ol>
+    </nav>
+    <h1>ABOUT <span>FLASH INNOVATIONS</span></h1>
+    <p class="mt-3">We're on a mission to deliver premium, fully managed vending solutions while giving back to the communities we serve.</p>
+  </div>
+</section>
+
+<!-- WHO WE ARE -->
+<section class="who-we-are">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+        <h2 class="section-title">WHO WE ARE</h2>
+        <div class="section-underline"></div>
+        <p class="lead-text">Flash Innovations is a Sydney-based vending solutions company dedicated to making premium snack and beverage machines accessible to workplaces, hotels, educational institutions, and more — all with <strong>zero upfront cost</strong>.</p>
+        <p class="lead-text mt-3">Founded with a passion for seamless service and community impact, we handle everything from site assessment and installation to ongoing stocking, maintenance, and monthly reporting. Our partners simply enjoy the benefits.</p>
+        <div class="who-highlight">
+          <p>"We believe every organisation deserves a hassle-free vending experience — and every purchase should do more than just satisfy a craving."</p>
+        </div>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <i class="bi bi-check-circle-fill" style="color:var(--green);font-size:1.1rem"></i>
+            <span style="font-size:.85rem;font-weight:600">Sydney-based &amp; locally owned</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <i class="bi bi-check-circle-fill" style="color:var(--green);font-size:1.1rem"></i>
+            <span style="font-size:.85rem;font-weight:600">Fully insured &amp; compliant</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem">
+            <i class="bi bi-check-circle-fill" style="color:var(--green);font-size:1.1rem"></i>
+            <span style="font-size:.85rem;font-weight:600">Charity-certified partner</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img class="about-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" alt="Team at work" onerror="this.src='https://placehold.co/600x380/e8f5e9/6ab04c?text=Flash+Innovations+Team'" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="row text-center gy-4">
+      <div class="col-6 col-sm-3">
+        <div class="stat-item">
+          <div class="num">6+</div>
+          <div class="label">Machines Installed</div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3 stat-divider">
+        <div class="stat-item">
+          <div class="num">3</div>
+          <div class="label">Industries Served</div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3 stat-divider">
+        <div class="stat-item">
+          <div class="num">15%</div>
+          <div class="label">Revenue Share to You</div>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3 stat-divider">
+        <div class="stat-item">
+          <div class="num">5%</div>
+          <div class="label">Donated to Children's Hospitals</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="mission">
+  <div class="container">
+    <h2 class="section-title text-center">OUR MISSION &amp; VISION</h2>
+    <div class="section-underline center"></div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="mission-block">
+          <h4><i class="bi bi-bullseye me-2"></i>Our Mission</h4>
+          <p>To deliver fully managed, technology-forward vending solutions that create value for organisations, generate passive revenue, and contribute meaningfully to our community through charitable giving.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mission-block">
+          <h4><i class="bi bi-eye me-2"></i>Our Vision</h4>
+          <p>To be NSW's most trusted vending partner — known not only for premium service and modern machines, but for the positive difference we make in the lives of sick children and their families across the state.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="mission-block">
+          <h4><i class="bi bi-heart me-2"></i>Our Promise</h4>
+          <p>No hidden fees. No upfront costs. No hassle. We handle everything — from installation to monthly reporting — so you can focus on what matters most to your organisation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+    <h2 class="section-title text-center">OUR CORE VALUES</h2>
+    <div class="section-underline center"></div>
+    <div class="row g-4">
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-shield-check"></i></div>
+          <h5>Integrity</h5>
+          <p>Honest, transparent service in everything we do.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-stars"></i></div>
+          <h5>Excellence</h5>
+          <p>Premium machines, premium products, premium support.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-people-fill"></i></div>
+          <h5>Community</h5>
+          <p>Every sale gives back to those who need it most.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-lightbulb"></i></div>
+          <h5>Innovation</h5>
+          <p>Cashless tech, smart monitoring, always evolving.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-handshake"></i></div>
+          <h5>Partnership</h5>
+          <p>Long-term relationships built on trust and results.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2">
+        <div class="value-card">
+          <div class="value-icon"><i class="bi bi-clock-history"></i></div>
+          <h5>Reliability</h5>
+          <p>Always stocked, always clean, always on time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team">
+  <div class="container">
+    <h2 class="section-title text-center">MEET THE TEAM</h2>
+    <div class="section-underline center"></div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=220&q=80" alt="CEO" onerror="this.src='https://placehold.co/110x110/e8f5e9/6ab04c?text=CEO'" />
+          <h5>James Harrington</h5>
+          <div class="role">Founder &amp; CEO</div>
+          <p>Over 12 years in facilities management and service delivery across NSW.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=220&q=80" alt="Operations" onerror="this.src='https://placehold.co/110x110/e8f5e9/6ab04c?text=Ops'" />
+          <h5>Sarah Mitchell</h5>
+          <div class="role">Head of Operations</div>
+          <p>Ensures every machine is stocked, serviced and performing at its best.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=220&q=80" alt="Partnerships" onerror="this.src='https://placehold.co/110x110/e8f5e9/6ab04c?text=Partner'" />
+          <h5>Daniel Nguyen</h5>
+          <div class="role">Partnerships Manager</div>
+          <p>Building lasting relationships with organisations across all industries.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=220&q=80" alt="Community" onerror="this.src='https://placehold.co/110x110/e8f5e9/6ab04c?text=Community'" />
+          <h5>Emma Clarke</h5>
+          <div class="role">Community &amp; Impact Lead</div>
+          <p>Manages our partnership with Sydney Children's Hospitals Foundation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHARITY PARTNER -->
+<section class="charity" style="background:var(--light-bg)">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+      <div class="col-lg-7">
+        <h2 class="section-title">OUR CHARITY COMMITMENT</h2>
+        <div class="section-underline"></div>
+        <p style="font-size:.95rem;color:#444;line-height:1.8">Flash Innovations proudly donates <strong style="color:var(--green)">5% of all machine sales</strong> to the Sydney Children's Hospitals Foundation. This is not an afterthought — it's baked into our business model. Every snack sold, every drink purchased, contributes to the care of sick children and their families across New South Wales.</p>
+        <p style="font-size:.95rem;color:#444;line-height:1.8;margin-top:1rem">When you partner with us, you become part of something bigger. Your workplace or venue isn't just getting a vending machine — it's joining a movement of businesses that believe in doing good.</p>
+        <a href="#" class="btn-cta-white mt-3" style="background:var(--green);color:#fff">Learn About Our Impact &nbsp;<i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="col-lg-5">
+        <div class="charity-badge">
+          <div style="display:flex;align-items:center;gap:1rem;justify-content:center;flex-wrap:wrap">
+            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#e53935,#ff7043);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="bi bi-heart-fill" style="color:#fff;font-size:1.3rem"></i>
+            </div>
+            <div>
+              <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.2rem;color:#1a1a1a;line-height:1.2">Sydney Children's<br>Hospitals</div>
+              <div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:.75rem;color:#888;letter-spacing:1px">FOUNDATION</div>
+            </div>
+          </div>
+          <div style="width:100%;border-top:1px solid #e0e0e0;padding-top:1rem;text-align:center">
+            <div style="font-family:Montserrat,sans-serif;font-size:2.5rem;font-weight:900;color:var(--green)">5%</div>
+            <div style="font-size:.8rem;color:#666;font-weight:600;text-transform:uppercase;letter-spacing:.5px">of every sale donated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bar">
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <div class="col-lg-8">
+        <h3>READY TO PARTNER WITH US?</h3>
+        <p>Request your free site assessment today and start earning monthly revenue.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="#" class="btn-cta-white">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+          <div style="background:#fff1;padding:5px 7px;border-radius:4px">
+            <i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.3rem"></i>
+          </div>
+          <div>
+            <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:.95rem;color:#fff;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+            <div style="font-size:.5rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+          </div>
+        </div>
+        <p style="font-size:.8rem;line-height:1.6;margin-top:.5rem">Premium vending solutions with no hassle, no upfront costs and positive community impact.</p>
+        <div class="social-icons mt-2">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="flash-innovations.html">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Solution</a></li>
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Our Impact</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-3">
+        <h6>Contact Us</h6>
+        <div class="contact-item"><i class="bi bi-telephone-fill"></i><span>1300 610 372</span></div>
+        <div class="contact-item"><i class="bi bi-envelope-fill"></i><span>vending@flashpainting.com.au</span></div>
+        <div class="contact-item"><i class="bi bi-globe"></i><span>flashinnovations.com.au</span></div>
+        <div class="contact-item"><i class="bi bi-geo-alt-fill"></i><span>3/44 Kelso Crescent,<br>Moorebank NSW 2170</span></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h6>Our Impact</h6>
+        <p class="footer-impact-txt"><span class="footer-impact-tag">15%</span> returned to your organisation</p>
+        <p class="footer-impact-txt"><span class="footer-impact-tag">5%</span> donated to Sydney Children's Hospitals Foundation</p>
+        <a href="#" class="footer-learn-btn">LEARN MORE</a>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Flash Innovations Pty Ltd. All Rights Reserved.</span>
+      <div>
+        <a href="#" style="color:#aaa;text-decoration:none;margin-right:1rem">Privacy Policy</a>
+        <a href="#" style="color:#aaa;text-decoration:none">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
