@@ -87,8 +87,28 @@
    .stat-item .label { font-size: .7rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .5px; margin-top: .3rem; }
    .stat-divider { border-left: 1px solid rgba(255,255,255,.15); }
 
+
+     /* ─── HOW IT WORKS ───────────────────────────────────── */
+      .section-title span { color:var(--green); }
+     .section-title { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .5px; text-align: center; margin-bottom: .4rem; }
+   .section-underline { width: 50px; height: 3px; background: var(--green); margin: 0 auto 2.5rem; }
+    .how-section { padding:5rem 0; background:var(--light-bg); }
+    .how-step { text-align:center; position:relative; }
+    .how-step:not(:last-child)::after {
+      content:''; position:absolute; top:28px;
+      left:calc(50% + 32px); right:calc(-50% + 32px);
+      height:2px; background:var(--border);
+    }
+    @media(max-width:767px) { .how-step:not(:last-child)::after { display:none; } }
+    .hs-num { width:56px; height:56px; border-radius:50%; background:var(--green); color:#fff; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.1rem; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; position:relative; z-index:1; box-shadow:0 4px 16px rgba(106,176,76,.35); }
+    .hs-icon { font-size:2rem; color:#ccc; display:block; margin-bottom:.7rem; }
+    .how-step h5 { font-size:.85rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.5rem; }
+    .how-step p { font-size:.82rem; color:var(--muted); line-height:1.7; }
+    .step-connector { position: absolute; top: 23px; left: calc(50% + 40px); right: calc(-50% + 24px); height: 3px; background: #ddd; z-index: 0; }
+   @media (max-width: 767px) { .step-connector { display: none; } }
+
    /* ── HOW IT WORKS ── */
-   .how-it-works { padding: 4rem 0; background: var(--light-bg); }
+   /* .how-it-works { padding: 4rem 0; background: var(--light-bg); }
    .section-title { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: .5px; text-align: center; margin-bottom: .4rem; }
    .section-underline { width: 50px; height: 3px; background: var(--green); margin: 0 auto 2.5rem; }
    .step-card { text-align: center; position: relative; }
@@ -97,7 +117,7 @@
    .step-card h6 { font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: .5rem; }
    .step-card p { font-size: .8rem; color: var(--text-muted-custom); line-height: 1.6; }
    .step-connector { position: absolute; top: 19px; left: calc(50% + 40px); right: calc(-50% + 24px); height: 2px; background: #ddd; z-index: 0; }
-   @media (max-width: 767px) { .step-connector { display: none; } }
+   @media (max-width: 767px) { .step-connector { display: none; } } */
 
    /* ── INDUSTRIES ── */
    .industries { padding: 4rem 0; background: #fff; }

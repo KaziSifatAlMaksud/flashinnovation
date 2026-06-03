@@ -109,12 +109,16 @@
     .btn-clear-compare { font-family: 'Montserrat', sans-serif; font-size: .75rem; color: #aaa; background: none; border: none; cursor: pointer; text-decoration: underline; }
 
     /* ── STATS STRIP ── */
-    .stats-strip { background: var(--dark); padding: 2rem 0; }
+    .stats-strip {   background: linear-gradient(rgba(27, 25, 46, 0.6), rgba(11, 9, 31, 0.89)),
+              url('fresh_photo.png') left bottom / cover no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 6.5rem 0;}
     .stat-item { text-align: center; }
     .stat-item .num { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; color: var(--green); line-height: 1; }
     .stat-item .lbl { font-size: .68rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .5px; margin-top: .25rem; }
     .stat-div { border-left: 1px solid rgba(255,255,255,.12); }
-
     /* ── CTA ── */
     .cta-bar { background: var(--green); padding: 2.5rem 0; }
     .cta-bar h3 { color: #fff; font-weight: 900; font-size: clamp(1.1rem, 2.5vw, 1.5rem); margin-bottom: .25rem; }
@@ -224,8 +228,8 @@
 <section class="stats-strip">
   <div class="container">
     <div class="row text-center gy-4">
-      <div class="col-6 col-sm-3"><div class="stat-item"><div class="num">8</div><div class="lbl">Machine Models</div></div></div>
-      <div class="col-6 col-sm-3 stat-div"><div class="stat-item"><div class="num">6+</div><div class="lbl">Installed Sites</div></div></div>
+      <div class="col-6 col-sm-3"><div class="stat-item"><div class="num">50+</div><div class="lbl">Machine Models</div></div></div>
+      <div class="col-6 col-sm-3 stat-div"><div class="stat-item"><div class="num">5</div><div class="lbl">Installed Sites</div></div></div>
       <div class="col-6 col-sm-3 stat-div"><div class="stat-item"><div class="num">15%</div><div class="lbl">Revenue Share</div></div></div>
       <div class="col-6 col-sm-3 stat-div"><div class="stat-item"><div class="num">5%</div><div class="lbl">Donated to Charity</div></div></div>
     </div>
@@ -297,11 +301,11 @@
 const machines = [
   {
     id: 1,
-    name: "SnackPro 600",
-    category: "snack",
+    name: "VM_H5",
+    category: "combo",
     categoryLabel: "Snack & Food",
-    badge: "popular",
-    badgeLabel: "Popular",
+    badge: null,
+    badgeLabel: null,
     image: "machine/VM_H5_img.png",
     desc: "Our best-selling snack machine. Holds up to 600 items across 50+ selection columns. Perfect for large offices and warehouses.",
     specs: ["600 Capacity", "50 Selections", "Touchscreen", "Cashless"],
@@ -313,11 +317,11 @@ const machines = [
   },
   {
     id: 2,
-    name: "CoolDrink 480",
-    category: "drink",
+    name: "VM3",
+    category: "combo",
     categoryLabel: "Drinks & Beverage",
-    badge: "new",
-    badgeLabel: "New",
+    badge: null,
+    badgeLabel: null,
     image: "machine/VM3_img.png",
     desc: "Chilled beverage machine with smart temperature control. Stocks cans, bottles, and cartons. Dual-zone cooling for optimal freshness.",
     specs: ["480 Cans", "Dual-Zone Cooling", "LED Display", "Cashless"],
@@ -329,7 +333,7 @@ const machines = [
   },
   {
     id: 3,
-    name: "ComboMax Pro",
+    name: "VM3.1",
     category: "combo",
     categoryLabel: "Combo Unit",
     badge: null,
@@ -345,11 +349,11 @@ const machines = [
   },
   {
     id: 4,
-    name: "FreshBox 200",
+    name: "VM5",
     category: "fresh",
     categoryLabel: "Fresh Food",
-    badge: "new",
-    badgeLabel: "New",
+    badge: null,
+    badgeLabel: null,
     image: "machine/VM5_img.png",
     desc: "Refrigerated fresh food machine with spiral dispensing. Stocks sandwiches, salads, fruit cups, and wraps. Ideal for health-conscious workplaces.",
     specs: ["Refrigerated", "200 Items", "Spiral Motor", "Date Tracking"],
@@ -361,7 +365,7 @@ const machines = [
   },
   {
     id: 5,
-    name: "BrewMaster HotDrink",
+    name: "CVM-5",
     category: "coffee",
     categoryLabel: "Coffee & Hot",
     badge: null,
