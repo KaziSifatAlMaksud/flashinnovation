@@ -80,11 +80,24 @@
     .team-card p { font-size: .8rem; color: var(--text-muted-custom); line-height: 1.6; }
 
     /* STATS */
-    .stats-bar { background: var(--dark); padding: 3rem 0; }
+    /* .stats-bar { background: var(--dark); padding: 3rem 0; }
     .stat-item { text-align: center; }
     .stat-item .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: var(--green); line-height: 1; }
     .stat-item .label { font-size: .7rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .5px; margin-top: .3rem; }
-    .stat-divider { border-left: 1px solid rgba(255,255,255,.15); }
+    .stat-divider { border-left: 1px solid rgba(255,255,255,.15); } */
+
+      .stats-bar {
+      background: linear-gradient(rgba(27, 25, 46, 0.6), rgba(11, 9, 31, 0.89)),
+              url('fresh_photo.png') left bottom / cover no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 8.5rem 0;
+    }
+   .stat-item { text-align: center; }
+   .stat-item .num { font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: var(--green); line-height: 1; }
+   .stat-item .label { font-size: .7rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .5px; margin-top: .3rem; }
+   .stat-divider { border-left: 1px solid rgba(255,255,255,.15); }
 
     /* MISSION */
     .mission { padding: 5rem 0; background: var(--light-bg); }
@@ -207,13 +220,13 @@
     <div class="row text-center gy-4">
       <div class="col-6 col-sm-3">
         <div class="stat-item">
-          <div class="num">6+</div>
+          <div class="num">50+</div>
           <div class="label">Machines Installed</div>
         </div>
       </div>
       <div class="col-6 col-sm-3 stat-divider">
         <div class="stat-item">
-          <div class="num">3</div>
+          <div class="num">5</div>
           <div class="label">Industries Served</div>
         </div>
       </div>
@@ -369,13 +382,7 @@
       <div class="col-lg-5">
         <div class="charity-badge">
           <div style="display:flex;align-items:center;gap:1rem;justify-content:center;flex-wrap:wrap">
-            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#e53935,#ff7043);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="bi bi-heart-fill" style="color:#fff;font-size:1.3rem"></i>
-            </div>
-            <div>
-              <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.2rem;color:#1a1a1a;line-height:1.2">Sydney Children's<br>Hospitals</div>
-              <div style="font-family:Montserrat,sans-serif;font-weight:700;font-size:.75rem;color:#888;letter-spacing:1px">FOUNDATION</div>
-            </div>
+            <img src="sydney_chidern_logo.svg" alt="Sydney Children's Hospitals Foundation Logo" style="height:60px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.1))" onerror="this.src='https://placehold.co/120x60/e8f5e9/6ab04c?text=SCHNF+Logo'" />
           </div>
           <div style="width:100%;border-top:1px solid #e0e0e0;padding-top:1rem;text-align:center">
             <div style="font-family:Montserrat,sans-serif;font-size:2.5rem;font-weight:900;color:var(--green)">5%</div>
