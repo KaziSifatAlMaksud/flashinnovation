@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Solution – Flash Innovations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:      #6ab04c;
+      --green-dark: #4e8a36;
+      --green-light:#f0f9ea;
+      --dark:       #1a1a2e;
+      --darker:     #0f0f1a;
+      --light-bg:   #f9f9f9;
+      --muted:      #666;
+      --border:     #e8e8e8;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; margin: 0; overflow-x: hidden; color: #333; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Montserrat', sans-serif; }
+
+    /* ─── NAVBAR ────────────────────────────────────────── */
+    .navbar { background:#fff; box-shadow:0 2px 10px rgba(0,0,0,.08); }
+    .navbar-nav .nav-link {
+      font-family:'Montserrat',sans-serif; font-weight:600; font-size:.85rem;
+      color:#333 !important; padding:.5rem 1rem; text-transform:uppercase;
+      letter-spacing:.5px; position:relative;
+    }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover { color:var(--green) !important; }
+    .navbar-nav .nav-link.active::after {
+      content:''; position:absolute; bottom:-2px; left:1rem; right:1rem;
+      height:2px; background:var(--green);
+    }
+    .btn-assess {
+      background:var(--green); color:#fff !important; border-radius:4px;
+      padding:.5rem 1.1rem !important; font-size:.8rem !important;
+      font-weight:700 !important; white-space:nowrap;
+    }
+    .btn-assess:hover { background:var(--green-dark); }
+    .navbar-toggler { border:none; box-shadow:none !important; }
+
+    /* ─── PAGE HERO ─────────────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(135deg, #071208 0%, #1a2a18 55%, #0f1a0e 100%);
+      padding:5.5rem 0 4rem; position:relative; overflow:hidden;
+    }
+    .page-hero::before {
+      content:''; position:absolute; inset:0;
+      background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=50') center/cover no-repeat;
+      opacity:.08;
+    }
+    /* animated floating orbs */
+    .orb {
+      position:absolute; border-radius:50%;
+      background:radial-gradient(circle, rgba(106,176,76,.18) 0%, transparent 70%);
+      animation:float 8s ease-in-out infinite;
+    }
+    .orb-1 { width:500px; height:500px; top:-120px; right:-80px; animation-delay:0s; }
+    .orb-2 { width:300px; height:300px; bottom:-60px; left:5%; animation-delay:3s; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-24px)} }
+
+    .hero-content { position:relative; z-index:2; }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(106,176,76,.15); border:1px solid rgba(106,176,76,.3);
+      border-radius:30px; padding:.3rem 1rem; color:var(--green);
+      font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.6px;
+      margin-bottom:1.2rem;
+    }
+    .page-hero h1 { font-size:clamp(2rem,5vw,3.2rem); font-weight:900; color:#fff; line-height:1.12; }
+    .page-hero h1 span { color:var(--green); }
+    .page-hero .lead { color:#bbb; font-size:1rem; max-width:620px; line-height:1.8; margin-top:1rem; }
+    .breadcrumb-item a, .breadcrumb-item { color:#aaa; font-size:.8rem; text-decoration:none; }
+    .breadcrumb-item.active { color:var(--green); }
+
+    /* hero pills */
+    .hero-pills { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.6rem; }
+    .hero-pill {
+      display:inline-flex; align-items:center; gap:.4rem;
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+      border-radius:30px; padding:.3rem .9rem; color:#ccc;
+      font-size:.74rem; font-weight:600; text-transform:uppercase; letter-spacing:.4px;
+    }
+    .hero-pill i { color:var(--green); }
+
+    /* hero CTA */
+    .btn-hero-green {
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:.85rem;
+      text-transform:uppercase; letter-spacing:.5px; background:var(--green);
+      color:#fff; border:none; border-radius:6px; padding:.85rem 2rem;
+      display:inline-flex; align-items:center; gap:.5rem; text-decoration:none;
+      transition:background .2s;
+    }
+    .btn-hero-green:hover { background:var(--green-dark); color:#fff; }
+    .btn-hero-outline {
+      font-family:'Montserrat',sans-serif; font-weight:700; font-size:.85rem;
+      text-transform:uppercase; letter-spacing:.5px; background:transparent;
+      color:#fff; border:2px solid rgba(255,255,255,.4); border-radius:6px;
+      padding:.82rem 1.8rem; display:inline-flex; align-items:center; gap:.5rem;
+      text-decoration:none; transition:all .2s;
+    }
+    .btn-hero-outline:hover { border-color:#fff; background:rgba(255,255,255,.1); color:#fff; }
+
+    /* hero image card */
+    .hero-img-card {
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(10px); border-radius:16px; padding:1.5rem;
+      position:relative; z-index:2;
+    }
+    .hero-img-card img { border-radius:10px; width:100%; object-fit:cover; height:280px; }
+    .hero-stat-row {
+      display:flex; gap:1rem; margin-top:1rem;
+    }
+    .hero-stat {
+      flex:1; background:rgba(106,176,76,.12); border:1px solid rgba(106,176,76,.25);
+      border-radius:10px; padding:.8rem; text-align:center;
+    }
+    .hero-stat .hs-num { font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.4rem; color:var(--green); line-height:1; }
+    .hero-stat .hs-lbl { font-size:.62rem; font-weight:700; color:#ccc; text-transform:uppercase; letter-spacing:.4px; margin-top:.2rem; }
+
+    /* ─── SECTION HELPERS ───────────────────────────────── */
+    .sec-eyebrow {
+      display:inline-flex; align-items:center; gap:.5rem; color:var(--green);
+      font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.7px; margin-bottom:.5rem;
+    }
+    .sec-eyebrow::before { content:''; display:inline-block; width:24px; height:2px; background:var(--green); border-radius:2px; }
+    .sec-title { font-size:clamp(1.5rem,3vw,2.1rem); font-weight:900; color:#1a1a1a; line-height:1.2; }
+    .sec-title span { color:var(--green); }
+    .sec-underline { width:50px; height:3px; background:var(--green); border-radius:2px; margin:1rem 0 1.5rem; }
+    .sec-underline.center { margin-left:auto; margin-right:auto; }
+    .sec-lead { font-size:.95rem; color:var(--muted); line-height:1.9; }
+
+    /* ─── INTRO SECTION ─────────────────────────────────── */
+    .intro-section { padding:5rem 0; background:#fff; }
+    .intro-highlight {
+      background:var(--green-light); border-left:4px solid var(--green);
+      border-radius:0 8px 8px 0; padding:1.2rem 1.5rem; margin:1.5rem 0;
+    }
+    .intro-highlight p { margin:0; font-size:.95rem; font-weight:600; color:#2a4a1e; line-height:1.7; }
+    .check-list { list-style:none; padding:0; margin:0; }
+    .check-list li { display:flex; align-items:flex-start; gap:.7rem; padding:.5rem 0; font-size:.9rem; color:#444; line-height:1.5; }
+    .check-list li i { color:var(--green); font-size:1rem; margin-top:2px; flex-shrink:0; }
+    .intro-img { border-radius:14px; width:100%; object-fit:cover; height:420px; box-shadow:0 20px 60px rgba(0,0,0,.12); }
+    .floating-badge {
+      position:absolute; bottom:1.5rem; left:-1.5rem;
+      background:#fff; border-radius:12px; padding:.9rem 1.2rem;
+      box-shadow:0 8px 32px rgba(0,0,0,.15); display:flex; align-items:center; gap:.8rem;
+      min-width:200px;
+    }
+    .fb-icon { width:40px; height:40px; border-radius:8px; background:var(--green-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .fb-icon i { color:var(--green); font-size:1.1rem; }
+    .fb-label { font-size:.65rem; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:.4px; }
+    .fb-value { font-family:'Montserrat',sans-serif; font-weight:900; font-size:.95rem; color:#1a1a1a; }
+
+    /* ─── WHAT WE PROVIDE ───────────────────────────────── */
+    .services-section { padding:5rem 0; background:var(--light-bg); }
+    .service-card {
+      background:#fff; border-radius:14px; overflow:hidden;
+      box-shadow:0 2px 20px rgba(0,0,0,.06); height:100%;
+      transition:transform .25s, box-shadow .25s; display:flex; flex-direction:column;
+    }
+    .service-card:hover { transform:translateY(-6px); box-shadow:0 12px 40px rgba(0,0,0,.12); }
+    .sc-header {
+      background:linear-gradient(135deg,#1a2a18,#0f1a0e);
+      padding:1.8rem 1.8rem 1.4rem; position:relative; overflow:hidden;
+    }
+    .sc-header::after {
+      content:''; position:absolute; top:-30px; right:-30px;
+      width:120px; height:120px; border-radius:50%;
+      background:rgba(106,176,76,.1);
+    }
+    .sc-icon-wrap { width:54px; height:54px; border-radius:12px; background:var(--green); display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+    .sc-icon-wrap i { color:#fff; font-size:1.5rem; }
+    .sc-header h3 { font-size:1.1rem; font-weight:900; color:#fff; margin:0; line-height:1.2; }
+    .sc-header .sc-tag { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--green); margin-top:.3rem; }
+    .sc-body { padding:1.5rem 1.8rem; flex:1; }
+    .sc-body p { font-size:.88rem; color:var(--muted); line-height:1.8; }
+    .sc-list { list-style:none; padding:0; margin:.8rem 0 0; }
+    .sc-list li { display:flex; align-items:flex-start; gap:.6rem; font-size:.84rem; color:#444; padding:.35rem 0; border-bottom:1px solid #f5f5f5; }
+    .sc-list li:last-child { border-bottom:none; }
+    .sc-list li i { color:var(--green); font-size:.85rem; margin-top:3px; flex-shrink:0; }
+    .sc-footer { padding:1rem 1.8rem 1.5rem; }
+    .sc-link {
+      display:inline-flex; align-items:center; gap:.4rem; font-family:'Montserrat',sans-serif;
+      font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px;
+      color:var(--green); text-decoration:none; transition:gap .2s;
+    }
+    .sc-link:hover { gap:.7rem; }
+
+    /* ─── CASHLESS TECH ─────────────────────────────────── */
+    .tech-section { padding:5rem 0; background:#fff; }
+    .tech-device {
+      background:linear-gradient(145deg,#1a2a18,#0f1a0e);
+      border-radius:20px; padding:2.5rem; position:relative; overflow:hidden;
+    }
+    .tech-device::before {
+      content:''; position:absolute; inset:0;
+      background:url('https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&q=40') center/cover;
+      opacity:.06;
+    }
+    .td-inner { position:relative; z-index:1; }
+    .pay-method {
+      display:flex; align-items:center; gap:1rem;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+      border-radius:12px; padding:1rem 1.2rem; margin-bottom:.8rem;
+      transition:background .2s;
+    }
+    .pay-method:hover { background:rgba(255,255,255,.1); }
+    .pay-method:last-child { margin-bottom:0; }
+    .pm-icon { width:44px; height:44px; border-radius:10px; background:var(--green); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .pm-icon i { color:#fff; font-size:1.2rem; }
+    .pm-label { font-family:'Montserrat',sans-serif; font-weight:700; font-size:.88rem; color:#fff; }
+    .pm-sub { font-size:.75rem; color:#aaa; margin-top:.1rem; }
+    .pm-tick { margin-left:auto; width:24px; height:24px; border-radius:50%; background:rgba(106,176,76,.2); border:1.5px solid var(--green); display:flex; align-items:center; justify-content:center; }
+    .pm-tick i { color:var(--green); font-size:.7rem; }
+    .tech-badge-row { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem; }
+    .tech-badge { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.4px; background:rgba(106,176,76,.15); border:1px solid rgba(106,176,76,.3); color:var(--green); border-radius:4px; padding:.25rem .7rem; }
+
+    /* ─── PRODUCT SELECTION ─────────────────────────────── */
+    .products-section { padding:5rem 0; background:var(--light-bg); }
+    .product-tag-cloud { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.5rem; }
+    .product-tag {
+      display:inline-flex; align-items:center; gap:.45rem;
+      background:#fff; border:1.5px solid var(--border); border-radius:30px;
+      padding:.5rem 1rem; font-size:.82rem; font-weight:600; color:#444;
+      transition:all .2s; cursor:default;
+    }
+    .product-tag i { color:var(--green); font-size:.9rem; }
+    .product-tag:hover { border-color:var(--green); color:var(--green); background:var(--green-light); }
+    .product-tag.featured { background:var(--green-light); border-color:var(--green); color:var(--green-dark); }
+
+    .product-category { background:#fff; border-radius:12px; padding:1.5rem; box-shadow:0 2px 12px rgba(0,0,0,.05); }
+    .product-category .pc-icon { font-size:2rem; color:var(--green); margin-bottom:.8rem; display:block; }
+    .product-category h5 { font-size:.85rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.6rem; }
+    .product-category ul { list-style:none; padding:0; margin:0; }
+    .product-category ul li { font-size:.82rem; color:var(--muted); padding:.25rem 0; display:flex; align-items:center; gap:.5rem; }
+    .product-category ul li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green); flex-shrink:0; }
+
+    /* ─── REVENUE SHARING ───────────────────────────────── */
+    .revenue-section { padding:5rem 0; background:#fff; }
+    .revenue-card {
+      background:linear-gradient(135deg,var(--dark),#0f1a1f);
+      border-radius:16px; padding:2.5rem; color:#fff; overflow:hidden; position:relative;
+    }
+    .revenue-card::before {
+      content:''; position:absolute; top:-60px; right:-60px;
+      width:200px; height:200px; border-radius:50%;
+      background:radial-gradient(circle,rgba(106,176,76,.2) 0%,transparent 70%);
+    }
+    .rev-inner { position:relative; z-index:1; }
+    .rev-percent { font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(3rem,8vw,5rem); color:var(--green); line-height:1; }
+    .rev-label { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.6px; color:#aaa; margin-top:.3rem; }
+    .rev-divider { border:none; border-top:1px solid rgba(255,255,255,.1); margin:1.5rem 0; }
+    .rev-step { display:flex; align-items:flex-start; gap:.8rem; margin-bottom:1rem; }
+    .rev-step:last-child { margin-bottom:0; }
+    .rev-num { width:28px; height:28px; border-radius:50%; background:var(--green); color:#fff; font-family:'Montserrat',sans-serif; font-weight:800; font-size:.8rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .rev-step p { font-size:.84rem; color:#ccc; line-height:1.6; margin:0; }
+    .rev-step p strong { color:#fff; }
+    .report-box { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:10px; padding:1rem 1.2rem; margin-top:1.2rem; display:flex; align-items:center; gap:.8rem; }
+    .report-box i { color:var(--green); font-size:1.4rem; flex-shrink:0; }
+    .report-box p { margin:0; font-size:.82rem; color:#ccc; line-height:1.5; }
+
+    /* ─── CHARITY ────────────────────────────────────────── */
+    .charity-section { padding:5rem 0; background:var(--light-bg); }
+    .charity-card {
+      background:linear-gradient(135deg,#1a2a18,#0a1208);
+      border-radius:16px; padding:3rem 2.5rem; color:#fff;
+      position:relative; overflow:hidden;
+    }
+    .charity-card::after {
+      content:''; position:absolute; bottom:-40px; right:-40px;
+      width:180px; height:180px; border-radius:50%;
+      background:radial-gradient(circle,rgba(106,176,76,.25) 0%,transparent 70%);
+    }
+    .charity-inner { position:relative; z-index:1; }
+    .donation-pill {
+      display:inline-flex; align-items:center; gap:.5rem; background:rgba(106,176,76,.15);
+      border:1px solid rgba(106,176,76,.3); border-radius:30px; padding:.3rem 1rem;
+      font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:var(--green);
+      margin-bottom:1rem;
+    }
+    .charity-percent { font-family:'Montserrat',sans-serif; font-weight:900; font-size:clamp(2.5rem,7vw,4rem); color:var(--green); line-height:1; }
+    .impact-row { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1.5rem; }
+    .impact-item { flex:1; min-width:140px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:1rem; text-align:center; }
+    .impact-item i { font-size:1.5rem; color:var(--green); display:block; margin-bottom:.5rem; }
+    .impact-item p { font-size:.78rem; color:#ccc; margin:0; line-height:1.5; }
+    .schf-logo-wrap { background:#fff; border-radius:12px; padding:1.2rem 1.5rem; display:inline-flex; align-items:center; gap:.8rem; margin-top:1.5rem; }
+    .schf-logo-wrap span { font-family:'Montserrat',sans-serif; font-weight:900; font-size:.9rem; color:#1a1a1a; line-height:1.3; }
+
+    /* ─── WHY CHOOSE ─────────────────────────────────────── */
+    .why-section { padding:5rem 0; background:#fff; }
+    .why-card {
+      border:2px solid var(--border); border-radius:14px; padding:2rem 1.5rem;
+      height:100%; transition:all .25s; position:relative; overflow:hidden;
+    }
+    .why-card:hover { border-color:var(--green); box-shadow:0 8px 30px rgba(106,176,76,.12); }
+    .why-card::before {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+      background:var(--green); transform:scaleX(0); transition:transform .3s; transform-origin:left;
+    }
+    .why-card:hover::before { transform:scaleX(1); }
+    .wc-icon { width:60px; height:60px; border-radius:14px; background:var(--green-light); display:flex; align-items:center; justify-content:center; margin-bottom:1.2rem; }
+    .wc-icon i { font-size:1.6rem; color:var(--green); }
+    .why-card h4 { font-size:.95rem; font-weight:800; text-transform:uppercase; letter-spacing:.4px; margin-bottom:.6rem; color:#1a1a1a; }
+    .why-card p { font-size:.84rem; color:var(--muted); line-height:1.7; margin:0; }
+
+    /* comparison table */
+    .compare-table { border-radius:14px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.08); }
+    .compare-table table { width:100%; border-collapse:collapse; }
+    .compare-table thead th { background:var(--dark); color:#fff; font-family:'Montserrat',sans-serif; font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; padding:1rem 1.2rem; text-align:center; }
+    .compare-table thead th:first-child { text-align:left; }
+    .compare-table thead th.highlight { background:var(--green); }
+    .compare-table tbody tr { border-bottom:1px solid var(--border); }
+    .compare-table tbody tr:last-child { border-bottom:none; }
+    .compare-table tbody tr:hover { background:#fafff7; }
+    .compare-table tbody td { padding:.85rem 1.2rem; font-size:.84rem; color:#444; text-align:center; }
+    .compare-table tbody td:first-child { text-align:left; font-weight:600; color:#1a1a1a; }
+    .compare-table .ct-yes { color:var(--green); font-size:1.1rem; }
+    .compare-table .ct-no { color:#ccc; font-size:1rem; }
+    .compare-table .ct-highlight { background:#f4fdef; }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────── */
+    .how-section { padding:5rem 0; background:var(--light-bg); }
+    .how-step { text-align:center; position:relative; }
+    .how-step:not(:last-child)::after {
+      content:''; position:absolute; top:28px;
+      left:calc(50% + 32px); right:calc(-50% + 32px);
+      height:2px; background:var(--border);
+    }
+    @media(max-width:767px) { .how-step:not(:last-child)::after { display:none; } }
+    .hs-num { width:56px; height:56px; border-radius:50%; background:var(--green); color:#fff; font-family:'Montserrat',sans-serif; font-weight:900; font-size:1.1rem; display:flex; align-items:center; justify-content:center; margin:0 auto 1rem; position:relative; z-index:1; box-shadow:0 4px 16px rgba(106,176,76,.35); }
+    .hs-icon { font-size:2rem; color:#ccc; display:block; margin-bottom:.7rem; }
+    .how-step h5 { font-size:.85rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.5rem; }
+    .how-step p { font-size:.82rem; color:var(--muted); line-height:1.7; }
+
+    /* ─── INDUSTRIES ─────────────────────────────────────── */
+    .industries-section { padding:5rem 0; background:#fff; }
+    .industry-chip {
+      display:flex; align-items:center; gap:.8rem;
+      background:var(--light-bg); border:1.5px solid var(--border); border-radius:10px;
+      padding:.9rem 1.2rem; font-size:.84rem; font-weight:600; color:#333;
+      transition:all .2s;
+    }
+    .industry-chip:hover { border-color:var(--green); background:var(--green-light); color:var(--green-dark); }
+    .industry-chip i { font-size:1.3rem; color:var(--green); flex-shrink:0; }
+
+    /* ─── CTA BAND ───────────────────────────────────────── */
+    .cta-band { padding:5rem 0; background:linear-gradient(135deg,#0a1a08,#1a2a18); position:relative; overflow:hidden; }
+    .cta-band::before { content:''; position:absolute; inset:0; background:url('https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=1400&q=40') center/cover; opacity:.07; }
+    .cta-inner { position:relative; z-index:1; text-align:center; }
+    .cta-inner h2 { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:900; color:#fff; }
+    .cta-inner h2 span { color:var(--green); }
+    .cta-inner p { color:#bbb; font-size:1rem; max-width:520px; margin:1rem auto 2rem; line-height:1.8; }
+    .cta-btns { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+    .btn-cta-green { font-family:'Montserrat',sans-serif; font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.5px; background:var(--green); color:#fff; border:none; border-radius:8px; padding:.9rem 2.2rem; display:inline-flex; align-items:center; gap:.5rem; text-decoration:none; transition:background .2s; }
+    .btn-cta-green:hover { background:var(--green-dark); color:#fff; }
+    .btn-cta-outline { font-family:'Montserrat',sans-serif; font-weight:700; font-size:.85rem; text-transform:uppercase; letter-spacing:.5px; background:transparent; color:#fff; border:2px solid rgba(255,255,255,.3); border-radius:8px; padding:.88rem 2rem; display:inline-flex; align-items:center; gap:.5rem; text-decoration:none; transition:all .2s; }
+    .btn-cta-outline:hover { border-color:#fff; background:rgba(255,255,255,.08); color:#fff; }
+
+    /* cta stats */
+    .cta-stats { display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:center; margin-top:3rem; }
+    .cta-stat { text-align:center; }
+    .cta-stat .cs-num { font-family:'Montserrat',sans-serif; font-weight:900; font-size:2rem; color:var(--green); line-height:1; }
+    .cta-stat .cs-lbl { font-size:.7rem; font-weight:700; color:#aaa; text-transform:uppercase; letter-spacing:.5px; margin-top:.3rem; }
+    .cta-div { border-left:1px solid rgba(255,255,255,.12); }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer { background:var(--dark); color:#aaa; padding:3rem 0 1rem; }
+    footer h6 { color:#fff; font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.9rem; font-family:'Montserrat',sans-serif; }
+    footer ul { list-style:none; padding:0; margin:0; }
+    footer ul li { margin-bottom:.45rem; }
+    footer ul li a { color:#aaa; text-decoration:none; font-size:.82rem; transition:color .2s; }
+    footer ul li a:hover { color:var(--green); }
+    .f-contact { display:flex; align-items:flex-start; gap:.6rem; font-size:.82rem; margin-bottom:.45rem; }
+    .f-contact i { color:var(--green); font-size:.9rem; margin-top:2px; flex-shrink:0; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.08); margin-top:2rem; padding-top:1rem; font-size:.75rem; }
+    .fi-tag { color:var(--green); font-weight:700; }
+    .fi-txt { font-size:.8rem; }
+    .soc a { color:#aaa; font-size:1.2rem; margin-right:.7rem; transition:color .2s; }
+    .soc a:hover { color:var(--green); }
+
+    /* ─── SCROLL ANIMATIONS ─────────────────────────────── */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-left { opacity:0; transform:translateX(-30px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal-left.visible { opacity:1; transform:translateX(0); }
+    .reveal-right { opacity:0; transform:translateX(30px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal-right.visible { opacity:1; transform:translateX(0); }
+
+    @media(max-width:575px) {
+      .floating-badge { left:0; min-width:unset; }
+      .cta-div { border-left:none; border-top:1px solid rgba(255,255,255,.12); padding-top:1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══════════════════════════════════════════════════════════════════ -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="flash-innovations.html">
+     <div style="display:flex;align-items:center;gap:.5rem">
+       <img src="image33.webp" alt="Flash Innovations Logo" style="height:60px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))" onerror="this.src='https://placehold.co/120x40/1a2a18/6ab04c?text=Logo'" />
+     </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+     <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+       <li class="nav-item"><a class="nav-link " href="flash-innovations.html">Home</a></li>
+       <li class="nav-item"><a class="nav-link  " href="about_us.html">About Us</a></li>
+             <li class="nav-item"><a class="nav-link active" href="our_solution.html">Our Solution</a></li>
+       <li class="nav-item"><a class="nav-link " href="our_machines.html">Our Machines</a></li>
+       <li class="nav-item"><a class="nav-link" href="contact_us.html">Contact Us</a></li>
+       <li class="nav-item ms-lg-2">
+         <a class="nav-link btn-assess" href="request_assessment.html">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
+       </li>
+     </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ PAGE HERO ════════════════════════════════════════════════════════════════ -->
+<section class="page-hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="container hero-content">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6">
+        <nav aria-label="breadcrumb" class="mb-3">
+          <ol class="breadcrumb mb-0" style="background:none;padding:0">
+            <li class="breadcrumb-item"><a href="flash-innovations.html">Home</a></li>
+            <li class="breadcrumb-item active">Our Solution</li>
+          </ol>
+        </nav>
+        <div class="hero-eyebrow"><i class="bi bi-lightbulb-fill"></i> Fully Managed Vending</div>
+        <h1>A SMARTER WAY TO<br>VEND. <span>ZERO COST.</span><br>REAL RETURNS.</h1>
+        <p class="lead">We supply, install, stock, maintain and service modern vending machines — completely free to your organisation. You earn passive revenue every month.</p>
+        <div class="hero-pills">
+          <div class="hero-pill"><i class="bi bi-cash-coin"></i> No Upfront Cost</div>
+          <div class="hero-pill"><i class="bi bi-tools"></i> Fully Managed</div>
+          <div class="hero-pill"><i class="bi bi-graph-up"></i> Revenue Sharing</div>
+          <div class="hero-pill"><i class="bi bi-heart-fill"></i> Charity Impact</div>
+        </div>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="request-assessment.html" class="btn-hero-green"><i class="bi bi-send-fill"></i> Request Free Assessment</a>
+          <a href="our-machines.html" class="btn-hero-outline"><i class="bi bi-grid"></i> View Our Machines</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INTRO ════════════════════════════════════════════════════════════════════ -->
+<section class="intro-section">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6 reveal-left">
+        <div class="sec-eyebrow">About Our Model</div>
+        <h2 class="sec-title">A FULLY MANAGED <span>VENDING SOLUTION</span></h2>
+        <div class="sec-underline"></div>
+        <p class="sec-lead">At Flash Innovations, we provide a simple and hassle-free vending machine solution designed for workplaces, hotels, colleges, warehouses, factories, and other high-traffic facilities.</p>
+        <p class="sec-lead mt-3">Our goal is to help organisations offer convenient access to snacks and beverages while creating additional revenue and supporting meaningful community initiatives.</p>
+        <div class="intro-highlight">
+          <p>Unlike traditional vending operators, Flash Innovations manages the <strong>entire process from start to finish</strong> — we supply the machine, install it, stock it, maintain it, and service it regularly, allowing our partners to enjoy all the benefits without any of the work.</p>
+        </div>
+        <ul class="check-list mt-2">
+          <li><i class="bi bi-check-circle-fill"></i>No upfront cost — machine, install &amp; setup all free</li>
+          <li><i class="bi bi-check-circle-fill"></i>Earn 15% monthly revenue from every sale</li>
+          <li><i class="bi bi-check-circle-fill"></i>We handle all stocking, cleaning &amp; servicing</li>
+          <li><i class="bi bi-check-circle-fill"></i>Modern cashless payment technology included</li>
+          <li><i class="bi bi-check-circle-fill"></i>5% of sales donated to Sydney Children's Hospitals Foundation</li>
+        </ul>
+      </div>
+      <div class="col-lg-6 reveal-right">
+        <div style="position:relative;padding-left:1.5rem">
+          <img class="intro-img" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80" alt="Team discussion"
+            onerror="this.src='https://placehold.co/600x420/e8f5e9/6ab04c?text=Our+Team'" />
+          <div class="floating-badge">
+            <div class="fb-icon"><i class="bi bi-award-fill"></i></div>
+            <div>
+              <div class="fb-label">Partner Satisfaction</div>
+              <div class="fb-value">100% 5-Star Rated</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT WE PROVIDE ══════════════════════════════════════════════════════════ -->
+<section class="services-section" id="services">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="sec-eyebrow" style="justify-content:center">What We Provide</div>
+      <h2 class="sec-title">EVERYTHING YOU NEED.<br><span>NOTHING YOU DON'T.</span></h2>
+      <div class="sec-underline center"></div>
+      <p class="sec-lead mx-auto" style="max-width:560px">From installation to ongoing management, we handle every aspect of your vending operation so you don't have to.</p>
+    </div>
+    <div class="row g-4">
+
+      <!-- Free Installation -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="sc-header">
+            <div class="sc-icon-wrap"><i class="bi bi-tools"></i></div>
+            <h3>Free Installation</h3>
+            <div class="sc-tag">Zero Upfront Cost</div>
+          </div>
+          <div class="sc-body">
+            <p>We supply and install modern vending machines at no upfront cost to your organisation. Our team assesses your location and recommends the most suitable machine and placement to maximise convenience and performance.</p>
+            <ul class="sc-list">
+              <li><i class="bi bi-check-circle-fill"></i>Free site assessment &amp; consultation</li>
+              <li><i class="bi bi-check-circle-fill"></i>Machine supplied at zero cost</li>
+              <li><i class="bi bi-check-circle-fill"></i>Professional installation included</li>
+              <li><i class="bi bi-check-circle-fill"></i>Optimal placement recommendation</li>
+            </ul>
+          </div>
+          <div class="sc-footer">
+            <a href="request-assessment.html" class="sc-link">Get Started <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fully Managed -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="sc-header">
+            <div class="sc-icon-wrap"><i class="bi bi-gear-wide-connected"></i></div>
+            <h3>Fully Managed Service</h3>
+            <div class="sc-tag">We Handle Everything</div>
+          </div>
+          <div class="sc-body">
+            <p>We handle everything — allowing your team to focus on running your business while we take complete care of the vending machine.</p>
+            <ul class="sc-list">
+              <li><i class="bi bi-check-circle-fill"></i>Product sourcing &amp; procurement</li>
+              <li><i class="bi bi-check-circle-fill"></i>Regular stock replenishment</li>
+              <li><i class="bi bi-check-circle-fill"></i>Machine cleaning &amp; hygiene</li>
+              <li><i class="bi bi-check-circle-fill"></i>Preventative maintenance</li>
+              <li><i class="bi bi-check-circle-fill"></i>Repairs &amp; servicing</li>
+              <li><i class="bi bi-check-circle-fill"></i>Payment system management</li>
+              <li><i class="bi bi-check-circle-fill"></i>Customer support</li>
+            </ul>
+          </div>
+          <div class="sc-footer">
+            <a href="contact-us.html" class="sc-link">Learn More <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cashless Tech -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="sc-header">
+            <div class="sc-icon-wrap"><i class="bi bi-credit-card-2-front"></i></div>
+            <h3>Modern Cashless Technology</h3>
+            <div class="sc-tag">Tap, Card &amp; Mobile Pay</div>
+          </div>
+          <div class="sc-body">
+            <p>Our machines are equipped with secure cashless payment systems, creating a smooth and user-friendly experience for every customer.</p>
+            <ul class="sc-list">
+              <li><i class="bi bi-check-circle-fill"></i>Debit &amp; credit cards accepted</li>
+              <li><i class="bi bi-check-circle-fill"></i>Apple Pay &amp; Google Pay</li>
+              <li><i class="bi bi-check-circle-fill"></i>Contactless NFC payments</li>
+              <li><i class="bi bi-check-circle-fill"></i>PCI-DSS compliant &amp; fully secure</li>
+              <li><i class="bi bi-check-circle-fill"></i>Real-time transaction reporting</li>
+            </ul>
+          </div>
+          <div class="sc-footer">
+            <a href="our-machines.html" class="sc-link">View Machines <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Selection -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="sc-header">
+            <div class="sc-icon-wrap"><i class="bi bi-bag-heart"></i></div>
+            <h3>Customised Product Selection</h3>
+            <div class="sc-tag">Tailored to Your Audience</div>
+          </div>
+          <div class="sc-body">
+            <p>Every location is different. We work with our partners to provide a product range that suits their customers, staff, students, or guests — regularly reviewed and adjusted based on sales performance.</p>
+            <ul class="sc-list">
+              <li><i class="bi bi-check-circle-fill"></i>Soft drinks, water &amp; sports drinks</li>
+              <li><i class="bi bi-check-circle-fill"></i>Energy drinks &amp; iced coffee</li>
+              <li><i class="bi bi-check-circle-fill"></i>Chocolate, chips &amp; snack bars</li>
+              <li><i class="bi bi-check-circle-fill"></i>Healthy options available</li>
+              <li><i class="bi bi-check-circle-fill"></i>Instant meals &amp; seasonal items</li>
+            </ul>
+          </div>
+          <div class="sc-footer">
+            <a href="contact-us.html" class="sc-link">Discuss Products <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenue Sharing -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="sc-header">
+            <div class="sc-icon-wrap"><i class="bi bi-graph-up-arrow"></i></div>
+            <h3>Revenue Sharing</h3>
+            <div class="sc-tag">15% Monthly to You</div>
+          </div>
+          <div class="sc-body">
+            <p>Flash Innovations offers a revenue-sharing model where participating organisations receive a percentage of machine sales each month — creating an additional income stream from existing space.</p>
+            <ul class="sc-list">
+              <li><i class="bi bi-check-circle-fill"></i>15% of all sales returned monthly</li>
+              <li><i class="bi bi-check-circle-fill"></i>No investment or staffing required</li>
+              <li><i class="bi bi-check-circle-fill"></i>Transparent monthly reports</li>
+              <li><i class="bi bi-check-circle-fill"></i>Direct payment to your organisation</li>
+            </ul>
+          </div>
+          <div class="sc-footer">
+            <a href="request-assessment.html" class="sc-link">Start Earning <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charity -->
+      <div class="col-md-6 col-lg-4 reveal">
+        <div class="service-card">
+          <div class="sc-header">
+            <div class="sc-icon-wrap"><i class="bi bi-heart-fill"></i></div>
+            <h3>Supporting Charity</h3>
+            <div class="sc-tag">5% Every Sale</div>
+          </div>
+          <div class="sc-body">
+            <p>Flash Innovations was created with a purpose beyond vending. A percentage of machine sales is donated to charitable organisations, helping support important causes within our community.</p>
+            <ul class="sc-list">
+              <li><i class="bi bi-check-circle-fill"></i>5% of sales donated automatically</li>
+              <li><i class="bi bi-check-circle-fill"></i>Supports Sydney Children's Hospitals Foundation</li>
+              <li><i class="bi bi-check-circle-fill"></i>Every purchase creates social impact</li>
+              <li><i class="bi bi-check-circle-fill"></i>Partner in a business that gives back</li>
+            </ul>
+          </div>
+          <div class="sc-footer">
+            <a href="about-us.html" class="sc-link">Our Impact <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASHLESS TECH DEEP DIVE ══════════════════════════════════════════════════ -->
+<section class="tech-section">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6 reveal-left">
+        <div class="sec-eyebrow">Payment Technology</div>
+        <h2 class="sec-title">MODERN CASHLESS <span>TECHNOLOGY</span></h2>
+        <div class="sec-underline"></div>
+        <p class="sec-lead">Our machines are equipped with the latest secure cashless payment systems, allowing customers to pay quickly and conveniently using any modern payment method.</p>
+        <p class="sec-lead mt-3">This creates a smooth and user-friendly experience for every customer — whether they're a corporate employee, hotel guest, college student, or warehouse worker.</p>
+        <div class="tech-badge-row mt-4">
+          <span class="tech-badge"><i class="bi bi-shield-check me-1"></i> PCI-DSS Compliant</span>
+          <span class="tech-badge"><i class="bi bi-lock me-1"></i> End-to-End Encrypted</span>
+          <span class="tech-badge"><i class="bi bi-wifi me-1"></i> 4G + WiFi Connected</span>
+          <span class="tech-badge"><i class="bi bi-bar-chart me-1"></i> Real-Time Reporting</span>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal-right">
+        <div class="tech-device">
+          <div class="td-inner">
+            <div style="margin-bottom:1.2rem">
+              <div style="font-family:Montserrat,sans-serif;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:.5rem">Accepted Payment Methods</div>
+            </div>
+            <div class="pay-method">
+              <div class="pm-icon"><i class="bi bi-credit-card-2-front"></i></div>
+              <div>
+                <div class="pm-label">Debit &amp; Credit Cards</div>
+                <div class="pm-sub">Visa, Mastercard, American Express</div>
+              </div>
+              <div class="pm-tick"><i class="bi bi-check"></i></div>
+            </div>
+            <div class="pay-method">
+              <div class="pm-icon"><i class="bi bi-phone"></i></div>
+              <div>
+                <div class="pm-label">Apple Pay</div>
+                <div class="pm-sub">Tap to pay with iPhone or Apple Watch</div>
+              </div>
+              <div class="pm-tick"><i class="bi bi-check"></i></div>
+            </div>
+            <div class="pay-method">
+              <div class="pm-icon"><i class="bi bi-google"></i></div>
+              <div>
+                <div class="pm-label">Google Pay</div>
+                <div class="pm-sub">Android phones &amp; wearables</div>
+              </div>
+              <div class="pm-tick"><i class="bi bi-check"></i></div>
+            </div>
+            <div class="pay-method">
+              <div class="pm-icon"><i class="bi bi-wifi"></i></div>
+              <div>
+                <div class="pm-label">Contactless NFC</div>
+                <div class="pm-sub">Any contactless-enabled card or device</div>
+              </div>
+              <div class="pm-tick"><i class="bi bi-check"></i></div>
+            </div>
+            <div class="pay-method">
+              <div class="pm-icon"><i class="bi bi-cash-stack"></i></div>
+              <div>
+                <div class="pm-label">Cash (Optional)</div>
+                <div class="pm-sub">Available on select machine models</div>
+              </div>
+              <div class="pm-tick"><i class="bi bi-check"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUCT SELECTION ════════════════════════════════════════════════════════ -->
+<section class="products-section">
+  <div class="container">
+    <div class="row align-items-start gy-5">
+      <div class="col-lg-5 reveal-left">
+        <div class="sec-eyebrow">What's Inside</div>
+        <h2 class="sec-title">CUSTOMISED <span>PRODUCT SELECTION</span></h2>
+        <div class="sec-underline"></div>
+        <p class="sec-lead">Every location is different. We work with our partners to provide a product range that suits their customers, staff, students, or guests. Our product range is regularly reviewed and adjusted based on sales performance and customer demand.</p>
+        <div class="product-tag-cloud mt-2">
+          <span class="product-tag featured"><i class="bi bi-droplet"></i> Soft Drinks</span>
+          <span class="product-tag"><i class="bi bi-droplet-fill"></i> Water</span>
+          <span class="product-tag featured"><i class="bi bi-lightning-charge"></i> Energy Drinks</span>
+          <span class="product-tag"><i class="bi bi-cup-hot"></i> Iced Coffee</span>
+          <span class="product-tag"><i class="bi bi-activity"></i> Sports Drinks</span>
+          <span class="product-tag featured"><i class="bi bi-bag-heart"></i> Chocolate</span>
+          <span class="product-tag"><i class="bi bi-bag"></i> Chips</span>
+          <span class="product-tag featured"><i class="bi bi-apple"></i> Healthy Snacks</span>
+          <span class="product-tag"><i class="bi bi-box2"></i> Instant Meals</span>
+          <span class="product-tag"><i class="bi bi-calendar-heart"></i> Seasonal Products</span>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal-right">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="product-category">
+              <i class="bi bi-cup-straw pc-icon"></i>
+              <h5>Beverages</h5>
+              <ul>
+                <li>Soft drinks (various brands)</li>
+                <li>Still &amp; sparkling water</li>
+                <li>Energy &amp; sports drinks</li>
+                <li>Iced coffee &amp; cold brew</li>
+                <li>Juices &amp; flavoured water</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="product-category">
+              <i class="bi bi-bag-heart pc-icon"></i>
+              <h5>Snacks</h5>
+              <ul>
+                <li>Chocolate bars &amp; confectionery</li>
+                <li>Chips &amp; savoury snacks</li>
+                <li>Nuts &amp; trail mixes</li>
+                <li>Protein &amp; muesli bars</li>
+                <li>Rice cakes &amp; crackers</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="product-category">
+              <i class="bi bi-apple pc-icon"></i>
+              <h5>Healthy Options</h5>
+              <ul>
+                <li>Low-sugar &amp; low-calorie snacks</li>
+                <li>Fresh fruit cups (select models)</li>
+                <li>Kombucha &amp; probiotic drinks</li>
+                <li>Protein shakes &amp; bars</li>
+                <li>Organic &amp; natural products</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="product-category">
+              <i class="bi bi-box2 pc-icon"></i>
+              <h5>Instant &amp; Seasonal</h5>
+              <ul>
+                <li>Instant noodles &amp; soups</li>
+                <li>Microwave meals (select sites)</li>
+                <li>Seasonal limited editions</li>
+                <li>Event-specific product runs</li>
+                <li>Partner-branded items</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVENUE SHARING ══════════════════════════════════════════════════════════ -->
+<section class="revenue-section">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-5 reveal-left">
+        <div class="revenue-card">
+          <div class="rev-inner">
+            <div style="font-family:Montserrat,sans-serif;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:.5rem">Your Monthly Return</div>
+            <div class="rev-percent">15%</div>
+            <div class="rev-label">of all machine sales — paid to your organisation</div>
+            <hr class="rev-divider" />
+            <div class="rev-step">
+              <div class="rev-num">1</div>
+              <p>Machine generates sales from your staff, guests or students.</p>
+            </div>
+            <div class="rev-step">
+              <div class="rev-num">2</div>
+              <p><strong>15%</strong> of all gross sales is calculated at month end.</p>
+            </div>
+            <div class="rev-step">
+              <div class="rev-num">3</div>
+              <p>Flash Innovations pays your organisation <strong>directly</strong>.</p>
+            </div>
+            <div class="rev-step">
+              <div class="rev-num">4</div>
+              <p>You receive a <strong>transparent report</strong> with full sales breakdown.</p>
+            </div>
+            <div class="report-box">
+              <i class="bi bi-file-earmark-bar-graph-fill"></i>
+              <p>Monthly statements include product-level sales data, total revenue, and your share — delivered to your inbox automatically.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal-right">
+        <div class="sec-eyebrow">Passive Income</div>
+        <h2 class="sec-title">REVENUE <span>SHARING</span></h2>
+        <div class="sec-underline"></div>
+        <p class="sec-lead">We believe our partners should benefit from helping us grow. That is why Flash Innovations offers a revenue-sharing model where participating organisations receive a percentage of machine sales each month.</p>
+        <p class="sec-lead mt-3">This creates an <strong>additional income stream</strong> from existing space without requiring any investment, staffing, or ongoing management. Your space works for you — even while you sleep.</p>
+
+        <div class="row g-3 mt-3">
+          <div class="col-sm-6">
+            <div style="background:var(--light-bg);border-radius:10px;padding:1.2rem">
+              <i class="bi bi-building" style="color:var(--green);font-size:1.4rem;display:block;margin-bottom:.5rem"></i>
+              <div style="font-family:Montserrat,sans-serif;font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.3rem">Zero Investment</div>
+              <p style="font-size:.82rem;color:var(--muted);margin:0;line-height:1.6">No capital outlay, no staffing overhead, no management required. Pure passive income.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:var(--light-bg);border-radius:10px;padding:1.2rem">
+              <i class="bi bi-bar-chart-fill" style="color:var(--green);font-size:1.4rem;display:block;margin-bottom:.5rem"></i>
+              <div style="font-family:Montserrat,sans-serif;font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.3rem">Full Transparency</div>
+              <p style="font-size:.82rem;color:var(--muted);margin:0;line-height:1.6">Detailed monthly reports give you complete visibility on sales volume and your revenue share.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:var(--light-bg);border-radius:10px;padding:1.2rem">
+              <i class="bi bi-calendar-check" style="color:var(--green);font-size:1.4rem;display:block;margin-bottom:.5rem"></i>
+              <div style="font-family:Montserrat,sans-serif;font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.3rem">Consistent Payments</div>
+              <p style="font-size:.82rem;color:var(--muted);margin:0;line-height:1.6">Receive your revenue share reliably each month, every month — no chasing required.</p>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div style="background:var(--light-bg);border-radius:10px;padding:1.2rem">
+              <i class="bi bi-shield-check" style="color:var(--green);font-size:1.4rem;display:block;margin-bottom:.5rem"></i>
+              <div style="font-family:Montserrat,sans-serif;font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.4px;margin-bottom:.3rem">No Lock-in Contract</div>
+              <p style="font-size:.82rem;color:var(--muted);margin:0;line-height:1.6">We operate on trust and results — not lock-in contracts. If you're not happy, we'll work to fix it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CHARITY ══════════════════════════════════════════════════════════════════ -->
+<section class="charity-section">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-6 reveal-left">
+        <div class="sec-eyebrow">Community Impact</div>
+        <h2 class="sec-title">SUPPORTING <span>CHARITY</span></h2>
+        <div class="sec-underline"></div>
+        <p class="sec-lead">Flash Innovations was created with a purpose beyond vending. A percentage of machine sales is donated to charitable organisations, helping support important causes within our community.</p>
+        <p class="sec-lead mt-3">Every purchase made through our machines contributes not only to convenience but also to positive social impact. When you partner with Flash Innovations, you become part of a business model that <strong>genuinely gives back</strong>.</p>
+        <div class="impact-row">
+          <div class="impact-item" style="background:#fff;border:1px solid var(--border)">
+            <i class="bi bi-heart-pulse-fill" style="color:#e53935"></i>
+            <p>Helping sick children &amp; their families across NSW</p>
+          </div>
+          <div class="impact-item" style="background:#fff;border:1px solid var(--border)">
+            <i class="bi bi-people-fill" style="color:var(--green)"></i>
+            <p>Community impact with every single purchase</p>
+          </div>
+          <div class="impact-item" style="background:#fff;border:1px solid var(--border)">
+            <i class="bi bi-graph-up-arrow" style="color:#1565c0"></i>
+            <p>Donations grow as your machine's sales grow</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal-right">
+        <div class="charity-card">
+          <div class="charity-inner">
+            <div class="donation-pill"><i class="bi bi-heart-fill"></i> Certified Charity Partner</div>
+            <div class="charity-percent">5%</div>
+            <div style="font-family:Montserrat,sans-serif;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#aaa;margin-top:.3rem">of every sale donated automatically</div>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,.1);margin:1.5rem 0" />
+            <p style="font-size:.9rem;color:#ccc;line-height:1.8">Our partnership with the <strong style="color:#fff">Sydney Children's Hospitals Foundation</strong> means that every snack sold and every drink purchased helps fund critical care for sick children and their families across New South Wales.</p>
+            <div class="schf-logo-wrap">
+              <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#e53935,#ff7043);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="bi bi-heart-fill" style="color:#fff;font-size:1.1rem"></i>
+              </div>
+              <div>
+                <span style="font-family:Montserrat,sans-serif;font-weight:900;font-size:.95rem;color:#1a1a1a;line-height:1.3;display:block">Sydney Children's<br>Hospitals Foundation</span>
+                <span style="font-size:.62rem;color:#888;text-transform:uppercase;letter-spacing:.5px">Official Charity Partner</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY CHOOSE ════════════════════════════════════════════════════════════════ -->
+<section class="why-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="sec-eyebrow" style="justify-content:center">Why Flash Innovations</div>
+      <h2 class="sec-title">WHY CHOOSE <span>FLASH INNOVATIONS?</span></h2>
+      <div class="sec-underline center"></div>
+      <p class="sec-lead mx-auto" style="max-width:520px">We're not just another vending company. We're a fully managed, community-driven partner that puts your organisation first.</p>
+    </div>
+
+    <div class="row g-4 mb-5">
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="why-card text-center">
+          <div class="wc-icon mx-auto"><i class="bi bi-cash-coin"></i></div>
+          <h4>No Cost</h4>
+          <p>Zero upfront investment — machine, install and setup all completely free.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="why-card text-center">
+          <div class="wc-icon mx-auto"><i class="bi bi-gear-wide-connected"></i></div>
+          <h4>Fully Managed</h4>
+          <p>We handle stocking, cleaning, maintenance and repairs — always.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="why-card text-center">
+          <div class="wc-icon mx-auto"><i class="bi bi-credit-card"></i></div>
+          <h4>Cashless Tech</h4>
+          <p>Modern machines with card, Apple Pay, Google Pay &amp; contactless built in.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="why-card text-center">
+          <div class="wc-icon mx-auto"><i class="bi bi-graph-up-arrow"></i></div>
+          <h4>Revenue Share</h4>
+          <p>15% of sales returned to your organisation every single month.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="why-card text-center">
+          <div class="wc-icon mx-auto"><i class="bi bi-heart-fill"></i></div>
+          <h4>Gives Back</h4>
+          <p>5% of every sale donated to Sydney Children's Hospitals Foundation.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-2 reveal">
+        <div class="why-card text-center">
+          <div class="wc-icon mx-auto"><i class="bi bi-shield-check"></i></div>
+          <h4>No Lock-in</h4>
+          <p>Flexible partnership built on performance, trust and results — not contracts.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="reveal">
+      <h3 style="font-size:1.1rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px;text-align:center;margin-bottom:1.5rem">Flash Innovations vs Traditional Vending Operators</h3>
+      <div class="compare-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="highlight">Flash Innovations</th>
+              <th>Traditional Operator</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Upfront cost to organisation</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> $0 — Completely Free</td>
+              <td><i class="bi bi-x-circle-fill ct-no"></i> Rental or purchase fees</td>
+            </tr>
+            <tr>
+              <td>Installation included</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> Yes — Always Free</td>
+              <td><i class="bi bi-x-circle-fill ct-no"></i> Often charged separately</td>
+            </tr>
+            <tr>
+              <td>Stocking &amp; maintenance</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> Fully managed by us</td>
+              <td><i class="bi bi-dash ct-no"></i> Varies by operator</td>
+            </tr>
+            <tr>
+              <td>Monthly revenue share</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> 15% to your organisation</td>
+              <td><i class="bi bi-x-circle-fill ct-no"></i> Rarely offered</td>
+            </tr>
+            <tr>
+              <td>Cashless payment technology</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> Included as standard</td>
+              <td><i class="bi bi-dash ct-no"></i> Extra cost or unavailable</td>
+            </tr>
+            <tr>
+              <td>Charitable giving</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> 5% of every sale</td>
+              <td><i class="bi bi-x-circle-fill ct-no"></i> Not offered</td>
+            </tr>
+            <tr>
+              <td>Lock-in contract</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> No lock-in</td>
+              <td><i class="bi bi-x-circle-fill ct-no"></i> Typically 12–36 months</td>
+            </tr>
+            <tr>
+              <td>Monthly reporting</td>
+              <td class="ct-highlight"><i class="bi bi-check-circle-fill ct-yes"></i> Transparent reports</td>
+              <td><i class="bi bi-x-circle-fill ct-no"></i> Limited visibility</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══════════════════════════════════════════════════════════════ -->
+<section class="how-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="sec-eyebrow" style="justify-content:center">The Process</div>
+      <h2 class="sec-title">HOW IT <span>WORKS</span></h2>
+      <div class="sec-underline center"></div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-3 reveal">
+        <div class="how-step">
+          <div class="hs-num">1</div>
+          <i class="bi bi-search hs-icon"></i>
+          <h5>Free Site Assessment</h5>
+          <p>We assess your location, foot traffic and space to recommend the perfect vending solution for your needs.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 reveal">
+        <div class="how-step">
+          <div class="hs-num">2</div>
+          <i class="bi bi-tools hs-icon"></i>
+          <h5>Installation</h5>
+          <p>We deliver and professionally install the machine at absolutely no cost to your organisation — usually within 5 business days.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 reveal">
+        <div class="how-step">
+          <div class="hs-num">3</div>
+          <i class="bi bi-box-seam hs-icon"></i>
+          <h5>Ongoing Management</h5>
+          <p>We regularly stock, clean and service the machine. Any faults are addressed promptly by our dedicated team.</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 reveal">
+        <div class="how-step">
+          <div class="hs-num">4</div>
+          <i class="bi bi-bar-chart-line hs-icon"></i>
+          <h5>Monthly Reports &amp; Pay</h5>
+          <p>You receive a transparent monthly report with full sales data and your 15% revenue share payment — automatically.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ INDUSTRIES ════════════════════════════════════════════════════════════════ -->
+<section class="industries-section">
+  <div class="container">
+    <div class="text-center mb-5 reveal">
+      <div class="sec-eyebrow" style="justify-content:center">Who We Serve</div>
+      <h2 class="sec-title">BUILT FOR YOUR <span>INDUSTRY</span></h2>
+      <div class="sec-underline center"></div>
+      <p class="sec-lead mx-auto" style="max-width:520px">Our vending solution is designed for any high-traffic facility that wants to add value for their people — with zero hassle and real returns.</p>
+    </div>
+    <div class="row g-3 reveal">
+      <div class="col-6 col-md-4 col-lg-2"><div class="industry-chip"><i class="bi bi-briefcase"></i>Workplaces &amp; Offices</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="industry-chip"><i class="bi bi-building"></i>Hotels &amp; Hospitality</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="industry-chip"><i class="bi bi-mortarboard"></i>Colleges &amp; Universities</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="industry-chip"><i class="bi bi-box-seam"></i>Warehouses &amp; Factories</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="industry-chip"><i class="bi bi-activity"></i>Gyms &amp; Leisure</div></div>
+      <div class="col-6 col-md-4 col-lg-2"><div class="industry-chip"><i class="bi bi-heart-pulse"></i>Healthcare Facilities</div></div>
+    </div>
+    <div class="text-center mt-4 reveal">
+      <a href="our-machines.html" style="font-family:Montserrat,sans-serif;font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;color:var(--green);text-decoration:none;display:inline-flex;align-items:center;gap:.4rem">
+        View All Machines <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BAND ══════════════════════════════════════════════════════════════════ -->
+<section class="cta-band">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(106,176,76,.15);border:1px solid rgba(106,176,76,.3);border-radius:30px;padding:.3rem 1rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--green);margin-bottom:1.2rem">
+        <i class="bi bi-lightning-charge-fill"></i> Zero Cost. Real Returns.
+      </div>
+      <h2>READY TO ADD VALUE<br><span>TO YOUR SPACE?</span></h2>
+      <p>Request your free site assessment today and our team will recommend the perfect vending solution — at absolutely no cost to you.</p>
+      <div class="cta-btns">
+        <a href="request-assessment.html" class="btn-cta-green"><i class="bi bi-send-fill"></i> Request Free Assessment</a>
+        <a href="our-machines.html" class="btn-cta-outline"><i class="bi bi-grid"></i> Browse Our Machines</a>
+        <a href="contact-us.html" class="btn-cta-outline"><i class="bi bi-telephone"></i> 1300 610 372</a>
+      </div>
+      <div class="cta-stats">
+        <div class="cta-stat"><div class="cs-num">$0</div><div class="cs-lbl">Upfront Cost</div></div>
+        <div class="cta-stat cta-div"><div class="cs-num">15%</div><div class="cs-lbl">Revenue Share</div></div>
+        <div class="cta-stat cta-div"><div class="cs-num">5%</div><div class="cs-lbl">Charity Donated</div></div>
+        <div class="cta-stat cta-div"><div class="cs-num">1 Day</div><div class="cs-lbl">Response Time</div></div>
+        <div class="cta-stat cta-div"><div class="cs-num">6+</div><div class="cs-lbl">Active Sites</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-3">
+         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+        
+           <img src="footer_logo.png" alt="Flash Innovations Logo" style="height:60px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.1))" onerror="this.src='https://placehold.co/90x30/1a2a18/6ab04c?text=Logo'" />
+            
+            </div>
+        <p style="font-size:.8rem;line-height:1.6;margin-top:.5rem">Premium vending solutions with no hassle, no upfront costs and positive community impact.</p>
+        <div class="soc mt-2"><a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-linkedin"></i></a><a href="#"><i class="bi bi-instagram"></i></a></div>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="flash-innovations.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Our Solution</a></li>
+          <li><a href="our-machines.html">Our Machines</a></li>
+          <li><a href="#">Our Impact</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-3">
+        <h6>Contact Us</h6>
+        <div class="f-contact"><i class="bi bi-telephone-fill"></i><span>1300 610 372</span></div>
+        <div class="f-contact"><i class="bi bi-envelope-fill"></i><span>vending@flashpainting.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-globe"></i><span>flashinnovations.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-geo-alt-fill"></i><span>3/44 Kelso Crescent,<br>Moorebank NSW 2170</span></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h6>Our Impact</h6>
+        <p class="fi-txt"><span class="fi-tag">15%</span> returned to your organisation</p>
+        <p class="fi-txt"><span class="fi-tag">5%</span> donated to Sydney Children's Hospitals Foundation</p>
+        <a href="#" style="display:inline-block;border:2px solid var(--green);color:var(--green);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:.4rem 1rem;border-radius:3px;text-decoration:none;margin-top:.8rem;transition:all .2s"
+          onmouseover="this.style.background='var(--green)';this.style.color='#fff'"
+          onmouseout="this.style.background='transparent';this.style.color='var(--green)'">LEARN MORE</a>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Flash Innovations Pty Ltd. All Rights Reserved.</span>
+      <div>
+        <a href="#" style="color:#aaa;text-decoration:none;margin-right:1rem">Privacy Policy</a>
+        <a href="#" style="color:#aaa;text-decoration:none">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  /* ── Scroll Reveal ──────────────────────────────────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ── Product tag hover active toggle ───────────────────────────────────── */
+  document.querySelectorAll('.product-tag').forEach(tag => {
+    tag.addEventListener('click', () => tag.classList.toggle('featured'));
+  });
+
+  /* ── Navbar shrink on scroll ───────────────────────────────────────────── */
+  window.addEventListener('scroll', () => {
+    document.querySelector('.navbar').style.padding = window.scrollY > 50 ? '.3rem 0' : '';
+  });
+</script>
+</body>
+</html>
