@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Vending Machines – Flash Innovations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #6ab04c;
+      --green-dark: #4e8a36;
+      --dark: #1a1a2e;
+      --light-bg: #f9f9f9;
+      --text-muted-custom: #666;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; margin: 0; overflow-x: hidden; background: #f9f9f9; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Montserrat', sans-serif; }
+
+    /* ── NAVBAR ── */
+    .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+    .navbar-nav .nav-link { font-weight: 600; font-size: .85rem; color: #333 !important; padding: .5rem 1rem; text-transform: uppercase; letter-spacing: .5px; position: relative; font-family: 'Montserrat', sans-serif; }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover { color: var(--green) !important; }
+    .navbar-nav .nav-link.active::after { content:''; position:absolute; bottom:-2px; left:1rem; right:1rem; height:2px; background:var(--green); }
+    .btn-assess { background: var(--green); color: #fff !important; border-radius: 4px; padding: .5rem 1.1rem !important; font-size: .8rem !important; font-weight: 700 !important; white-space: nowrap; }
+    .btn-assess:hover { background: var(--green-dark); }
+    .navbar-toggler { border: none; box-shadow: none !important; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, #0d1f0b 0%, #1a2a18 60%, #111 100%);
+      padding: 5rem 0 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=1600&q=60') center/cover no-repeat;
+      opacity: .1;
+    }
+    .page-hero-content { position: relative; z-index: 2; }
+    .page-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; color: #fff; }
+    .page-hero h1 span { color: var(--green); }
+    .page-hero p { color: #bbb; font-size: .97rem; max-width: 580px; }
+    .breadcrumb-item a, .breadcrumb-item { color: #aaa; font-size: .8rem; text-decoration: none; }
+    .breadcrumb-item.active { color: var(--green); }
+
+    /* ── FILTER BAR ── */
+    .filter-bar { background: #fff; border-bottom: 1px solid #eee; padding: 1rem 0; position: sticky; top: 62px; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .filter-btn { font-family: 'Montserrat', sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; border: 2px solid #e0e0e0; border-radius: 30px; padding: .4rem 1.1rem; color: #555; background: #fff; cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .filter-btn:hover, .filter-btn.active { border-color: var(--green); background: var(--green); color: #fff; }
+    .filter-scroll { display: flex; gap: .6rem; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+    .filter-scroll::-webkit-scrollbar { display: none; }
+    .search-input { border: 2px solid #e0e0e0; border-radius: 30px; padding: .4rem 1rem .4rem 2.5rem; font-size: .85rem; outline: none; transition: border-color .2s; width: 220px; max-width: 100%; font-family: 'Open Sans', sans-serif; }
+    .search-input:focus { border-color: var(--green); }
+    .search-wrap { position: relative; flex-shrink: 0; }
+    .search-wrap i { position: absolute; left: .85rem; top: 50%; transform: translateY(-50%); color: #aaa; font-size: .9rem; }
+    .result-count { font-size: .8rem; color: #999; white-space: nowrap; align-self: center; flex-shrink: 0; }
+
+    /* ── MACHINE GRID ── */
+    .machines-section { padding: 2.5rem 0 4rem; }
+    .machine-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,.07);
+      transition: transform .25s, box-shadow .25s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .machine-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.13); }
+    .machine-card:hover .card-img-inner { transform: scale(1.04); }
+    .card-img-wrap { height: 240px; overflow: hidden; background: #f0f5ee; position: relative; }
+    .card-img-inner { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; display: block; }
+    .card-badge { position: absolute; top: .8rem; left: .8rem; background: var(--green); color: #fff; font-family: 'Montserrat', sans-serif; font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; padding: .25rem .7rem; border-radius: 30px; }
+    .card-badge.new { background: #e53935; }
+    .card-badge.popular { background: #f57c00; }
+    .card-body-custom { padding: 1.3rem 1.3rem 1rem; flex: 1; display: flex; flex-direction: column; }
+    .card-category { font-size: .7rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: .3rem; }
+    .card-title { font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 800; color: #1a1a1a; margin-bottom: .5rem; line-height: 1.3; }
+    .card-desc { font-size: .8rem; color: #777; line-height: 1.6; flex: 1; margin-bottom: 1rem; }
+    .card-specs { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .spec-chip { font-size: .68rem; font-weight: 700; background: #f0f5ee; color: #4e8a36; border-radius: 4px; padding: .2rem .55rem; text-transform: uppercase; letter-spacing: .3px; }
+    .card-footer-custom { padding: 1rem 1.3rem; border-top: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between; }
+    .card-industries { font-size: .72rem; color: #999; }
+    .card-industries i { color: var(--green); margin-right: .2rem; }
+    .btn-view { font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; background: var(--green); color: #fff; border: none; border-radius: 6px; padding: .45rem 1rem; display: inline-flex; align-items: center; gap: .35rem; text-decoration: none; transition: background .2s; }
+    .btn-view:hover { background: var(--green-dark); color: #fff; }
+
+    /* No results */
+    .no-results { text-align: center; padding: 4rem 1rem; display: none; }
+    .no-results i { font-size: 3rem; color: #ddd; display: block; margin-bottom: 1rem; }
+    .no-results p { color: #aaa; font-size: .9rem; }
+
+    /* ── COMPARE BAR ── */
+    .compare-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); color: #fff; padding: .8rem 1rem; display: none; z-index: 999; box-shadow: 0 -4px 20px rgba(0,0,0,.3); }
+    .compare-bar.visible { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .compare-items { display: flex; gap: .5rem; flex-wrap: wrap; flex: 1; }
+    .compare-chip { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); border-radius: 4px; padding: .2rem .7rem; font-size: .75rem; display: flex; align-items: center; gap: .5rem; }
+    .compare-chip button { background: none; border: none; color: #fff; cursor: pointer; padding: 0; font-size: .7rem; opacity: .7; }
+    .btn-compare { font-family: 'Montserrat', sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; background: var(--green); color: #fff; border: none; border-radius: 4px; padding: .5rem 1.2rem; cursor: pointer; white-space: nowrap; }
+    .btn-clear-compare { font-family: 'Montserrat', sans-serif; font-size: .75rem; color: #aaa; background: none; border: none; cursor: pointer; text-decoration: underline; }
+
+    /* ── STATS STRIP ── */
+    .stats-strip { background: var(--dark); padding: 2rem 0; }
+    .stat-item { text-align: center; }
+    .stat-item .num { font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; color: var(--green); line-height: 1; }
+    .stat-item .lbl { font-size: .68rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: .5px; margin-top: .25rem; }
+    .stat-div { border-left: 1px solid rgba(255,255,255,.12); }
+
+    /* ── CTA ── */
+    .cta-bar { background: var(--green); padding: 2.5rem 0; }
+    .cta-bar h3 { color: #fff; font-weight: 900; font-size: clamp(1.1rem, 2.5vw, 1.5rem); margin-bottom: .25rem; }
+    .cta-bar p { color: rgba(255,255,255,.85); font-size: .88rem; margin: 0; }
+    .btn-cta-white { background: #fff; color: var(--green); border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .82rem; padding: .75rem 1.5rem; text-transform: uppercase; letter-spacing: .5px; display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .btn-cta-white:hover { background: var(--dark); color: #fff; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); color: #aaa; padding: 3rem 0 1rem; }
+    footer h6 { color: #fff; font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer ul li { margin-bottom: .5rem; }
+    footer ul li a { color: #aaa; text-decoration: none; font-size: .82rem; transition: color .2s; }
+    footer ul li a:hover { color: var(--green); }
+    .f-contact { display: flex; align-items: flex-start; gap: .6rem; font-size: .82rem; margin-bottom: .45rem; }
+    .f-contact i { color: var(--green); font-size: .9rem; margin-top: 2px; flex-shrink: 0; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); margin-top: 2rem; padding-top: 1rem; font-size: .75rem; }
+    .fi-tag { color: var(--green); font-weight: 700; }
+    .fi-txt { font-size: .8rem; }
+    .soc a { color: #aaa; font-size: 1.2rem; margin-right: .7rem; transition: color .2s; }
+    .soc a:hover { color: var(--green); }
+    .f-learn { display: inline-block; border: 2px solid var(--green); color: var(--green); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: .4rem 1rem; border-radius: 3px; text-decoration: none; margin-top: .8rem; transition: all .2s; }
+    .f-learn:hover { background: var(--green); color: #fff; }
+
+    @media (max-width: 575px) { .stat-div { border-left: none; border-top: 1px solid rgba(255,255,255,.12); padding-top: 1rem; margin-top: 1rem; } }
+    @media (max-width: 767px) { .search-input { width: 160px; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="flash-innovations.html">
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <div style="background:#1a2a18;padding:6px 8px;border-radius:4px"><i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.4rem"></i></div>
+        <div>
+          <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.05rem;color:#1a1a1a;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+          <div style="font-size:.55rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="flash-innovations.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Our Solution</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Industries</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Our Impact</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+        <li class="nav-item ms-lg-2"><a class="nav-link btn-assess" href="#">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb mb-0" style="background:none;padding:0">
+        <li class="breadcrumb-item"><a href="flash-innovations.html">Home</a></li>
+        <li class="breadcrumb-item active">Our Vending Machines</li>
+      </ol>
+    </nav>
+    <h1>OUR VENDING <span>MACHINES</span></h1>
+    <p class="mt-3">Discover our full range of smart, cashless vending machines — designed for workplaces, hotels, colleges, gyms and more. All fully managed, zero upfront cost.</p>
+    <div class="d-flex flex-wrap gap-3 mt-4">
+      <div style="display:flex;align-items:center;gap:.5rem;color:#ccc;font-size:.8rem;font-weight:600"><i class="bi bi-wifi" style="color:var(--green)"></i> Smart Connected</div>
+      <div style="display:flex;align-items:center;gap:.5rem;color:#ccc;font-size:.8rem;font-weight:600"><i class="bi bi-credit-card" style="color:var(--green)"></i> Cashless Payments</div>
+      <div style="display:flex;align-items:center;gap:.5rem;color:#ccc;font-size:.8rem;font-weight:600"><i class="bi bi-tools" style="color:var(--green)"></i> Fully Managed</div>
+      <div style="display:flex;align-items:center;gap:.5rem;color:#ccc;font-size:.8rem;font-weight:600"><i class="bi bi-graph-up" style="color:var(--green)"></i> Revenue Sharing</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="container">
+    <div class="d-flex align-items-center gap-3 flex-wrap">
+      <div class="filter-scroll">
+        <button class="filter-btn active" data-filter="all">All Machines</button>
+        <button class="filter-btn" data-filter="snack">Snack &amp; Food</button>
+        <button class="filter-btn" data-filter="drink">Drinks &amp; Beverage</button>
+        <button class="filter-btn" data-filter="combo">Combo Units</button>
+        <button class="filter-btn" data-filter="fresh">Fresh Food</button>
+        <button class="filter-btn" data-filter="coffee">Coffee &amp; Hot</button>
+        <button class="filter-btn" data-filter="ambient">Ambient &amp; PPE</button>
+      </div>
+      <div class="search-wrap ms-auto">
+        <i class="bi bi-search"></i>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search machines…" />
+      </div>
+      <div class="result-count" id="resultCount"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MACHINES GRID -->
+<section class="machines-section">
+  <div class="container">
+    <div class="row g-4" id="machineGrid">
+      <!-- Cards injected by JS -->
+    </div>
+    <div class="no-results" id="noResults">
+      <i class="bi bi-search"></i>
+      <p>No machines match your search. Try a different filter or keyword.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="row text-center gy-4">
+      <div class="col-6 col-sm-3"><div class="stat-item"><div class="num">8</div><div class="lbl">Machine Models</div></div></div>
+      <div class="col-6 col-sm-3 stat-div"><div class="stat-item"><div class="num">6+</div><div class="lbl">Installed Sites</div></div></div>
+      <div class="col-6 col-sm-3 stat-div"><div class="stat-item"><div class="num">15%</div><div class="lbl">Revenue Share</div></div></div>
+      <div class="col-6 col-sm-3 stat-div"><div class="stat-item"><div class="num">5%</div><div class="lbl">Donated to Charity</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bar">
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <div class="col-lg-8">
+        <h3>NOT SURE WHICH MACHINE IS RIGHT FOR YOU?</h3>
+        <p>Request a free site assessment and we'll recommend the perfect solution for your space.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="contact-us.html" class="btn-cta-white">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+          <div style="background:#fff1;padding:5px 7px;border-radius:4px"><i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.3rem"></i></div>
+          <div>
+            <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:.95rem;color:#fff;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+            <div style="font-size:.5rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+          </div>
+        </div>
+        <p style="font-size:.8rem;line-height:1.6;margin-top:.5rem">Premium vending solutions with no hassle, no upfront costs and positive community impact.</p>
+        <div class="soc mt-2"><a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-linkedin"></i></a><a href="#"><i class="bi bi-instagram"></i></a></div>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="flash-innovations.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="#">Our Solution</a></li>
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Our Impact</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-3">
+        <h6>Contact Us</h6>
+        <div class="f-contact"><i class="bi bi-telephone-fill"></i><span>1300 610 372</span></div>
+        <div class="f-contact"><i class="bi bi-envelope-fill"></i><span>vending@flashpainting.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-globe"></i><span>flashinnovations.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-geo-alt-fill"></i><span>3/44 Kelso Crescent,<br>Moorebank NSW 2170</span></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h6>Our Impact</h6>
+        <p class="fi-txt"><span class="fi-tag">15%</span> returned to your organisation</p>
+        <p class="fi-txt"><span class="fi-tag">5%</span> donated to Sydney Children's Hospitals Foundation</p>
+        <a href="#" class="f-learn">LEARN MORE</a>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Flash Innovations Pty Ltd. All Rights Reserved.</span>
+      <div><a href="#" style="color:#aaa;text-decoration:none;margin-right:1rem">Privacy Policy</a><a href="#" style="color:#aaa;text-decoration:none">Terms &amp; Conditions</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+const machines = [
+  {
+    id: 1,
+    name: "SnackPro 600",
+    category: "snack",
+    categoryLabel: "Snack & Food",
+    badge: "popular",
+    badgeLabel: "Popular",
+    image: "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=600&q=80",
+    desc: "Our best-selling snack machine. Holds up to 600 items across 50+ selection columns. Perfect for large offices and warehouses.",
+    specs: ["600 Capacity", "50 Selections", "Touchscreen", "Cashless"],
+    industries: "Offices, Warehouses, Hotels",
+    dimensions: "1830×920×810mm",
+    power: "10A / 240V",
+    temp: "Ambient",
+    payment: "Card, Mobile Pay, Cash"
+  },
+  {
+    id: 2,
+    name: "CoolDrink 480",
+    category: "drink",
+    categoryLabel: "Drinks & Beverage",
+    badge: "new",
+    badgeLabel: "New",
+    image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=600&q=80",
+    desc: "Chilled beverage machine with smart temperature control. Stocks cans, bottles, and cartons. Dual-zone cooling for optimal freshness.",
+    specs: ["480 Cans", "Dual-Zone Cooling", "LED Display", "Cashless"],
+    industries: "Gyms, Colleges, Healthcare",
+    dimensions: "1830×880×760mm",
+    power: "15A / 240V",
+    temp: "3–8°C",
+    payment: "Card, Mobile Pay, Cash"
+  },
+  {
+    id: 3,
+    name: "ComboMax Pro",
+    category: "combo",
+    categoryLabel: "Combo Unit",
+    badge: null,
+    badgeLabel: null,
+    image: "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=600&q=80",
+    desc: "Two machines in one — snacks on top, chilled drinks below. Ideal for smaller spaces that need variety without the footprint of two separate machines.",
+    specs: ["Dual Zone", "300+180 Cap.", "Touchscreen", "Cashless"],
+    industries: "Hotels, Small Offices, Colleges",
+    dimensions: "1950×720×800mm",
+    power: "15A / 240V",
+    temp: "Ambient + 3–8°C",
+    payment: "Card, Mobile Pay"
+  },
+  {
+    id: 4,
+    name: "FreshBox 200",
+    category: "fresh",
+    categoryLabel: "Fresh Food",
+    badge: "new",
+    badgeLabel: "New",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80",
+    desc: "Refrigerated fresh food machine with spiral dispensing. Stocks sandwiches, salads, fruit cups, and wraps. Ideal for health-conscious workplaces.",
+    specs: ["Refrigerated", "200 Items", "Spiral Motor", "Date Tracking"],
+    industries: "Healthcare, Offices, Colleges",
+    dimensions: "1830×900×820mm",
+    power: "15A / 240V",
+    temp: "1–4°C",
+    payment: "Card, Mobile Pay"
+  },
+  {
+    id: 5,
+    name: "BrewMaster HotDrink",
+    category: "coffee",
+    categoryLabel: "Coffee & Hot",
+    badge: null,
+    badgeLabel: null,
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80",
+    desc: "Bean-to-cup coffee machine with 12 hot drink selections including espresso, cappuccino, hot chocolate, and tea. Built-in milk frother.",
+    specs: ["Bean-to-Cup", "12 Selections", "Milk Frother", "Self-Clean"],
+    industries: "Offices, Hotels, Warehouses",
+    dimensions: "1400×600×650mm",
+    power: "16A / 240V",
+    temp: "Hot 85–95°C",
+    payment: "Card, Mobile Pay, Cash"
+  },
+  {
+    id: 6,
+    name: "AmbientPro 400",
+    category: "ambient",
+    categoryLabel: "Ambient & PPE",
+    badge: null,
+    badgeLabel: null,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    desc: "Versatile ambient machine for non-perishable goods, PPE, stationery, and health products. Popular in warehouses, factories, and healthcare settings.",
+    specs: ["400 Capacity", "PPE Ready", "Multi-Width", "24/7 Access"],
+    industries: "Warehouses, Healthcare, Factories",
+    dimensions: "1830×920×810mm",
+    power: "10A / 240V",
+    temp: "Ambient",
+    payment: "Card, Mobile Pay, Cash"
+  },
+  {
+    id: 7,
+    name: "SnackSlim 300",
+    category: "snack",
+    categoryLabel: "Snack & Food",
+    badge: null,
+    badgeLabel: null,
+    image: "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=600&q=80",
+    desc: "Compact slim-profile snack machine for tighter spaces. Fits in corridors, break rooms, and small offices with limited floor space.",
+    specs: ["300 Capacity", "Slim Profile", "LED Lit", "Cashless"],
+    industries: "Small Offices, Hotels, Clinics",
+    dimensions: "1830×600×700mm",
+    power: "10A / 240V",
+    temp: "Ambient",
+    payment: "Card, Mobile Pay"
+  },
+  {
+    id: 8,
+    name: "MegaCombo 800",
+    category: "combo",
+    categoryLabel: "Combo Unit",
+    badge: "popular",
+    badgeLabel: "Popular",
+    image: "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=600&q=80",
+    desc: "Our largest combo unit — perfect for high-traffic locations. Snacks and chilled beverages in one imposing, high-capacity unit with telemetry monitoring.",
+    specs: ["800 Capacity", "Telemetry", "Dual Zone", "HD Touchscreen"],
+    industries: "Hospitals, Universities, Airports",
+    dimensions: "1950×1050×880mm",
+    power: "20A / 240V",
+    temp: "Ambient + 3–8°C",
+    payment: "Card, Mobile Pay, Cash, NFC"
+  }
+];
+
+let currentFilter = 'all';
+let searchTerm = '';
+
+function getBadgeHTML(badge, label) {
+  if (!badge) return '';
+  return `<span class="card-badge ${badge}">${label}</span>`;
+}
+
+function renderCards() {
+  const grid = document.getElementById('machineGrid');
+  const noResults = document.getElementById('noResults');
+  const countEl = document.getElementById('resultCount');
+
+  let filtered = machines.filter(m => {
+    const matchFilter = currentFilter === 'all' || m.category === currentFilter;
+    const matchSearch = m.name.toLowerCase().includes(searchTerm) ||
+                        m.categoryLabel.toLowerCase().includes(searchTerm) ||
+                        m.desc.toLowerCase().includes(searchTerm) ||
+                        m.industries.toLowerCase().includes(searchTerm);
+    return matchFilter && matchSearch;
+  });
+
+  countEl.textContent = `${filtered.length} machine${filtered.length !== 1 ? 's' : ''} found`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    noResults.style.display = 'block';
+    return;
+  }
+  noResults.style.display = 'none';
+
+  grid.innerHTML = filtered.map(m => `
+    <div class="col-sm-6 col-lg-4 col-xl-3" data-category="${m.category}">
+      <a class="machine-card" href="machine-detail.html?id=${m.id}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit">
+        <div class="card-img-wrap">
+          <img class="card-img-inner" src="${m.image}" alt="${m.name}" loading="lazy"
+            onerror="this.src='https://placehold.co/600x240/e8f5e9/6ab04c?text=${encodeURIComponent(m.name)}'" />
+          ${getBadgeHTML(m.badge, m.badgeLabel)}
+        </div>
+        <div class="card-body-custom">
+          <div class="card-category">${m.categoryLabel}</div>
+          <div class="card-title">${m.name}</div>
+          <div class="card-desc">${m.desc}</div>
+          <div class="card-specs">
+            ${m.specs.map(s => `<span class="spec-chip">${s}</span>`).join('')}
+          </div>
+        </div>
+        <div class="card-footer-custom">
+          <div class="card-industries"><i class="bi bi-building"></i>${m.industries}</div>
+          <span class="btn-view">View Details <i class="bi bi-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+  `).join('');
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderCards();
+  });
+});
+
+// Search
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  renderCards();
+});
+
+// Init
+renderCards();
+</script>
+</body>
+</html>

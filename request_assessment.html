@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Free Assessment – Flash Innovations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:      #6ab04c;
+      --green-dark: #4e8a36;
+      --dark:       #1a1a2e;
+      --light-bg:   #f9f9f9;
+      --muted:      #666;
+      --border:     #e0e0e0;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; margin: 0; overflow-x: hidden; background: var(--light-bg); }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Montserrat', sans-serif; }
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+    .navbar-nav .nav-link {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .85rem;
+      color: #333 !important; padding: .5rem 1rem; text-transform: uppercase;
+      letter-spacing: .5px; position: relative;
+    }
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:hover { color: var(--green) !important; }
+    .navbar-nav .nav-link.active::after {
+      content:''; position:absolute; bottom:-2px; left:1rem; right:1rem;
+      height:2px; background:var(--green);
+    }
+    .btn-assess {
+      background: var(--green); color: #fff !important; border-radius: 4px;
+      padding: .5rem 1.1rem !important; font-size: .8rem !important;
+      font-weight: 700 !important; white-space: nowrap;
+    }
+    .btn-assess:hover { background: var(--green-dark); }
+    .navbar-toggler { border: none; box-shadow: none !important; }
+
+    /* ── PAGE HERO ──────────────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(135deg, #0a1a08 0%, #1a2a18 55%, #111 100%);
+      padding: 4.5rem 0 3.5rem; position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content:''; position:absolute; inset:0;
+      background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=50') center/cover no-repeat;
+      opacity:.09;
+    }
+    .hero-content { position:relative; z-index:2; }
+    .page-hero h1 { font-size:clamp(2rem,5vw,3rem); font-weight:900; color:#fff; line-height:1.15; }
+    .page-hero h1 span { color:var(--green); }
+    .page-hero p { color:#bbb; font-size:.97rem; max-width:540px; }
+    .hero-pills { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.4rem; }
+    .hero-pill {
+      display:inline-flex; align-items:center; gap:.45rem;
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+      border-radius:30px; padding:.3rem .9rem; color:#ccc;
+      font-size:.75rem; font-weight:600; text-transform:uppercase; letter-spacing:.4px;
+    }
+    .hero-pill i { color:var(--green); }
+    .breadcrumb-item a, .breadcrumb-item { color:#aaa; font-size:.8rem; text-decoration:none; }
+    .breadcrumb-item.active { color:var(--green); }
+
+    /* ── PROGRESS STEPPER ───────────────────────────────── */
+    .stepper-wrap { background:#fff; border-bottom:1px solid #eee; padding:1.2rem 0; }
+    .stepper { display:flex; align-items:center; justify-content:center; gap:0; max-width:640px; margin:0 auto; padding:0 1rem; }
+    .step { display:flex; flex-direction:column; align-items:center; position:relative; flex:1; }
+    .step:not(:last-child)::after {
+      content:''; position:absolute; top:18px; left:calc(50% + 18px);
+      right:calc(-50% + 18px); height:2px; background:var(--border); z-index:0; transition:background .4s;
+    }
+    .step.done:not(:last-child)::after { background:var(--green); }
+    .step-circle {
+      width:36px; height:36px; border-radius:50%; border:2px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Montserrat',sans-serif; font-weight:800; font-size:.82rem;
+      background:#fff; color:#aaa; position:relative; z-index:1; transition:all .3s;
+    }
+    .step.active .step-circle { border-color:var(--green); background:var(--green); color:#fff; }
+    .step.done .step-circle { border-color:var(--green); background:var(--green); color:#fff; }
+    .step-label { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:#aaa; margin-top:.4rem; text-align:center; white-space:nowrap; }
+    .step.active .step-label { color:var(--green); }
+    .step.done .step-label { color:var(--green-dark); }
+
+    /* ── LAYOUT ─────────────────────────────────────────── */
+    .form-section { padding:3rem 0 5rem; }
+    .form-card {
+      background:#fff; border-radius:16px;
+      box-shadow:0 4px 32px rgba(0,0,0,.08); overflow:hidden;
+    }
+
+    /* ── STEP PANELS ────────────────────────────────────── */
+    .step-panel { display:none; padding:2.2rem 2rem 1.8rem; }
+    .step-panel.active { display:block; }
+    .step-panel-title {
+      font-size:1.15rem; font-weight:900; text-transform:uppercase;
+      letter-spacing:.5px; margin-bottom:.25rem; color:#1a1a1a;
+    }
+    .step-panel-sub { font-size:.85rem; color:var(--muted); margin-bottom:1.8rem; }
+    .step-underline { width:44px; height:3px; background:var(--green); border-radius:2px; margin-bottom:1.5rem; }
+
+    /* ── FORM CONTROLS ──────────────────────────────────── */
+    .form-label {
+      font-family:'Montserrat',sans-serif; font-size:.72rem; font-weight:800;
+      text-transform:uppercase; letter-spacing:.5px; color:#333; margin-bottom:.35rem;
+    }
+    .form-label .req { color:#e53935; }
+    .form-control, .form-select {
+      border:1.5px solid var(--border); border-radius:8px;
+      font-size:.88rem; padding:.65rem 1rem; font-family:'Open Sans',sans-serif;
+      color:#1a1a1a; transition:border-color .2s, box-shadow .2s;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color:var(--green); box-shadow:0 0 0 3px rgba(106,176,76,.15); outline:none;
+    }
+    .form-control.is-invalid { border-color:#dc3545; }
+    .invalid-feedback { font-size:.75rem; }
+    textarea.form-control { resize:vertical; min-height:100px; }
+
+    /* ── RADIO / CHECKBOX CARDS ─────────────────────────── */
+    .option-grid { display:grid; gap:.75rem; }
+    .option-grid.cols-2 { grid-template-columns:repeat(2,1fr); }
+    .option-grid.cols-3 { grid-template-columns:repeat(3,1fr); }
+    @media(max-width:576px) {
+      .option-grid.cols-3 { grid-template-columns:repeat(2,1fr); }
+      .option-grid.cols-2 { grid-template-columns:1fr; }
+    }
+    .option-card {
+      border:2px solid var(--border); border-radius:10px; padding:1rem;
+      cursor:pointer; transition:all .2s; user-select:none; position:relative;
+    }
+    .option-card:hover { border-color:var(--green); background:#f8fdf5; }
+    .option-card.selected { border-color:var(--green); background:#f0f9ea; }
+    .option-card input { position:absolute; opacity:0; width:0; height:0; }
+    .option-card .oc-icon { font-size:1.6rem; color:#ccc; margin-bottom:.5rem; transition:color .2s; display:block; }
+    .option-card.selected .oc-icon { color:var(--green); }
+    .option-card .oc-label { font-family:'Montserrat',sans-serif; font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.4px; color:#333; display:block; }
+    .option-card .oc-sub { font-size:.72rem; color:#999; display:block; margin-top:.2rem; }
+    .option-card .oc-check {
+      position:absolute; top:.6rem; right:.6rem; width:20px; height:20px;
+      border-radius:50%; border:2px solid var(--border); background:#fff;
+      display:flex; align-items:center; justify-content:center; transition:all .2s;
+    }
+    .option-card.selected .oc-check { border-color:var(--green); background:var(--green); }
+    .option-card.selected .oc-check::after { content:'\2713'; color:#fff; font-size:.7rem; font-weight:900; }
+
+    /* ── RANGE SLIDER ───────────────────────────────────── */
+    .range-wrap { position:relative; }
+    input[type=range] {
+      width:100%; height:6px; border-radius:3px; appearance:none;
+      background:linear-gradient(to right, var(--green) 0%, var(--green) var(--pct,50%), var(--border) var(--pct,50%), var(--border) 100%);
+      outline:none; cursor:pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      appearance:none; width:22px; height:22px; border-radius:50%;
+      background:#fff; border:3px solid var(--green);
+      box-shadow:0 2px 8px rgba(0,0,0,.15); cursor:pointer;
+    }
+    .range-labels { display:flex; justify-content:space-between; font-size:.72rem; color:#aaa; margin-top:.4rem; }
+    .range-value {
+      text-align:center; font-family:'Montserrat',sans-serif; font-weight:900;
+      font-size:1.5rem; color:var(--green); margin-bottom:.3rem;
+    }
+    .range-value span { font-size:.8rem; font-weight:600; color:#aaa; }
+
+    /* ── UPLOAD ZONE ────────────────────────────────────── */
+    .upload-zone {
+      border:2px dashed var(--border); border-radius:10px; padding:2rem;
+      text-align:center; cursor:pointer; transition:all .2s;
+    }
+    .upload-zone:hover, .upload-zone.dragover { border-color:var(--green); background:#f8fdf5; }
+    .upload-zone i { font-size:2rem; color:#ccc; display:block; margin-bottom:.5rem; }
+    .upload-zone p { font-size:.82rem; color:#aaa; margin:0; }
+    .upload-zone p strong { color:var(--green); }
+    .uploaded-files { margin-top:.8rem; display:flex; flex-direction:column; gap:.4rem; }
+    .uploaded-file {
+      display:flex; align-items:center; gap:.6rem; background:var(--light-bg);
+      border-radius:6px; padding:.5rem .8rem; font-size:.8rem; color:#444;
+    }
+    .uploaded-file i { color:var(--green); }
+    .uploaded-file button { background:none; border:none; color:#aaa; cursor:pointer; margin-left:auto; font-size:.8rem; }
+
+    /* ── NAV BUTTONS ────────────────────────────────────── */
+    .form-nav { display:flex; align-items:center; justify-content:space-between; padding:1.2rem 2rem; border-top:1px solid #f0f0f0; gap:1rem; flex-wrap:wrap; }
+    .btn-next {
+      font-family:'Montserrat',sans-serif; font-size:.82rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.5px; background:var(--green); color:#fff;
+      border:none; border-radius:8px; padding:.8rem 2rem; display:inline-flex;
+      align-items:center; gap:.5rem; cursor:pointer; transition:background .2s;
+    }
+    .btn-next:hover { background:var(--green-dark); }
+    .btn-back {
+      font-family:'Montserrat',sans-serif; font-size:.82rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.5px; background:transparent;
+      color:#888; border:2px solid var(--border); border-radius:8px;
+      padding:.75rem 1.6rem; cursor:pointer; transition:all .2s;
+    }
+    .btn-back:hover { border-color:#aaa; color:#555; }
+    .btn-submit-final {
+      font-family:'Montserrat',sans-serif; font-size:.85rem; font-weight:700;
+      text-transform:uppercase; letter-spacing:.5px; background:var(--green); color:#fff;
+      border:none; border-radius:8px; padding:.85rem 2.2rem; display:inline-flex;
+      align-items:center; gap:.5rem; cursor:pointer; transition:background .2s;
+    }
+    .btn-submit-final:hover { background:var(--green-dark); }
+
+    /* ── SUMMARY CARD (step 4) ──────────────────────────── */
+    .summary-block { background:var(--light-bg); border-radius:10px; padding:1.2rem 1.4rem; margin-bottom:1rem; }
+    .summary-block h6 { font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:var(--green); margin-bottom:.8rem; }
+    .summary-row { display:flex; justify-content:space-between; font-size:.84rem; padding:.35rem 0; border-bottom:1px solid #e8e8e8; }
+    .summary-row:last-child { border-bottom:none; }
+    .summary-row .sr-label { color:#888; flex-shrink:0; margin-right:1rem; }
+    .summary-row .sr-value { color:#1a1a1a; font-weight:600; text-align:right; }
+
+    /* ── SUCCESS STATE ──────────────────────────────────── */
+    .success-panel {
+      display:none; text-align:center; padding:3.5rem 2rem;
+      animation:fadeUp .5s ease forwards;
+    }
+    .success-panel.active { display:block; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+    .success-icon {
+      width:90px; height:90px; border-radius:50%; background:#f0f9ea;
+      border:3px solid var(--green); display:flex; align-items:center;
+      justify-content:center; margin:0 auto 1.5rem; font-size:2.5rem; color:var(--green);
+    }
+    .success-panel h3 { font-size:1.5rem; font-weight:900; color:#1a1a1a; margin-bottom:.5rem; }
+    .success-panel p { font-size:.9rem; color:#666; max-width:420px; margin:0 auto 1.5rem; line-height:1.7; }
+    .success-steps { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:1.5rem 0; }
+    .ss-item {
+      display:flex; align-items:center; gap:.6rem; background:var(--light-bg);
+      border-radius:8px; padding:.7rem 1rem; font-size:.82rem; color:#444; flex:1; min-width:180px;
+    }
+    .ss-item i { color:var(--green); font-size:1rem; flex-shrink:0; }
+
+    /* ── SIDEBAR ────────────────────────────────────────── */
+    .sidebar-card { background:#fff; border-radius:14px; box-shadow:0 4px 24px rgba(0,0,0,.07); overflow:hidden; margin-bottom:1.5rem; position:sticky; top:80px; }
+    .sidebar-header { background:var(--dark); padding:1.3rem 1.4rem; }
+    .sidebar-header h5 { font-size:.88rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:var(--green); margin:0; }
+    .sidebar-body { padding:1.2rem 1.4rem; }
+    .why-item { display:flex; align-items:flex-start; gap:.8rem; padding:.6rem 0; border-bottom:1px solid #f5f5f5; }
+    .why-item:last-child { border-bottom:none; }
+    .why-icon { width:36px; height:36px; border-radius:8px; background:#f0f9ea; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .why-icon i { color:var(--green); font-size:.95rem; }
+    .why-text h6 { font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.4px; color:#1a1a1a; margin:0 0 .15rem; }
+    .why-text p { font-size:.75rem; color:#888; margin:0; line-height:1.5; }
+
+    .trust-badges { display:flex; flex-wrap:wrap; gap:.5rem; padding:1rem 1.4rem; background:var(--light-bg); }
+    .trust-badge { font-size:.7rem; font-weight:700; color:#555; background:#fff; border:1px solid var(--border); border-radius:4px; padding:.25rem .6rem; display:flex; align-items:center; gap:.3rem; }
+    .trust-badge i { color:var(--green); }
+
+    .testimonial-mini { padding:1.2rem 1.4rem; background:#fff; border-top:1px solid #eee; }
+    .testimonial-mini p { font-size:.8rem; color:#555; font-style:italic; line-height:1.6; margin-bottom:.5rem; }
+    .testimonial-mini .tm-author { font-size:.72rem; font-weight:700; color:#333; }
+
+    /* ── CHARITY STRIP ──────────────────────────────────── */
+    .charity-strip { background:var(--dark); padding:1.5rem 0; }
+    .charity-strip .cs-inner { display:flex; align-items:center; justify-content:center; gap:1.5rem; flex-wrap:wrap; text-align:center; }
+    .charity-strip i { color:var(--green); font-size:1.4rem; }
+    .charity-strip p { color:#ccc; font-size:.85rem; margin:0; }
+    .charity-strip p strong { color:#fff; }
+
+    /* ── CTA BAR ────────────────────────────────────────── */
+    .cta-bar { background:var(--green); padding:2rem 0; }
+    .cta-bar h3 { color:#fff; font-weight:900; font-size:clamp(1rem,2.5vw,1.4rem); margin-bottom:.2rem; }
+    .cta-bar p { color:rgba(255,255,255,.85); font-size:.88rem; margin:0; }
+    .btn-cta-w { background:#fff; color:var(--green); border:none; border-radius:4px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:.82rem; padding:.7rem 1.5rem; text-transform:uppercase; letter-spacing:.5px; display:inline-flex; align-items:center; gap:.4rem; text-decoration:none; transition:all .2s; white-space:nowrap; }
+    .btn-cta-w:hover { background:var(--dark); color:#fff; }
+
+    /* ── FOOTER ─────────────────────────────────────────── */
+    footer { background:var(--dark); color:#aaa; padding:2.5rem 0 1rem; }
+    footer h6 { color:#fff; font-size:.82rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.8rem; font-family:'Montserrat',sans-serif; }
+    footer ul { list-style:none; padding:0; margin:0; }
+    footer ul li { margin-bottom:.45rem; }
+    footer ul li a { color:#aaa; text-decoration:none; font-size:.82rem; transition:color .2s; }
+    footer ul li a:hover { color:var(--green); }
+    .f-contact { display:flex; align-items:flex-start; gap:.6rem; font-size:.82rem; margin-bottom:.45rem; }
+    .f-contact i { color:var(--green); font-size:.9rem; margin-top:2px; flex-shrink:0; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.08); margin-top:1.5rem; padding-top:1rem; font-size:.75rem; }
+    .fi-tag { color:var(--green); font-weight:700; }
+    .fi-txt { font-size:.8rem; }
+    .soc a { color:#aaa; font-size:1.2rem; margin-right:.7rem; transition:color .2s; }
+    .soc a:hover { color:var(--green); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────────────────────────── -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="flash-innovations.html">
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <div style="background:#1a2a18;padding:6px 8px;border-radius:4px">
+          <i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.4rem"></i>
+        </div>
+        <div>
+          <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.05rem;color:#1a1a1a;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+          <div style="font-size:.55rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="flash-innovations.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="our-machines.html">Our Solution</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Industries</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Our Impact</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="nav-link btn-assess active" href="#">Request Free Assessment</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ────────────────────────────────────────────────────────────── -->
+<section class="page-hero">
+  <div class="container hero-content">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb mb-0" style="background:none;padding:0">
+        <li class="breadcrumb-item"><a href="flash-innovations.html">Home</a></li>
+        <li class="breadcrumb-item active">Request Free Assessment</li>
+      </ol>
+    </nav>
+    <h1>REQUEST YOUR <span>FREE ASSESSMENT</span></h1>
+    <p class="mt-3">Tell us about your space and we'll design the perfect vending solution — at zero cost to your organisation. Our team typically responds within one business day.</p>
+    <div class="hero-pills">
+      <div class="hero-pill"><i class="bi bi-lightning-charge-fill"></i> Fast Response</div>
+      <div class="hero-pill"><i class="bi bi-shield-check"></i> No Obligation</div>
+      <div class="hero-pill"><i class="bi bi-cash-coin"></i> Zero Upfront Cost</div>
+      <div class="hero-pill"><i class="bi bi-heart-fill"></i> Charity Giving Included</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRESS STEPPER ──────────────────────────────────────────────────────── -->
+<div class="stepper-wrap">
+  <div class="stepper" id="stepperEl">
+    <div class="step active" id="st1">
+      <div class="step-circle" id="sc1">1</div>
+      <div class="step-label">Your Info</div>
+    </div>
+    <div class="step" id="st2">
+      <div class="step-circle" id="sc2">2</div>
+      <div class="step-label">Your Space</div>
+    </div>
+    <div class="step" id="st3">
+      <div class="step-circle" id="sc3">3</div>
+      <div class="step-label">Preferences</div>
+    </div>
+    <div class="step" id="st4">
+      <div class="step-circle" id="sc4">4</div>
+      <div class="step-label">Review</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN FORM AREA ────────────────────────────────────────────────────────── -->
+<section class="form-section">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+
+      <!-- FORM CARD -->
+      <div class="col-lg-8">
+        <div class="form-card" id="formCard">
+
+          <!-- ══ STEP 1 – CONTACT INFO ══ -->
+          <div class="step-panel active" id="panel1">
+            <div style="padding:2.2rem 2rem 0">
+              <div class="step-underline"></div>
+              <div class="step-panel-title">Step 1 — Your Contact Details</div>
+              <div class="step-panel-sub">Let us know who you are so we can get back to you promptly.</div>
+            </div>
+            <div style="padding:0 2rem 1.5rem">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label class="form-label">First Name <span class="req">*</span></label>
+                  <input type="text" class="form-control" id="firstName" placeholder="John" />
+                  <div class="invalid-feedback">Please enter your first name.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Last Name <span class="req">*</span></label>
+                  <input type="text" class="form-control" id="lastName" placeholder="Smith" />
+                  <div class="invalid-feedback">Please enter your last name.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Email Address <span class="req">*</span></label>
+                  <input type="email" class="form-control" id="email" placeholder="john@company.com.au" />
+                  <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Phone Number <span class="req">*</span></label>
+                  <input type="tel" class="form-control" id="phone" placeholder="0400 000 000" />
+                  <div class="invalid-feedback">Please enter your phone number.</div>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Organisation Name <span class="req">*</span></label>
+                  <input type="text" class="form-control" id="orgName" placeholder="Your company or organisation" />
+                  <div class="invalid-feedback">Please enter your organisation name.</div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Your Role / Job Title</label>
+                  <input type="text" class="form-control" id="role" placeholder="e.g. Facilities Manager" />
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">How Did You Hear About Us?</label>
+                  <select class="form-select" id="hearAbout">
+                    <option value="" disabled selected>Select an option</option>
+                    <option>Google Search</option>
+                    <option>Social Media</option>
+                    <option>Word of Mouth</option>
+                    <option>LinkedIn</option>
+                    <option>Email / Newsletter</option>
+                    <option>Existing Partner Referral</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-nav">
+              <div></div>
+              <button class="btn-next" onclick="goStep(2)">Next: Your Space <i class="bi bi-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ══ STEP 2 – SITE DETAILS ══ -->
+          <div class="step-panel" id="panel2">
+            <div style="padding:2.2rem 2rem 0">
+              <div class="step-underline"></div>
+              <div class="step-panel-title">Step 2 — Your Site & Space</div>
+              <div class="step-panel-sub">Help us understand your location so we can recommend the right machine.</div>
+            </div>
+            <div style="padding:0 2rem 1.5rem">
+
+              <!-- Industry -->
+              <label class="form-label mb-2">Industry / Sector <span class="req">*</span></label>
+              <div class="option-grid cols-3" id="industryGrid">
+                <label class="option-card" onclick="selectOption(this,'industry')">
+                  <input type="radio" name="industry" value="Hotel / Hospitality" />
+                  <i class="bi bi-building oc-icon"></i>
+                  <span class="oc-label">Hotel</span>
+                  <span class="oc-sub">Hospitality</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'industry')">
+                  <input type="radio" name="industry" value="Warehouse / Logistics" />
+                  <i class="bi bi-box-seam oc-icon"></i>
+                  <span class="oc-label">Warehouse</span>
+                  <span class="oc-sub">Logistics</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'industry')">
+                  <input type="radio" name="industry" value="College / University" />
+                  <i class="bi bi-mortarboard oc-icon"></i>
+                  <span class="oc-label">College</span>
+                  <span class="oc-sub">University</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'industry')">
+                  <input type="radio" name="industry" value="Office / Corporate" />
+                  <i class="bi bi-briefcase oc-icon"></i>
+                  <span class="oc-label">Office</span>
+                  <span class="oc-sub">Corporate</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'industry')">
+                  <input type="radio" name="industry" value="Gym / Leisure" />
+                  <i class="bi bi-activity oc-icon"></i>
+                  <span class="oc-label">Gym</span>
+                  <span class="oc-sub">Leisure / Fitness</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'industry')">
+                  <input type="radio" name="industry" value="Healthcare" />
+                  <i class="bi bi-heart-pulse oc-icon"></i>
+                  <span class="oc-label">Healthcare</span>
+                  <span class="oc-sub">Hospital / Clinic</span>
+                  <div class="oc-check"></div>
+                </label>
+              </div>
+
+              <div class="row g-3 mt-3">
+                <div class="col-sm-6">
+                  <label class="form-label">Site Street Address <span class="req">*</span></label>
+                  <input type="text" class="form-control" id="address" placeholder="44 Kelso Crescent" />
+                  <div class="invalid-feedback">Please enter the site address.</div>
+                </div>
+                <div class="col-sm-3">
+                  <label class="form-label">Suburb <span class="req">*</span></label>
+                  <input type="text" class="form-control" id="suburb" placeholder="Moorebank" />
+                  <div class="invalid-feedback">Required.</div>
+                </div>
+                <div class="col-sm-3">
+                  <label class="form-label">State <span class="req">*</span></label>
+                  <select class="form-select" id="state">
+                    <option value="" disabled selected>State</option>
+                    <option>NSW</option><option>VIC</option><option>QLD</option>
+                    <option>WA</option><option>SA</option><option>TAS</option>
+                    <option>ACT</option><option>NT</option>
+                  </select>
+                  <div class="invalid-feedback">Required.</div>
+                </div>
+
+                <!-- Daily Foot Traffic -->
+                <div class="col-12">
+                  <label class="form-label">Estimated Daily Foot Traffic</label>
+                  <div class="range-value"><span id="trafficVal">250</span> <span>people/day</span></div>
+                  <div class="range-wrap">
+                    <input type="range" id="trafficSlider" min="50" max="2000" step="50" value="250"
+                      oninput="updateRange('trafficSlider','trafficVal',50,2000)" />
+                  </div>
+                  <div class="range-labels"><span>50</span><span>500</span><span>1000</span><span>1500</span><span>2000+</span></div>
+                </div>
+
+                <!-- Number of locations -->
+                <div class="col-sm-6">
+                  <label class="form-label">Number of Locations</label>
+                  <select class="form-select" id="numLocations">
+                    <option>1 Location</option>
+                    <option>2–3 Locations</option>
+                    <option>4–5 Locations</option>
+                    <option>6–10 Locations</option>
+                    <option>10+ Locations</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Available Space</label>
+                  <select class="form-select" id="availableSpace">
+                    <option value="" disabled selected>Select space available</option>
+                    <option>Very compact – under 700mm wide</option>
+                    <option>Standard – up to 900mm wide</option>
+                    <option>Large – up to 1200mm wide</option>
+                    <option>Open – no restrictions</option>
+                  </select>
+                </div>
+
+                <!-- Floor plan upload -->
+                <div class="col-12">
+                  <label class="form-label">Upload Site Plan / Photo (optional)</label>
+                  <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()"
+                    ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+                    <i class="bi bi-cloud-arrow-up"></i>
+                    <p><strong>Click to upload</strong> or drag &amp; drop<br>PNG, JPG, PDF up to 10MB</p>
+                  </div>
+                  <input type="file" id="fileInput" style="display:none" multiple accept=".png,.jpg,.jpeg,.pdf"
+                    onchange="handleFileSelect(event)" />
+                  <div class="uploaded-files" id="uploadedFiles"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button class="btn-back" onclick="goStep(1)"><i class="bi bi-arrow-left"></i> Back</button>
+              <button class="btn-next" onclick="goStep(3)">Next: Preferences <i class="bi bi-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ══ STEP 3 – PREFERENCES ══ -->
+          <div class="step-panel" id="panel3">
+            <div style="padding:2.2rem 2rem 0">
+              <div class="step-underline"></div>
+              <div class="step-panel-title">Step 3 — Your Preferences</div>
+              <div class="step-panel-sub">Tell us what kind of vending solution would work best for your team.</div>
+            </div>
+            <div style="padding:0 2rem 1.5rem">
+
+              <!-- Machine type -->
+              <label class="form-label mb-2">Preferred Machine Type</label>
+              <div class="option-grid cols-2" id="machineTypeGrid">
+                <label class="option-card" onclick="selectOption(this,'machineType')">
+                  <input type="radio" name="machineType" value="Snack Machine" />
+                  <i class="bi bi-bag oc-icon"></i>
+                  <span class="oc-label">Snack Machine</span>
+                  <span class="oc-sub">Chips, chocolates, bars</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'machineType')">
+                  <input type="radio" name="machineType" value="Drink Machine" />
+                  <i class="bi bi-cup-straw oc-icon"></i>
+                  <span class="oc-label">Drink Machine</span>
+                  <span class="oc-sub">Cans, bottles, cartons</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'machineType')">
+                  <input type="radio" name="machineType" value="Combo (Snack + Drink)" />
+                  <i class="bi bi-grid-3x3 oc-icon"></i>
+                  <span class="oc-label">Combo Unit</span>
+                  <span class="oc-sub">Snacks + drinks together</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'machineType')">
+                  <input type="radio" name="machineType" value="Fresh Food Machine" />
+                  <i class="bi bi-egg-fried oc-icon"></i>
+                  <span class="oc-label">Fresh Food</span>
+                  <span class="oc-sub">Salads, wraps, sandwiches</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'machineType')">
+                  <input type="radio" name="machineType" value="Coffee / Hot Drinks" />
+                  <i class="bi bi-cup-hot oc-icon"></i>
+                  <span class="oc-label">Coffee &amp; Hot</span>
+                  <span class="oc-sub">Bean-to-cup, tea, hot choc</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="selectOption(this,'machineType')">
+                  <input type="radio" name="machineType" value="Not Sure – Need Advice" />
+                  <i class="bi bi-question-circle oc-icon"></i>
+                  <span class="oc-label">Not Sure</span>
+                  <span class="oc-sub">I need your recommendation</span>
+                  <div class="oc-check"></div>
+                </label>
+              </div>
+
+              <!-- Product preferences -->
+              <label class="form-label mt-4 mb-2">Product Preferences (select all that apply)</label>
+              <div class="option-grid cols-3" id="productPrefGrid">
+                <label class="option-card" onclick="toggleMulti(this)">
+                  <input type="checkbox" name="productPref" value="Healthy Options" />
+                  <i class="bi bi-apple oc-icon"></i>
+                  <span class="oc-label">Healthy</span>
+                  <span class="oc-sub">Nuts, fruit, low-sugar</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="toggleMulti(this)">
+                  <input type="checkbox" name="productPref" value="Snacks & Confectionery" />
+                  <i class="bi bi-bag-heart oc-icon"></i>
+                  <span class="oc-label">Snacks</span>
+                  <span class="oc-sub">Chips, lollies, bars</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="toggleMulti(this)">
+                  <input type="checkbox" name="productPref" value="Cold Beverages" />
+                  <i class="bi bi-droplet oc-icon"></i>
+                  <span class="oc-label">Cold Drinks</span>
+                  <span class="oc-sub">Water, juice, soft drink</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="toggleMulti(this)">
+                  <input type="checkbox" name="productPref" value="Hot Beverages" />
+                  <i class="bi bi-fire oc-icon"></i>
+                  <span class="oc-label">Hot Drinks</span>
+                  <span class="oc-sub">Coffee, tea, hot choc</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="toggleMulti(this)">
+                  <input type="checkbox" name="productPref" value="Fresh / Refrigerated Food" />
+                  <i class="bi bi-thermometer-snow oc-icon"></i>
+                  <span class="oc-label">Fresh Food</span>
+                  <span class="oc-sub">Salads, wraps, sandwiches</span>
+                  <div class="oc-check"></div>
+                </label>
+                <label class="option-card" onclick="toggleMulti(this)">
+                  <input type="checkbox" name="productPref" value="PPE / Essentials" />
+                  <i class="bi bi-shield-check oc-icon"></i>
+                  <span class="oc-label">PPE &amp; Essentials</span>
+                  <span class="oc-sub">Safety gear, stationery</span>
+                  <div class="oc-check"></div>
+                </label>
+              </div>
+
+              <!-- Timeline + extras -->
+              <div class="row g-3 mt-2">
+                <div class="col-sm-6">
+                  <label class="form-label">Preferred Installation Timeline</label>
+                  <select class="form-select" id="timeline">
+                    <option value="" disabled selected>Select timeline</option>
+                    <option>ASAP – within 2 weeks</option>
+                    <option>Within 1 month</option>
+                    <option>1–3 months</option>
+                    <option>Planning ahead – 3+ months</option>
+                  </select>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label">Operating Hours of Location</label>
+                  <select class="form-select" id="opHours">
+                    <option value="" disabled selected>Select hours</option>
+                    <option>Business hours only (9am–5pm)</option>
+                    <option>Extended hours (6am–10pm)</option>
+                    <option>24/7 Access required</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Additional Notes or Specific Requirements</label>
+                  <textarea class="form-control" id="notes" rows="4"
+                    placeholder="E.g. dietary restrictions to consider, specific product requests, branding requirements, security access needs…"></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="chkRevShare" checked />
+                    <label class="form-check-label" for="chkRevShare" style="font-size:.84rem;color:#444">
+                      I'm interested in the <strong style="color:var(--green)">15% monthly revenue sharing</strong> program
+                    </label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="chkCharity" checked />
+                    <label class="form-check-label" for="chkCharity" style="font-size:.84rem;color:#444">
+                      I support the <strong style="color:var(--green)">5% charitable donation</strong> to Sydney Children's Hospitals Foundation
+                    </label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="chkConsent" />
+                    <label class="form-check-label" for="chkConsent" style="font-size:.84rem;color:#444">
+                      I agree to be contacted by Flash Innovations. <span style="color:#999">We'll never share your data.</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button class="btn-back" onclick="goStep(2)"><i class="bi bi-arrow-left"></i> Back</button>
+              <button class="btn-next" onclick="goStep(4)">Review &amp; Submit <i class="bi bi-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- ══ STEP 4 – REVIEW ══ -->
+          <div class="step-panel" id="panel4">
+            <div style="padding:2.2rem 2rem 0">
+              <div class="step-underline"></div>
+              <div class="step-panel-title">Step 4 — Review &amp; Submit</div>
+              <div class="step-panel-sub">Please review your details below before submitting. You can go back to edit any section.</div>
+            </div>
+            <div style="padding:0 2rem 1.5rem">
+
+              <div class="summary-block">
+                <h6><i class="bi bi-person-fill me-2"></i>Contact Details</h6>
+                <div class="summary-row"><span class="sr-label">Name</span><span class="sr-value" id="sum-name">—</span></div>
+                <div class="summary-row"><span class="sr-label">Email</span><span class="sr-value" id="sum-email">—</span></div>
+                <div class="summary-row"><span class="sr-label">Phone</span><span class="sr-value" id="sum-phone">—</span></div>
+                <div class="summary-row"><span class="sr-label">Organisation</span><span class="sr-value" id="sum-org">—</span></div>
+                <div class="summary-row"><span class="sr-label">Role</span><span class="sr-value" id="sum-role">—</span></div>
+              </div>
+
+              <div class="summary-block">
+                <h6><i class="bi bi-geo-alt-fill me-2"></i>Site Information</h6>
+                <div class="summary-row"><span class="sr-label">Industry</span><span class="sr-value" id="sum-industry">—</span></div>
+                <div class="summary-row"><span class="sr-label">Address</span><span class="sr-value" id="sum-address">—</span></div>
+                <div class="summary-row"><span class="sr-label">Foot Traffic</span><span class="sr-value" id="sum-traffic">—</span></div>
+                <div class="summary-row"><span class="sr-label">Locations</span><span class="sr-value" id="sum-locs">—</span></div>
+                <div class="summary-row"><span class="sr-label">Available Space</span><span class="sr-value" id="sum-space">—</span></div>
+              </div>
+
+              <div class="summary-block">
+                <h6><i class="bi bi-gear-fill me-2"></i>Preferences</h6>
+                <div class="summary-row"><span class="sr-label">Machine Type</span><span class="sr-value" id="sum-machine">—</span></div>
+                <div class="summary-row"><span class="sr-label">Products</span><span class="sr-value" id="sum-products">—</span></div>
+                <div class="summary-row"><span class="sr-label">Timeline</span><span class="sr-value" id="sum-timeline">—</span></div>
+                <div class="summary-row"><span class="sr-label">Op. Hours</span><span class="sr-value" id="sum-hours">—</span></div>
+                <div class="summary-row"><span class="sr-label">Notes</span><span class="sr-value" id="sum-notes">—</span></div>
+              </div>
+
+              <!-- Terms -->
+              <div style="background:#fffbf0;border:1px solid #f0d060;border-radius:8px;padding:1rem 1.2rem;display:flex;gap:.8rem;align-items:flex-start">
+                <i class="bi bi-info-circle-fill" style="color:#f0a020;flex-shrink:0;margin-top:2px"></i>
+                <p style="margin:0;font-size:.82rem;color:#555;line-height:1.6">By submitting this form you agree to our <a href="#" style="color:var(--green);font-weight:700">Privacy Policy</a> and <a href="#" style="color:var(--green);font-weight:700">Terms &amp; Conditions</a>. A Flash Innovations representative will contact you within <strong>1 business day</strong> to confirm your assessment appointment.</p>
+              </div>
+            </div>
+            <div class="form-nav">
+              <button class="btn-back" onclick="goStep(3)"><i class="bi bi-arrow-left"></i> Back</button>
+              <button class="btn-submit-final" onclick="submitForm()">
+                <i class="bi bi-send-fill"></i> Submit Assessment Request
+              </button>
+            </div>
+          </div>
+
+          <!-- ══ SUCCESS ══ -->
+          <div class="success-panel" id="successPanel">
+            <div class="success-icon"><i class="bi bi-check-lg"></i></div>
+            <h3>Assessment Request Sent!</h3>
+            <p>Thank you! Your free site assessment request has been received. A member of our team will be in touch within <strong>1 business day</strong> to confirm your appointment.</p>
+            <div class="success-steps">
+              <div class="ss-item"><i class="bi bi-1-circle-fill"></i>We'll confirm your appointment time</div>
+              <div class="ss-item"><i class="bi bi-2-circle-fill"></i>Our team visits your site</div>
+              <div class="ss-item"><i class="bi bi-3-circle-fill"></i>We recommend the best solution</div>
+              <div class="ss-item"><i class="bi bi-4-circle-fill"></i>Installation at zero cost</div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1.5rem">
+              <a href="flash-innovations.html" style="font-family:Montserrat,sans-serif;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--green);color:#fff;border-radius:8px;padding:.8rem 1.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem">
+                <i class="bi bi-house-fill"></i> Back to Home
+              </a>
+              <a href="our-machines.html" style="font-family:Montserrat,sans-serif;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:transparent;color:var(--green);border:2px solid var(--green);border-radius:8px;padding:.75rem 1.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem">
+                <i class="bi bi-grid"></i> View Our Machines
+              </a>
+            </div>
+          </div>
+
+        </div><!-- /form-card -->
+      </div>
+
+      <!-- ── SIDEBAR ────────────────────────────────────── -->
+      <div class="col-lg-4">
+        <div class="sidebar-card">
+          <div class="sidebar-header">
+            <h5><i class="bi bi-star-fill me-2"></i>Why Choose Flash Innovations?</h5>
+          </div>
+          <div class="sidebar-body">
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-cash-coin"></i></div>
+              <div class="why-text">
+                <h6>Zero Upfront Cost</h6>
+                <p>We cover installation, setup, and the machine itself — 100% free.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-graph-up-arrow"></i></div>
+              <div class="why-text">
+                <h6>15% Revenue Share</h6>
+                <p>Earn passive monthly income from every sale — paid directly to you.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-tools"></i></div>
+              <div class="why-text">
+                <h6>Fully Managed Service</h6>
+                <p>We handle stocking, cleaning, servicing, and repairs — always.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-credit-card"></i></div>
+              <div class="why-text">
+                <h6>Cashless Technology</h6>
+                <p>Card, Apple Pay, Google Pay — modern machines for modern people.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="bi bi-heart-fill"></i></div>
+              <div class="why-text">
+                <h6>Charity Impact</h6>
+                <p>5% of all sales donated to Sydney Children's Hospitals Foundation.</p>
+              </div>
+            </div>
+          </div>
+          <div class="trust-badges">
+            <span class="trust-badge"><i class="bi bi-shield-fill-check"></i> No Lock-in Contract</span>
+            <span class="trust-badge"><i class="bi bi-clock"></i> 1-Day Response</span>
+            <span class="trust-badge"><i class="bi bi-geo-alt"></i> NSW Based</span>
+            <span class="trust-badge"><i class="bi bi-patch-check"></i> Fully Insured</span>
+          </div>
+          <div class="testimonial-mini">
+            <p>"The assessment process was painless and the machine was installed within a week. Our staff love it and we get a monthly cheque — couldn't be happier."</p>
+            <div class="tm-author">— Facilities Manager, Swissôtel Sydney</div>
+          </div>
+        </div>
+
+        <!-- CONTACT CARD -->
+        <div style="background:#fff;border-radius:14px;box-shadow:0 4px 24px rgba(0,0,0,.07);padding:1.4rem;margin-bottom:1.5rem">
+          <h6 style="font-family:Montserrat,sans-serif;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:1rem">Prefer to Talk?</h6>
+          <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem">
+            <div style="width:38px;height:38px;border-radius:8px;background:#f0f9ea;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="bi bi-telephone-fill" style="color:var(--green)"></i>
+            </div>
+            <div>
+              <div style="font-size:.68rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.4px">Call Us</div>
+              <a href="tel:1300610372" style="font-family:Montserrat,sans-serif;font-weight:800;font-size:.95rem;color:#1a1a1a;text-decoration:none">1300 610 372</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:.8rem">
+            <div style="width:38px;height:38px;border-radius:8px;background:#f0f9ea;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="bi bi-envelope-fill" style="color:var(--green)"></i>
+            </div>
+            <div>
+              <div style="font-size:.68rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.4px">Email Us</div>
+              <a href="mailto:vending@flashpainting.com.au" style="font-family:Montserrat,sans-serif;font-weight:700;font-size:.82rem;color:var(--green);text-decoration:none">vending@flashpainting.com.au</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CHARITY STRIP ─────────────────────────────────────────────────────────── -->
+<div class="charity-strip">
+  <div class="container">
+    <div class="cs-inner">
+      <i class="bi bi-heart-fill"></i>
+      <p><strong>Every assessment is 100% free &amp; no-obligation.</strong> And once installed, 5% of every sale from your machine goes directly to Sydney Children's Hospitals Foundation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── CTA BAR ───────────────────────────────────────────────────────────────── -->
+<section class="cta-bar">
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <div class="col-lg-8">
+        <h3>HAVE QUESTIONS BEFORE SUBMITTING?</h3>
+        <p>Our team is happy to walk you through the process. No pressure, no jargon.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="contact-us.html" class="btn-cta-w">Contact Us <i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+          <div style="background:#fff1;padding:5px 7px;border-radius:4px">
+            <i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.3rem"></i>
+          </div>
+          <div>
+            <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:.95rem;color:#fff;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+            <div style="font-size:.5rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+          </div>
+        </div>
+        <p style="font-size:.8rem;line-height:1.6;margin-top:.5rem">Premium vending solutions with no hassle, no upfront costs and positive community impact.</p>
+        <div class="soc mt-2">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="flash-innovations.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="our-machines.html">Our Solution</a></li>
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Our Impact</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-3">
+        <h6>Contact Us</h6>
+        <div class="f-contact"><i class="bi bi-telephone-fill"></i><span>1300 610 372</span></div>
+        <div class="f-contact"><i class="bi bi-envelope-fill"></i><span>vending@flashpainting.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-globe"></i><span>flashinnovations.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-geo-alt-fill"></i><span>3/44 Kelso Crescent,<br>Moorebank NSW 2170</span></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h6>Our Impact</h6>
+        <p class="fi-txt"><span class="fi-tag">15%</span> returned to your organisation</p>
+        <p class="fi-txt"><span class="fi-tag">5%</span> donated to Sydney Children's Hospitals Foundation</p>
+        <a href="#" style="display:inline-block;border:2px solid var(--green);color:var(--green);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:.4rem 1rem;border-radius:3px;text-decoration:none;margin-top:.8rem;transition:all .2s" onmouseover="this.style.background='var(--green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--green)'">LEARN MORE</a>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Flash Innovations Pty Ltd. All Rights Reserved.</span>
+      <div>
+        <a href="#" style="color:#aaa;text-decoration:none;margin-right:1rem">Privacy Policy</a>
+        <a href="#" style="color:#aaa;text-decoration:none">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  let currentStep = 1;
+  const TOTAL = 4;
+
+  /* ── STEP NAVIGATION ──────────────────────────────────────────────────────── */
+  function goStep(n) {
+    if (n > currentStep && !validateStep(currentStep)) return;
+
+    // Mark old step done
+    document.getElementById('st' + currentStep).classList.remove('active');
+    if (n > currentStep) document.getElementById('st' + currentStep).classList.add('done');
+    else document.getElementById('st' + currentStep).classList.remove('done');
+
+    document.getElementById('panel' + currentStep).classList.remove('active');
+
+    currentStep = n;
+
+    document.getElementById('st' + currentStep).classList.add('active');
+    document.getElementById('panel' + currentStep).classList.add('active');
+
+    if (n === 4) buildSummary();
+
+    window.scrollTo({ top: document.querySelector('.stepper-wrap').offsetTop - 70, behavior: 'smooth' });
+  }
+
+  /* ── VALIDATION ───────────────────────────────────────────────────────────── */
+  function validateStep(n) {
+    let ok = true;
+    if (n === 1) {
+      ['firstName','lastName','email','phone','orgName'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) { el.classList.add('is-invalid'); ok = false; }
+        else el.classList.remove('is-invalid');
+      });
+      const email = document.getElementById('email');
+      if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        email.classList.add('is-invalid'); ok = false;
+      }
+    }
+    if (n === 2) {
+      ['address','suburb'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) { el.classList.add('is-invalid'); ok = false; }
+        else el.classList.remove('is-invalid');
+      });
+      const state = document.getElementById('state');
+      if (!state.value) { state.classList.add('is-invalid'); ok = false; }
+      else state.classList.remove('is-invalid');
+    }
+    if (!ok) {
+      const panel = document.getElementById('panel' + n);
+      const firstInvalid = panel.querySelector('.is-invalid');
+      if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return ok;
+  }
+
+  /* ── OPTION CARDS ─────────────────────────────────────────────────────────── */
+  function selectOption(card, group) {
+    document.querySelectorAll(`[name="${group}"]`).forEach(inp => {
+      inp.closest('.option-card').classList.remove('selected');
+    });
+    card.classList.add('selected');
+    card.querySelector('input').checked = true;
+  }
+
+  function toggleMulti(card) {
+    card.classList.toggle('selected');
+    const cb = card.querySelector('input');
+    cb.checked = !cb.checked;
+  }
+
+  /* ── RANGE SLIDER ─────────────────────────────────────────────────────────── */
+  function updateRange(sliderId, displayId, min, max) {
+    const slider = document.getElementById(sliderId);
+    const val = parseInt(slider.value);
+    document.getElementById(displayId).textContent = val >= max ? max + '+' : val;
+    const pct = ((val - min) / (max - min)) * 100;
+    slider.style.setProperty('--pct', pct + '%');
+  }
+  // Init slider
+  updateRange('trafficSlider','trafficVal',50,2000);
+
+  /* ── FILE UPLOAD ──────────────────────────────────────────────────────────── */
+  let uploadedFileList = [];
+
+  function handleFileSelect(e) {
+    [...e.target.files].forEach(addFile);
+  }
+  function handleDragOver(e) {
+    e.preventDefault();
+    document.getElementById('uploadZone').classList.add('dragover');
+  }
+  function handleDragLeave(e) {
+    document.getElementById('uploadZone').classList.remove('dragover');
+  }
+  function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('uploadZone').classList.remove('dragover');
+    [...e.dataTransfer.files].forEach(addFile);
+  }
+  function addFile(file) {
+    if (uploadedFileList.find(f => f.name === file.name)) return;
+    uploadedFileList.push(file);
+    renderFiles();
+  }
+  function removeFile(name) {
+    uploadedFileList = uploadedFileList.filter(f => f.name !== name);
+    renderFiles();
+  }
+  function renderFiles() {
+    const container = document.getElementById('uploadedFiles');
+    container.innerHTML = uploadedFileList.map(f => `
+      <div class="uploaded-file">
+        <i class="bi bi-file-earmark-check"></i>
+        <span>${f.name} <span style="color:#bbb">(${(f.size/1024).toFixed(1)} KB)</span></span>
+        <button onclick="removeFile('${f.name}')" title="Remove"><i class="bi bi-x-lg"></i></button>
+      </div>`).join('');
+  }
+
+  /* ── BUILD SUMMARY ────────────────────────────────────────────────────────── */
+  function buildSummary() {
+    const g = id => document.getElementById(id)?.value || '—';
+    const sel = name => {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '—';
+    };
+    const multiSel = name => {
+      const els = [...document.querySelectorAll(`input[name="${name}"]:checked`)];
+      return els.length ? els.map(e => e.value).join(', ') : '—';
+    };
+
+    document.getElementById('sum-name').textContent = `${g('firstName')} ${g('lastName')}`;
+    document.getElementById('sum-email').textContent = g('email');
+    document.getElementById('sum-phone').textContent = g('phone');
+    document.getElementById('sum-org').textContent = g('orgName');
+    document.getElementById('sum-role').textContent = g('role') || '—';
+    document.getElementById('sum-industry').textContent = sel('industry');
+    const addr = [g('address'), g('suburb'), g('state')].filter(v => v && v !== '—').join(', ');
+    document.getElementById('sum-address').textContent = addr || '—';
+    document.getElementById('sum-traffic').textContent = document.getElementById('trafficVal').textContent + ' people/day';
+    document.getElementById('sum-locs').textContent = g('numLocations');
+    document.getElementById('sum-space').textContent = g('availableSpace') || '—';
+    document.getElementById('sum-machine').textContent = sel('machineType');
+    document.getElementById('sum-products').textContent = multiSel('productPref');
+    document.getElementById('sum-timeline').textContent = g('timeline') || '—';
+    document.getElementById('sum-hours').textContent = g('opHours') || '—';
+    document.getElementById('sum-notes').textContent = g('notes') || 'None';
+  }
+
+  /* ── SUBMIT ───────────────────────────────────────────────────────────────── */
+  function submitForm() {
+    // Mark all steps done
+    for (let i = 1; i <= TOTAL; i++) {
+      document.getElementById('st' + i).classList.remove('active');
+      document.getElementById('st' + i).classList.add('done');
+      document.getElementById('sc' + i).innerHTML = '<i class="bi bi-check"></i>';
+    }
+    document.getElementById('panel4').classList.remove('active');
+    document.getElementById('successPanel').classList.add('active');
+    window.scrollTo({ top: document.getElementById('formCard').offsetTop - 80, behavior: 'smooth' });
+  }
+
+  /* ── REMOVE is-invalid ON INPUT ───────────────────────────────────────────── */
+  document.querySelectorAll('.form-control, .form-select').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('is-invalid'));
+    el.addEventListener('change', () => el.classList.remove('is-invalid'));
+  });
+</script>
+</body>
+</html>

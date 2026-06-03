@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Details – Flash Innovations</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #6ab04c;
+      --green-dark: #4e8a36;
+      --dark: #1a1a2e;
+      --light-bg: #f9f9f9;
+      --text-muted-custom: #666;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Open Sans', sans-serif; margin: 0; overflow-x: hidden; background: var(--light-bg); }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Montserrat', sans-serif; }
+
+    /* NAVBAR */
+    .navbar { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.08); }
+    .navbar-nav .nav-link { font-weight: 600; font-size: .85rem; color: #333 !important; padding: .5rem 1rem; text-transform: uppercase; letter-spacing: .5px; position: relative; font-family: 'Montserrat', sans-serif; }
+    .navbar-nav .nav-link.active, .navbar-nav .nav-link:hover { color: var(--green) !important; }
+    .navbar-nav .nav-link.active::after { content:''; position:absolute; bottom:-2px; left:1rem; right:1rem; height:2px; background:var(--green); }
+    .btn-assess { background: var(--green); color: #fff !important; border-radius: 4px; padding: .5rem 1.1rem !important; font-size: .8rem !important; font-weight: 700 !important; white-space: nowrap; }
+    .btn-assess:hover { background: var(--green-dark); }
+    .navbar-toggler { border: none; box-shadow: none !important; }
+
+    /* BREADCRUMB BAR */
+    .breadcrumb-bar { background: #fff; border-bottom: 1px solid #eee; padding: .75rem 0; }
+    .breadcrumb-bar ol { margin: 0; background: none; padding: 0; }
+    .breadcrumb-item a, .breadcrumb-item { color: #888; font-size: .8rem; text-decoration: none; }
+    .breadcrumb-item.active { color: var(--green); }
+    .back-btn { font-family: 'Montserrat', sans-serif; font-size: .78rem; font-weight: 700; color: var(--green); text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; border: 2px solid var(--green); border-radius: 30px; padding: .3rem .9rem; transition: all .2s; }
+    .back-btn:hover { background: var(--green); color: #fff; }
+
+    /* HERO DETAIL */
+    .detail-hero { background: #fff; padding: 3rem 0 2rem; border-bottom: 1px solid #eee; }
+    .machine-badge { display: inline-block; font-family: 'Montserrat', sans-serif; font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; padding: .3rem .8rem; border-radius: 30px; background: var(--green); color: #fff; margin-bottom: .8rem; }
+    .machine-badge.new { background: #e53935; }
+    .machine-badge.popular { background: #f57c00; }
+    .machine-name { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; color: #1a1a1a; line-height: 1.15; margin-bottom: .5rem; }
+    .machine-category-tag { font-size: .78rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 1rem; display: block; }
+    .machine-desc-hero { font-size: .95rem; color: #555; line-height: 1.8; max-width: 560px; }
+
+    /* SPEC CHIPS */
+    .spec-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.2rem 0; }
+    .spec-chip { font-size: .72rem; font-weight: 700; background: #f0f5ee; color: #4e8a36; border-radius: 4px; padding: .25rem .65rem; text-transform: uppercase; letter-spacing: .3px; }
+
+    /* QUICK STATS */
+    .quick-stats { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0; }
+    .qstat { background: var(--light-bg); border-radius: 8px; padding: .7rem 1rem; display: flex; align-items: center; gap: .6rem; flex: 1; min-width: 130px; }
+    .qstat i { color: var(--green); font-size: 1.2rem; flex-shrink: 0; }
+    .qstat .qs-label { font-size: .65rem; font-weight: 700; color: #999; text-transform: uppercase; letter-spacing: .5px; }
+    .qstat .qs-value { font-size: .85rem; font-weight: 700; color: #1a1a1a; }
+
+    /* ACTION BUTTONS */
+    .action-btns { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; }
+    .btn-primary-green { font-family: 'Montserrat', sans-serif; font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; background: var(--green); color: #fff; border: none; border-radius: 6px; padding: .8rem 1.8rem; display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; transition: background .2s; cursor: pointer; }
+    .btn-primary-green:hover { background: var(--green-dark); color: #fff; }
+    .btn-outline-green { font-family: 'Montserrat', sans-serif; font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; background: transparent; color: var(--green); border: 2px solid var(--green); border-radius: 6px; padding: .75rem 1.6rem; display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; transition: all .2s; cursor: pointer; }
+    .btn-outline-green:hover { background: var(--green); color: #fff; }
+
+    /* IMAGE GALLERY */
+    .gallery-main { border-radius: 12px; overflow: hidden; background: #f0f5ee; height: 380px; position: relative; }
+    .gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .3s; }
+    .gallery-thumbs { display: flex; gap: .6rem; margin-top: .8rem; flex-wrap: wrap; }
+    .thumb { width: 70px; height: 60px; border-radius: 6px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color .2s; flex-shrink: 0; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .thumb.active, .thumb:hover { border-color: var(--green); }
+    .gallery-tag { position: absolute; bottom: .8rem; right: .8rem; background: rgba(0,0,0,.5); color: #fff; font-size: .7rem; font-weight: 700; border-radius: 4px; padding: .2rem .6rem; }
+
+    /* TABS */
+    .detail-tabs { background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,.06); overflow: hidden; margin-bottom: 2rem; }
+    .tab-nav { display: flex; border-bottom: 2px solid #f0f0f0; overflow-x: auto; scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn { font-family: 'Montserrat', sans-serif; font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: 1rem 1.4rem; border: none; background: none; color: #888; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color .2s, border-color .2s; }
+    .tab-btn.active, .tab-btn:hover { color: var(--green); border-bottom-color: var(--green); }
+    .tab-panel { display: none; padding: 2rem; }
+    .tab-panel.active { display: block; }
+
+    /* SPEC TABLE */
+    .spec-table { width: 100%; }
+    .spec-table tr { border-bottom: 1px solid #f5f5f5; }
+    .spec-table tr:last-child { border-bottom: none; }
+    .spec-table td { padding: .75rem 0; font-size: .88rem; vertical-align: top; }
+    .spec-table td:first-child { font-weight: 700; color: #333; width: 40%; padding-right: 1rem; }
+    .spec-table td:last-child { color: #555; }
+    .spec-section-header { font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--green); padding: 1rem 0 .4rem; border-top: 2px solid #f0f5ee; margin-top: .5rem; }
+    .spec-section-header:first-child { border-top: none; margin-top: 0; }
+
+    /* FEATURES LIST */
+    .feature-list { list-style: none; padding: 0; margin: 0; }
+    .feature-list li { display: flex; align-items: flex-start; gap: .8rem; padding: .7rem 0; border-bottom: 1px solid #f5f5f5; font-size: .88rem; color: #444; line-height: 1.6; }
+    .feature-list li:last-child { border-bottom: none; }
+    .feature-list li i { color: var(--green); font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+
+    /* PAYMENT ICONS */
+    .payment-icons { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: .5rem; }
+    .pay-icon { display: flex; flex-direction: column; align-items: center; gap: .4rem; }
+    .pay-icon .ico { width: 56px; height: 40px; background: var(--light-bg); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--green); }
+    .pay-icon span { font-size: .65rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: .3px; }
+
+    /* INDUSTRY TAGS */
+    .industry-tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .5rem; }
+    .industry-tag { display: flex; align-items: center; gap: .4rem; background: var(--light-bg); border-radius: 6px; padding: .4rem .8rem; font-size: .78rem; font-weight: 600; color: #444; }
+    .industry-tag i { color: var(--green); font-size: .9rem; }
+
+    /* ENQUIRY SIDEBAR */
+    .enquiry-box { background: var(--dark); border-radius: 12px; padding: 1.8rem; color: #fff; position: sticky; top: 80px; }
+    .enquiry-box h4 { font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; color: var(--green); margin-bottom: 1.2rem; }
+    .enq-input { width: 100%; border: 1.5px solid rgba(255,255,255,.15); border-radius: 6px; padding: .6rem .9rem; font-size: .85rem; background: rgba(255,255,255,.07); color: #fff; font-family: 'Open Sans', sans-serif; margin-bottom: .7rem; transition: border-color .2s; }
+    .enq-input::placeholder { color: #888; }
+    .enq-input:focus { outline: none; border-color: var(--green); }
+    .enq-select { width: 100%; border: 1.5px solid rgba(255,255,255,.15); border-radius: 6px; padding: .6rem .9rem; font-size: .85rem; background: rgba(255,255,255,.07); color: #aaa; font-family: 'Open Sans', sans-serif; margin-bottom: .7rem; transition: border-color .2s; }
+    .enq-select:focus { outline: none; border-color: var(--green); }
+    .enq-select option { background: var(--dark); color: #fff; }
+    .btn-enq { width: 100%; font-family: 'Montserrat', sans-serif; font-size: .82rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; background: var(--green); color: #fff; border: none; border-radius: 6px; padding: .8rem; cursor: pointer; transition: background .2s; display: flex; align-items: center; justify-content: center; gap: .5rem; }
+    .btn-enq:hover { background: var(--green-dark); }
+    .enq-divider { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 1.2rem 0; }
+    .enq-contact { font-size: .8rem; color: #aaa; text-align: center; }
+    .enq-contact a { color: var(--green); font-weight: 700; text-decoration: none; }
+    .enq-success { display:none; background: rgba(106,176,76,.15); border: 1px solid var(--green); border-radius: 6px; padding: .8rem; text-align: center; font-size: .82rem; color: var(--green); font-weight: 600; margin-top: .8rem; }
+
+    /* RELATED MACHINES */
+    .related-section { padding: 3rem 0 4rem; }
+    .rel-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,.07); transition: transform .2s, box-shadow .2s; text-decoration: none; color: inherit; display: block; }
+    .rel-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,.12); color: inherit; }
+    .rel-img { height: 160px; overflow: hidden; }
+    .rel-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .rel-card:hover .rel-img img { transform: scale(1.05); }
+    .rel-body { padding: 1rem; }
+    .rel-cat { font-size: .68rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .6px; margin-bottom: .2rem; }
+    .rel-name { font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 800; color: #1a1a1a; margin-bottom: .3rem; }
+    .rel-desc { font-size: .78rem; color: #888; line-height: 1.5; }
+    .rel-link { display: inline-flex; align-items: center; gap: .3rem; font-family: 'Montserrat', sans-serif; font-size: .72rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: .4px; margin-top: .6rem; }
+
+    /* CTA */
+    .cta-bar { background: var(--green); padding: 2.5rem 0; }
+    .cta-bar h3 { color: #fff; font-weight: 900; font-size: clamp(1.1rem, 2.5vw, 1.5rem); margin-bottom: .25rem; }
+    .cta-bar p { color: rgba(255,255,255,.85); font-size: .88rem; margin: 0; }
+    .btn-cta-white { background: #fff; color: var(--green); border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .82rem; padding: .75rem 1.5rem; text-transform: uppercase; letter-spacing: .5px; display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; transition: all .2s; white-space: nowrap; }
+    .btn-cta-white:hover { background: var(--dark); color: #fff; }
+
+    /* FOOTER */
+    footer { background: var(--dark); color: #aaa; padding: 3rem 0 1rem; }
+    footer h6 { color: #fff; font-size: .82rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer ul li { margin-bottom: .5rem; }
+    footer ul li a { color: #aaa; text-decoration: none; font-size: .82rem; transition: color .2s; }
+    footer ul li a:hover { color: var(--green); }
+    .f-contact { display: flex; align-items: flex-start; gap: .6rem; font-size: .82rem; margin-bottom: .45rem; }
+    .f-contact i { color: var(--green); font-size: .9rem; margin-top: 2px; flex-shrink: 0; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); margin-top: 2rem; padding-top: 1rem; font-size: .75rem; }
+    .fi-tag { color: var(--green); font-weight: 700; }
+    .fi-txt { font-size: .8rem; }
+    .soc a { color: #aaa; font-size: 1.2rem; margin-right: .7rem; transition: color .2s; }
+    .soc a:hover { color: var(--green); }
+    .f-learn { display: inline-block; border: 2px solid var(--green); color: var(--green); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; padding: .4rem 1rem; border-radius: 3px; text-decoration: none; margin-top: .8rem; transition: all .2s; }
+    .f-learn:hover { background: var(--green); color: #fff; }
+
+    /* SECTION TITLE */
+    .section-title { font-size: 1.3rem; font-weight: 900; text-transform: uppercase; letter-spacing: .5px; margin-bottom: .4rem; }
+    .section-underline { width: 50px; height: 3px; background: var(--green); margin-bottom: 2rem; }
+    .section-underline.center { margin-left: auto; margin-right: auto; }
+
+    @media (max-width: 991px) { .enquiry-box { position: static; margin-top: 2rem; } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="flash-innovations.html">
+      <div style="display:flex;align-items:center;gap:.5rem">
+        <div style="background:#1a2a18;padding:6px 8px;border-radius:4px"><i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.4rem"></i></div>
+        <div>
+          <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.05rem;color:#1a1a1a;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+          <div style="font-size:.55rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+        </div>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="flash-innovations.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="our-machines.html">Our Solution</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Industries</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Our Impact</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
+        <li class="nav-item ms-lg-2"><a class="nav-link btn-assess" href="#">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB BAR -->
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="flash-innovations.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="our-machines.html">Our Machines</a></li>
+        <li class="breadcrumb-item active" id="breadcrumbName">Loading…</li>
+      </ol>
+      <a href="our-machines.html" class="back-btn"><i class="bi bi-arrow-left"></i> All Machines</a>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL HERO -->
+<section class="detail-hero" id="detailHero">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+
+      <!-- IMAGE GALLERY -->
+      <div class="col-lg-5">
+        <div class="gallery-main">
+          <img id="mainImg" src="" alt="" />
+          <span class="gallery-tag" id="galleryTag">1 / 4</span>
+        </div>
+        <div class="gallery-thumbs" id="thumbsRow"></div>
+      </div>
+
+      <!-- MACHINE INFO -->
+      <div class="col-lg-7">
+        <span class="machine-badge" id="heroBadge" style="display:none"></span>
+        <span class="machine-category-tag" id="heroCat"></span>
+        <h1 class="machine-name" id="heroName"></h1>
+        <p class="machine-desc-hero" id="heroDesc"></p>
+
+        <div class="spec-chips" id="heroChips"></div>
+
+        <div class="quick-stats" id="quickStats"></div>
+
+        <div class="action-btns">
+          <a href="#enquiryBox" class="btn-primary-green"><i class="bi bi-send-fill"></i> Request This Machine</a>
+          <a href="contact-us.html" class="btn-outline-green"><i class="bi bi-telephone"></i> Talk to Us</a>
+          <button class="btn-outline-green" onclick="window.print()"><i class="bi bi-printer"></i> Print Spec Sheet</button>
+        </div>
+
+        <!-- MINI IMPACT NOTE -->
+        <div style="margin-top:1.5rem;background:#f0f5ee;border-radius:8px;padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem">
+          <i class="bi bi-heart-fill" style="color:var(--green);font-size:1.2rem;flex-shrink:0"></i>
+          <p style="margin:0;font-size:.82rem;color:#444;line-height:1.6">Every sale from this machine returns <strong style="color:var(--green)">15%</strong> to your organisation and donates <strong style="color:var(--green)">5%</strong> to Sydney Children's Hospitals Foundation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL TABS + SIDEBAR -->
+<div style="padding: 2.5rem 0 1rem;">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+
+      <!-- TABS -->
+      <div class="col-lg-8">
+        <div class="detail-tabs">
+          <div class="tab-nav">
+            <button class="tab-btn active" data-tab="specs">Technical Specs</button>
+            <button class="tab-btn" data-tab="features">Features</button>
+            <button class="tab-btn" data-tab="payment">Payment Options</button>
+            <button class="tab-btn" data-tab="industries">Industries</button>
+            <button class="tab-btn" data-tab="how">How It Works</button>
+          </div>
+
+          <!-- SPECS -->
+          <div class="tab-panel active" id="tab-specs">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="spec-section-header">Physical Dimensions</div>
+                <table class="spec-table">
+                  <tr><td>Dimensions (H×W×D)</td><td id="sDimensions">—</td></tr>
+                  <tr><td>Weight</td><td id="sWeight">—</td></tr>
+                  <tr><td>Colour Options</td><td id="sColour">—</td></tr>
+                  <tr><td>Door Type</td><td id="sDoor">—</td></tr>
+                </table>
+                <div class="spec-section-header">Electrical</div>
+                <table class="spec-table">
+                  <tr><td>Power Supply</td><td id="sPower">—</td></tr>
+                  <tr><td>Energy Consumption</td><td id="sEnergy">—</td></tr>
+                  <tr><td>Standby Mode</td><td>Yes – auto power saving</td></tr>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <div class="spec-section-header">Capacity &amp; Storage</div>
+                <table class="spec-table">
+                  <tr><td>Total Capacity</td><td id="sCapacity">—</td></tr>
+                  <tr><td>Selection Columns</td><td id="sSelections">—</td></tr>
+                  <tr><td>Temperature</td><td id="sTemp">—</td></tr>
+                  <tr><td>Shelf Configuration</td><td id="sShelves">—</td></tr>
+                </table>
+                <div class="spec-section-header">Technology</div>
+                <table class="spec-table">
+                  <tr><td>Display</td><td id="sDisplay">—</td></tr>
+                  <tr><td>Connectivity</td><td id="sConnectivity">—</td></tr>
+                  <tr><td>Telemetry</td><td id="sTelemetry">—</td></tr>
+                  <tr><td>Remote Monitoring</td><td>Yes – real-time alerts</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- FEATURES -->
+          <div class="tab-panel" id="tab-features">
+            <ul class="feature-list" id="featureList"></ul>
+          </div>
+
+          <!-- PAYMENT -->
+          <div class="tab-panel" id="tab-payment">
+            <p style="font-size:.88rem;color:#555;margin-bottom:1.2rem">All our machines support modern cashless payment methods. Accepted payment types vary by machine model.</p>
+            <div class="payment-icons" id="paymentIcons"></div>
+            <hr style="margin:1.5rem 0;border-color:#f0f0f0" />
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <div style="background:var(--light-bg);border-radius:8px;padding:1rem">
+                  <h6 style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:.5rem">Transaction Security</h6>
+                  <p style="font-size:.82rem;color:#555;margin:0;line-height:1.7">All transactions are PCI-DSS compliant. Card data is never stored on the machine. Encrypted end-to-end.</p>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div style="background:var(--light-bg);border-radius:8px;padding:1rem">
+                  <h6 style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:.5rem">Monthly Reporting</h6>
+                  <p style="font-size:.82rem;color:#555;margin:0;line-height:1.7">Detailed transaction reports delivered monthly. Full visibility on sales volume, popular items, and revenue share.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INDUSTRIES -->
+          <div class="tab-panel" id="tab-industries">
+            <p style="font-size:.88rem;color:#555;margin-bottom:1.2rem">This machine is recommended for the following industries and environments:</p>
+            <div class="industry-tags" id="industryTags"></div>
+            <hr style="margin:1.5rem 0;border-color:#f0f0f0" />
+            <div style="background:var(--light-bg);border-radius:8px;padding:1.2rem">
+              <h6 style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:.6rem"><i class="bi bi-lightbulb-fill me-2"></i>Ideal Placement Tips</h6>
+              <ul style="font-size:.85rem;color:#555;padding-left:1.2rem;margin:0;line-height:2">
+                <li>High foot-traffic corridors, break rooms, or reception areas</li>
+                <li>Near lifts, staircases, or common areas</li>
+                <li>Accessible to all staff, guests, and visitors</li>
+                <li>Minimum 1.2m clearance in front for wheelchair access</li>
+                <li>Within 2m of a suitable power outlet</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- HOW IT WORKS -->
+          <div class="tab-panel" id="tab-how">
+            <div class="row g-4">
+              <div class="col-sm-6 col-md-3 text-center">
+                <div style="width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;font-family:Montserrat,sans-serif;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .8rem">1</div>
+                <i class="bi bi-search" style="font-size:2rem;color:#ccc;display:block;margin-bottom:.6rem"></i>
+                <h6 style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;">Site Assessment</h6>
+                <p style="font-size:.78rem;color:#888;line-height:1.6">We visit your site and recommend the best machine for your space and audience.</p>
+              </div>
+              <div class="col-sm-6 col-md-3 text-center">
+                <div style="width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;font-family:Montserrat,sans-serif;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .8rem">2</div>
+                <i class="bi bi-tools" style="font-size:2rem;color:#ccc;display:block;margin-bottom:.6rem"></i>
+                <h6 style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;">Installation</h6>
+                <p style="font-size:.78rem;color:#888;line-height:1.6">We deliver and install the machine at zero cost to your organisation — usually within 5 business days.</p>
+              </div>
+              <div class="col-sm-6 col-md-3 text-center">
+                <div style="width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;font-family:Montserrat,sans-serif;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .8rem">3</div>
+                <i class="bi bi-box-seam" style="font-size:2rem;color:#ccc;display:block;margin-bottom:.6rem"></i>
+                <h6 style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;">Ongoing Management</h6>
+                <p style="font-size:.78rem;color:#888;line-height:1.6">We regularly stock, clean, and service the machine. Any faults are resolved promptly.</p>
+              </div>
+              <div class="col-sm-6 col-md-3 text-center">
+                <div style="width:44px;height:44px;border-radius:50%;background:var(--green);color:#fff;font-family:Montserrat,sans-serif;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .8rem">4</div>
+                <i class="bi bi-bar-chart-line" style="font-size:2rem;color:#ccc;display:block;margin-bottom:.6rem"></i>
+                <h6 style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;">Monthly Reports</h6>
+                <p style="font-size:.78rem;color:#888;line-height:1.6">You receive a transparent monthly report with sales data and your 15% revenue share payment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENQUIRY SIDEBAR -->
+      <div class="col-lg-4" id="enquiryBox">
+        <div class="enquiry-box">
+          <h4><i class="bi bi-send-fill me-2"></i>Request This Machine</h4>
+          <input type="text" class="enq-input" placeholder="Your Name *" />
+          <input type="email" class="enq-input" placeholder="Email Address *" />
+          <input type="tel" class="enq-input" placeholder="Phone Number" />
+          <input type="text" class="enq-input" placeholder="Organisation Name *" />
+          <select class="enq-select">
+            <option value="" disabled selected>Select Your Industry</option>
+            <option>Hotel / Hospitality</option>
+            <option>Warehouse / Logistics</option>
+            <option>College / University</option>
+            <option>Office / Corporate</option>
+            <option>Gym / Leisure</option>
+            <option>Healthcare</option>
+            <option>Other</option>
+          </select>
+          <textarea class="enq-input" rows="3" placeholder="Any specific requirements or questions?"></textarea>
+          <button class="btn-enq" onclick="submitEnquiry()">
+            <i class="bi bi-send-fill"></i> Send Enquiry
+          </button>
+          <div class="enq-success" id="enqSuccess">
+            <i class="bi bi-check-circle-fill me-2"></i> Enquiry sent! We'll be in touch within 1 business day.
+          </div>
+          <hr class="enq-divider" />
+          <div class="enq-contact">
+            <div style="margin-bottom:.4rem"><i class="bi bi-telephone-fill" style="color:var(--green);margin-right:.4rem"></i><a href="tel:1300610372">1300 610 372</a></div>
+            <div><i class="bi bi-envelope-fill" style="color:var(--green);margin-right:.4rem"></i><a href="mailto:vending@flashpainting.com.au">vending@flashpainting.com.au</a></div>
+          </div>
+          <hr class="enq-divider" />
+          <div style="background:rgba(106,176,76,.1);border-radius:6px;padding:.8rem;text-align:center">
+            <div style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:.3rem">Zero Upfront Cost</div>
+            <div style="font-size:.78rem;color:#ccc">Installation, setup &amp; maintenance are 100% covered by Flash Innovations.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- RELATED MACHINES -->
+<section class="related-section">
+  <div class="container">
+    <h2 class="section-title">YOU MAY ALSO LIKE</h2>
+    <div class="section-underline"></div>
+    <div class="row g-4" id="relatedGrid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bar">
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <div class="col-lg-8">
+        <h3>READY TO ADD VALUE TO YOUR SPACE?</h3>
+        <p>Request your free site assessment today and start earning monthly revenue.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end">
+        <a href="contact-us.html" class="btn-cta-white">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+          <div style="background:#fff1;padding:5px 7px;border-radius:4px"><i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.3rem"></i></div>
+          <div>
+            <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:.95rem;color:#fff;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
+            <div style="font-size:.5rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
+          </div>
+        </div>
+        <p style="font-size:.8rem;line-height:1.6;margin-top:.5rem">Premium vending solutions with no hassle, no upfront costs and positive community impact.</p>
+        <div class="soc mt-2"><a href="#"><i class="bi bi-facebook"></i></a><a href="#"><i class="bi bi-linkedin"></i></a><a href="#"><i class="bi bi-instagram"></i></a></div>
+      </div>
+      <div class="col-6 col-sm-3 col-lg-2">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="flash-innovations.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="our-machines.html">Our Solution</a></li>
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Our Impact</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-6 col-lg-3">
+        <h6>Contact Us</h6>
+        <div class="f-contact"><i class="bi bi-telephone-fill"></i><span>1300 610 372</span></div>
+        <div class="f-contact"><i class="bi bi-envelope-fill"></i><span>vending@flashpainting.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-globe"></i><span>flashinnovations.com.au</span></div>
+        <div class="f-contact"><i class="bi bi-geo-alt-fill"></i><span>3/44 Kelso Crescent,<br>Moorebank NSW 2170</span></div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <h6>Our Impact</h6>
+        <p class="fi-txt"><span class="fi-tag">15%</span> returned to your organisation</p>
+        <p class="fi-txt"><span class="fi-tag">5%</span> donated to Sydney Children's Hospitals Foundation</p>
+        <a href="#" class="f-learn">LEARN MORE</a>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© 2024 Flash Innovations Pty Ltd. All Rights Reserved.</span>
+      <div><a href="#" style="color:#aaa;text-decoration:none;margin-right:1rem">Privacy Policy</a><a href="#" style="color:#aaa;text-decoration:none">Terms &amp; Conditions</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script>
+// ─── MACHINE DATA ─────────────────────────────────────────────────────────────
+const machines = [
+  {
+    id: 1, name: "SnackPro 600", category: "snack", categoryLabel: "Snack & Food",
+    badge: "popular", badgeLabel: "Popular",
+    images: [
+      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
+      "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=800&q=80",
+      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80",
+      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80"
+    ],
+    desc: "Our best-selling snack machine. Holds up to 600 items across 50+ selection columns. Perfect for large offices, warehouses and high-traffic spaces. Features a 7-inch touchscreen with product imagery, real-time stock tracking, and remote telemetry.",
+    specs: ["600 Capacity", "50 Selections", "Touchscreen", "Cashless"],
+    industries: "Offices, Warehouses, Hotels",
+    industryList: [
+      { icon: "bi-briefcase", label: "Offices & Corporate" },
+      { icon: "bi-box-seam", label: "Warehouses & Logistics" },
+      { icon: "bi-building", label: "Hotels & Hospitality" },
+      { icon: "bi-activity", label: "Gyms & Leisure" }
+    ],
+    quickStats: [
+      { icon: "bi-layers", label: "Capacity", value: "600 Items" },
+      { icon: "bi-grid", label: "Selections", value: "50 Columns" },
+      { icon: "bi-thermometer-half", label: "Temperature", value: "Ambient" },
+      { icon: "bi-plug", label: "Power", value: "10A / 240V" }
+    ],
+    specs_detail: {
+      dimensions: "1830 × 920 × 810 mm", weight: "280 kg", colour: "Black / White / Custom Wrap",
+      door: "Full-height glass door", power: "10A / 240V", energy: "~3.5 kWh/day",
+      capacity: "600 items", selections: "50 columns (adjustable)", temp: "Ambient (15–30°C)",
+      shelves: "6 shelves, adjustable height", display: "7\" HD Touchscreen", connectivity: "4G SIM + WiFi",
+      telemetry: "Yes – real-time stock & sales data"
+    },
+    features: [
+      "7-inch high-definition colour touchscreen with product images",
+      "Remote telemetry — stock levels monitored in real-time",
+      "Adjustable spiral dispensing motors to fit various product sizes",
+      "LED internal lighting for product visibility and energy efficiency",
+      "Anti-theft drop sensor with jam-detection alert",
+      "Cashless-first design with optional cash acceptor add-on",
+      "Self-diagnosing error reporting via cloud dashboard",
+      "Tamper-proof stainless steel locking mechanism",
+      "ADA/DDA compliant delivery bin height"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay", "Cash", "EFTPOS"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-google", label: "Google Pay" },
+      { icon: "bi-cash-stack", label: "Cash" },
+      { icon: "bi-qr-code", label: "QR Pay" }
+    ]
+  },
+  {
+    id: 2, name: "CoolDrink 480", category: "drink", categoryLabel: "Drinks & Beverage",
+    badge: "new", badgeLabel: "New",
+    images: [
+      "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80",
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
+      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
+      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80"
+    ],
+    desc: "Chilled beverage machine with smart dual-zone temperature control. Stocks cans, bottles, and cartons. Perfect for gyms, colleges, and healthcare environments. Maintains optimal temperature for maximum freshness.",
+    specs: ["480 Cans", "Dual-Zone Cooling", "LED Display", "Cashless"],
+    industries: "Gyms, Colleges, Healthcare",
+    industryList: [
+      { icon: "bi-activity", label: "Gyms & Leisure" },
+      { icon: "bi-mortarboard", label: "Colleges & Universities" },
+      { icon: "bi-heart-pulse", label: "Healthcare Facilities" },
+      { icon: "bi-briefcase", label: "Offices" }
+    ],
+    quickStats: [
+      { icon: "bi-layers", label: "Capacity", value: "480 Cans" },
+      { icon: "bi-grid", label: "Selections", value: "30 Columns" },
+      { icon: "bi-thermometer-half", label: "Temperature", value: "3–8°C" },
+      { icon: "bi-plug", label: "Power", value: "15A / 240V" }
+    ],
+    specs_detail: {
+      dimensions: "1830 × 880 × 760 mm", weight: "260 kg", colour: "Black / Silver",
+      door: "Double-pane insulated glass", power: "15A / 240V", energy: "~5 kWh/day",
+      capacity: "480 cans / 300 bottles", selections: "30 columns", temp: "3–8°C (dual-zone)",
+      shelves: "5 adjustable shelves", display: "10\" LED Screen", connectivity: "4G SIM + WiFi",
+      telemetry: "Yes – temperature alerts & stock tracking"
+    },
+    features: [
+      "Dual-zone precision cooling — cans and bottles at optimal temps",
+      "10-inch LED display with promotional content capability",
+      "Anti-condensation heated door frame",
+      "Ultra-quiet compressor — suitable for quiet environments",
+      "Real-time temperature monitoring with remote alerts",
+      "Energy-efficient inverter compressor technology",
+      "Wide product compatibility: cans, PET bottles, cartons, pouches",
+      "Auto-defrost cycle to maintain cooling efficiency",
+      "Easy-load from rear or front depending on installation"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay", "Cash"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-google", label: "Google Pay" },
+      { icon: "bi-cash-stack", label: "Cash" }
+    ]
+  },
+  {
+    id: 3, name: "ComboMax Pro", category: "combo", categoryLabel: "Combo Unit",
+    badge: null, badgeLabel: null,
+    images: [
+      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80",
+      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
+      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80",
+      "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80"
+    ],
+    desc: "Two machines in one — snacks on top, chilled drinks below. Ideal for smaller spaces that need variety without the footprint of two separate machines. The smart choice for hotels, boutique offices, and college common rooms.",
+    specs: ["Dual Zone", "300+180 Cap.", "Touchscreen", "Cashless"],
+    industries: "Hotels, Small Offices, Colleges",
+    industryList: [
+      { icon: "bi-building", label: "Hotels & Hospitality" },
+      { icon: "bi-briefcase", label: "Small Offices" },
+      { icon: "bi-mortarboard", label: "Colleges" },
+      { icon: "bi-shop", label: "Retail Spaces" }
+    ],
+    quickStats: [
+      { icon: "bi-layers", label: "Snack Cap.", value: "300 Items" },
+      { icon: "bi-cup-straw", label: "Drink Cap.", value: "180 Cans" },
+      { icon: "bi-thermometer-half", label: "Temperature", value: "Amb. + 3–8°C" },
+      { icon: "bi-plug", label: "Power", value: "15A / 240V" }
+    ],
+    specs_detail: {
+      dimensions: "1950 × 720 × 800 mm", weight: "320 kg", colour: "Black",
+      door: "Split-section glass doors", power: "15A / 240V", energy: "~6 kWh/day",
+      capacity: "300 snacks + 180 drinks", selections: "40 snack + 20 drink columns", temp: "Ambient top / 3–8°C bottom",
+      shelves: "8 total (5 snack + 3 drink)", display: "8\" Touchscreen", connectivity: "WiFi + 4G",
+      telemetry: "Yes – separate zone monitoring"
+    },
+    features: [
+      "Space-saving combo design — snacks and drinks in single footprint",
+      "Independently controlled temperature zones",
+      "Single payment point for both sections",
+      "8-inch touchscreen with category navigation",
+      "Separate restocking access for each zone",
+      "Ideal for spaces under 2.5m ceiling height",
+      "Low energy consumption through shared compressor system",
+      "Consistent brand wrap across both machine sections",
+      "Suitable for both indoor and semi-outdoor installations"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-google", label: "Google Pay" }
+    ]
+  },
+  {
+    id: 4, name: "FreshBox 200", category: "fresh", categoryLabel: "Fresh Food",
+    badge: "new", badgeLabel: "New",
+    images: [
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
+      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80",
+      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
+      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80"
+    ],
+    desc: "Refrigerated fresh food machine with precision spiral dispensing. Stocks sandwiches, salads, fruit cups, and wraps. Perfect for health-conscious workplaces and healthcare environments. Date-tracking ensures only fresh items are sold.",
+    specs: ["Refrigerated", "200 Items", "Spiral Motor", "Date Tracking"],
+    industries: "Healthcare, Offices, Colleges",
+    industryList: [
+      { icon: "bi-heart-pulse", label: "Healthcare Facilities" },
+      { icon: "bi-briefcase", label: "Corporate Offices" },
+      { icon: "bi-mortarboard", label: "Colleges & Universities" },
+      { icon: "bi-hospital", label: "Hospitals" }
+    ],
+    quickStats: [
+      { icon: "bi-layers", label: "Capacity", value: "200 Items" },
+      { icon: "bi-thermometer-half", label: "Temperature", value: "1–4°C" },
+      { icon: "bi-calendar-check", label: "Date Tracking", value: "Automated" },
+      { icon: "bi-plug", label: "Power", value: "15A / 240V" }
+    ],
+    specs_detail: {
+      dimensions: "1830 × 900 × 820 mm", weight: "310 kg", colour: "White / Silver",
+      door: "Full-height refrigerated glass", power: "15A / 240V", energy: "~6.5 kWh/day",
+      capacity: "200 fresh items", selections: "30 columns", temp: "1–4°C (precision)",
+      shelves: "6 shelves (adjustable width)", display: "10\" Touchscreen w/ product photos", connectivity: "WiFi + 4G + Bluetooth",
+      telemetry: "Yes – temp alerts + expiry tracking"
+    },
+    features: [
+      "Precision refrigeration maintained at 1–4°C at all times",
+      "Automated date/expiry tracking with remote alerts",
+      "Wide spiral motors accommodate various packaging sizes",
+      "Full product photography display on screen for each item",
+      "Health & allergen information displayed per product",
+      "Tamper-evident delivery bin for food safety compliance",
+      "HACCP-compatible design for food safety certification",
+      "Automatic lock-out of expired products",
+      "Eco-compressor with night setback temperature mode"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-google", label: "Google Pay" }
+    ]
+  },
+  {
+    id: 5, name: "BrewMaster HotDrink", category: "coffee", categoryLabel: "Coffee & Hot",
+    badge: null, badgeLabel: null,
+    images: [
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
+      "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=800&q=80",
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+    ],
+    desc: "Bean-to-cup coffee machine with 12 premium hot drink selections including espresso, cappuccino, latte, hot chocolate, and multiple tea varieties. Built-in milk frother and self-cleaning cycle make it effortless to maintain.",
+    specs: ["Bean-to-Cup", "12 Selections", "Milk Frother", "Self-Clean"],
+    industries: "Offices, Hotels, Warehouses",
+    industryList: [
+      { icon: "bi-briefcase", label: "Corporate Offices" },
+      { icon: "bi-building", label: "Hotels & Hospitality" },
+      { icon: "bi-box-seam", label: "Warehouses" },
+      { icon: "bi-hospital", label: "Healthcare Facilities" }
+    ],
+    quickStats: [
+      { icon: "bi-cup-hot", label: "Selections", value: "12 Drinks" },
+      { icon: "bi-thermometer-high", label: "Brew Temp", value: "85–95°C" },
+      { icon: "bi-droplet", label: "Milk Frother", value: "Built-in" },
+      { icon: "bi-plug", label: "Power", value: "16A / 240V" }
+    ],
+    specs_detail: {
+      dimensions: "1400 × 600 × 650 mm", weight: "180 kg", colour: "Black / Silver",
+      door: "N/A – dispense window", power: "16A / 240V", energy: "~4.5 kWh/day",
+      capacity: "2kg bean hopper / 5L water tank", selections: "12 hot drinks", temp: "85–95°C brew / steam",
+      shelves: "N/A", display: "10\" Colour Touchscreen", connectivity: "WiFi + 4G",
+      telemetry: "Yes – bean level, water level, cup count"
+    },
+    features: [
+      "Bean-to-cup fresh grinding for every single serve",
+      "12 programmable drink recipes with strength settings",
+      "Automatic self-cleaning and milk circuit rinse cycle",
+      "Adjustable cup size from espresso shot to large latte",
+      "Dual boiler system for simultaneous brewing and steaming",
+      "Real-time bean, water, and cup stock monitoring",
+      "Customisable screen branding with your logo or promotions",
+      "Heated cup platform to keep drinks warm",
+      "Paper cup compatible or reusable cup friendly design"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay", "Cash"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-google", label: "Google Pay" },
+      { icon: "bi-cash-stack", label: "Cash" }
+    ]
+  },
+  {
+    id: 6, name: "AmbientPro 400", category: "ambient", categoryLabel: "Ambient & PPE",
+    badge: null, badgeLabel: null,
+    images: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
+      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80",
+      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80"
+    ],
+    desc: "Versatile ambient machine for non-perishable goods, PPE, stationery, and health products. Highly popular in warehouses, factories, and healthcare settings requiring 24/7 access to safety and operational supplies.",
+    specs: ["400 Capacity", "PPE Ready", "Multi-Width", "24/7 Access"],
+    industries: "Warehouses, Healthcare, Factories",
+    industryList: [
+      { icon: "bi-box-seam", label: "Warehouses & Factories" },
+      { icon: "bi-heart-pulse", label: "Healthcare" },
+      { icon: "bi-shield-check", label: "Industrial Sites" },
+      { icon: "bi-tools", label: "Maintenance Facilities" }
+    ],
+    quickStats: [
+      { icon: "bi-layers", label: "Capacity", value: "400 Items" },
+      { icon: "bi-grid", label: "Selections", value: "40 Columns" },
+      { icon: "bi-thermometer-half", label: "Temperature", value: "Ambient" },
+      { icon: "bi-clock", label: "Access", value: "24/7" }
+    ],
+    specs_detail: {
+      dimensions: "1830 × 920 × 810 mm", weight: "275 kg", colour: "Grey / Black / Yellow",
+      door: "Locker-style secure door", power: "10A / 240V", energy: "~2.5 kWh/day",
+      capacity: "400 items (variable by SKU size)", selections: "40 columns (multi-width)", temp: "Ambient",
+      shelves: "6 shelves with adjustable dividers", display: "7\" Touchscreen", connectivity: "WiFi + 4G",
+      telemetry: "Yes – low stock alerts + usage reports"
+    },
+    features: [
+      "Multi-width motorised coils to handle gloves, masks, tools, and more",
+      "Heavy-duty steel construction for high-security environments",
+      "Employee ID card / PIN access control option",
+      "Per-employee dispensing limits for controlled stock management",
+      "Real-time inventory depletion tracking and auto-reorder alerts",
+      "FIFO (First In, First Out) dispensing for proper stock rotation",
+      "Detailed usage reports by employee or department",
+      "Suitable for cold chain break areas and outdoor-adjacent locations",
+      "Zero-refrigeration low power draw design"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay", "Cash", "Employee ID"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-cash-stack", label: "Cash" },
+      { icon: "bi-person-badge", label: "Employee ID" }
+    ]
+  },
+  {
+    id: 7, name: "SnackSlim 300", category: "snack", categoryLabel: "Snack & Food",
+    badge: null, badgeLabel: null,
+    images: [
+      "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=800&q=80",
+      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
+      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80",
+      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80"
+    ],
+    desc: "Compact slim-profile snack machine engineered for tighter spaces. Fits in corridors, break rooms, and small offices. Don't let the slim design fool you — it still packs 300 items across 25 selections with full cashless capability.",
+    specs: ["300 Capacity", "Slim Profile", "LED Lit", "Cashless"],
+    industries: "Small Offices, Hotels, Clinics",
+    industryList: [
+      { icon: "bi-briefcase", label: "Small Offices" },
+      { icon: "bi-building", label: "Hotels" },
+      { icon: "bi-hospital", label: "Clinics & GP Practices" },
+      { icon: "bi-shop", label: "Retail Back-of-House" }
+    ],
+    quickStats: [
+      { icon: "bi-layers", label: "Capacity", value: "300 Items" },
+      { icon: "bi-grid", label: "Selections", value: "25 Columns" },
+      { icon: "bi-rulers", label: "Width", value: "Only 600mm" },
+      { icon: "bi-plug", label: "Power", value: "10A / 240V" }
+    ],
+    specs_detail: {
+      dimensions: "1830 × 600 × 700 mm", weight: "210 kg", colour: "White / Black",
+      door: "Full-height slim glass door", power: "10A / 240V", energy: "~2.8 kWh/day",
+      capacity: "300 items", selections: "25 columns", temp: "Ambient",
+      shelves: "5 shelves (adjustable)", display: "5\" LED Display", connectivity: "WiFi",
+      telemetry: "Yes – basic stock alerts"
+    },
+    features: [
+      "Industry-leading 600mm width — smallest footprint in the range",
+      "Slim door profile for tight corridor installation",
+      "5-inch LED display with product names and pricing",
+      "Full cashless payment built in as standard",
+      "Whisper-quiet motor operation — office friendly",
+      "LED-backlit shelves for full product visibility",
+      "Standard 10A power outlet — no special wiring needed",
+      "Easy front-load restocking by our team",
+      "Lightweight design enables easy repositioning"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-google", label: "Google Pay" }
+    ]
+  },
+  {
+    id: 8, name: "MegaCombo 800", category: "combo", categoryLabel: "Combo Unit",
+    badge: "popular", badgeLabel: "Popular",
+    images: [
+      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80",
+      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80",
+      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
+      "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80"
+    ],
+    desc: "Our largest and most powerful combo unit — built for the highest-traffic locations. 800-item capacity, HD touchscreen, real-time telemetry, and NFC payment. The flagship choice for hospitals, universities, and transport hubs.",
+    specs: ["800 Capacity", "Telemetry", "Dual Zone", "HD Touchscreen"],
+    industries: "Hospitals, Universities, Airports",
+    industryList: [
+      { icon: "bi-hospital", label: "Hospitals" },
+      { icon: "bi-mortarboard", label: "Universities" },
+      { icon: "bi-airplane", label: "Transport Hubs" },
+      { icon: "bi-shop", label: "Shopping Centres" }
+    ],
+    quickStats: [
+      { icon: "bi-layers", label: "Total Capacity", value: "800 Items" },
+      { icon: "bi-thermometer-half", label: "Temperature", value: "Dual Zone" },
+      { icon: "bi-display", label: "Screen", value: "15\" HD Touch" },
+      { icon: "bi-plug", label: "Power", value: "20A / 240V" }
+    ],
+    specs_detail: {
+      dimensions: "1950 × 1050 × 880 mm", weight: "420 kg", colour: "Black (custom wraps available)",
+      door: "Heavy-duty laminated safety glass", power: "20A / 240V", energy: "~8.5 kWh/day",
+      capacity: "500 snacks + 300 drinks", selections: "60 snack + 30 drink columns", temp: "Ambient + 3–8°C",
+      shelves: "10 total (6 snack + 4 drink)", display: "15\" Full HD Touchscreen", connectivity: "4G LTE + WiFi + Ethernet",
+      telemetry: "Full real-time telemetry with predictive restocking alerts"
+    },
+    features: [
+      "Flagship 15-inch full HD touchscreen with HD product photography",
+      "Predictive restocking AI — alerts before stock runs out",
+      "NFC, Apple Pay, Google Pay, card, and cash all supported",
+      "Dual-zone independent temperature control",
+      "Heavy-duty vandal-resistant casing for public environments",
+      "Customer loyalty program integration via QR code",
+      "Multiple language support for diverse user environments",
+      "Full HD video advertising capability on idle screen",
+      "Live sales dashboard accessible via web portal"
+    ],
+    payment: ["Credit Card", "Debit Card", "Apple Pay", "Google Pay", "Cash", "NFC", "QR Code"],
+    payIcons: [
+      { icon: "bi-credit-card-2-front", label: "Credit Card" },
+      { icon: "bi-credit-card", label: "Debit Card" },
+      { icon: "bi-phone", label: "Apple Pay" },
+      { icon: "bi-google", label: "Google Pay" },
+      { icon: "bi-cash-stack", label: "Cash" },
+      { icon: "bi-qr-code", label: "QR Code" },
+      { icon: "bi-wifi", label: "NFC / Tap" }
+    ]
+  }
+];
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get('id')) || 1;
+const machine = machines.find(m => m.id === id) || machines[0];
+
+document.title = `${machine.name} – Flash Innovations`;
+
+// Breadcrumb
+document.getElementById('breadcrumbName').textContent = machine.name;
+
+// Hero Badge
+const badge = document.getElementById('heroBadge');
+if (machine.badge) {
+  badge.textContent = machine.badgeLabel;
+  badge.classList.add(machine.badge);
+  badge.style.display = 'inline-block';
+}
+
+// Hero texts
+document.getElementById('heroCat').textContent = machine.categoryLabel;
+document.getElementById('heroName').textContent = machine.name;
+document.getElementById('heroDesc').textContent = machine.desc;
+
+// Spec chips
+document.getElementById('heroChips').innerHTML = machine.specs.map(s =>
+  `<span class="spec-chip">${s}</span>`).join('');
+
+// Quick stats
+document.getElementById('quickStats').innerHTML = machine.quickStats.map(q => `
+  <div class="qstat">
+    <i class="bi ${q.icon}"></i>
+    <div><div class="qs-label">${q.label}</div><div class="qs-value">${q.value}</div></div>
+  </div>`).join('');
+
+// ─── GALLERY ─────────────────────────────────────────────────────────────────
+let activeImg = 0;
+const mainImg = document.getElementById('mainImg');
+const galleryTag = document.getElementById('galleryTag');
+const thumbsRow = document.getElementById('thumbsRow');
+
+function setActiveImage(idx) {
+  activeImg = idx;
+  mainImg.style.opacity = '0';
+  setTimeout(() => {
+    mainImg.src = machine.images[idx];
+    mainImg.alt = machine.name;
+    mainImg.style.opacity = '1';
+  }, 150);
+  galleryTag.textContent = `${idx + 1} / ${machine.images.length}`;
+  document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+}
+
+thumbsRow.innerHTML = machine.images.map((img, i) =>
+  `<div class="thumb ${i===0?'active':''}" onclick="setActiveImage(${i})">
+    <img src="${img}" alt="${machine.name} ${i+1}" loading="lazy"
+      onerror="this.src='https://placehold.co/70x60/e8f5e9/6ab04c?text=${i+1}'" />
+  </div>`).join('');
+
+setActiveImage(0);
+
+// ─── TABS ────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ─── SPECS TABLE ─────────────────────────────────────────────────────────────
+const sd = machine.specs_detail;
+document.getElementById('sDimensions').textContent = sd.dimensions;
+document.getElementById('sWeight').textContent = sd.weight;
+document.getElementById('sColour').textContent = sd.colour;
+document.getElementById('sDoor').textContent = sd.door;
+document.getElementById('sPower').textContent = sd.power;
+document.getElementById('sEnergy').textContent = sd.energy;
+document.getElementById('sCapacity').textContent = sd.capacity;
+document.getElementById('sSelections').textContent = sd.selections;
+document.getElementById('sTemp').textContent = sd.temp;
+document.getElementById('sShelves').textContent = sd.shelves;
+document.getElementById('sDisplay').textContent = sd.display;
+document.getElementById('sConnectivity').textContent = sd.connectivity;
+document.getElementById('sTelemetry').textContent = sd.telemetry;
+
+// ─── FEATURES ────────────────────────────────────────────────────────────────
+document.getElementById('featureList').innerHTML = machine.features.map(f =>
+  `<li><i class="bi bi-check-circle-fill"></i>${f}</li>`).join('');
+
+// ─── PAYMENT ─────────────────────────────────────────────────────────────────
+document.getElementById('paymentIcons').innerHTML = machine.payIcons.map(p => `
+  <div class="pay-icon">
+    <div class="ico"><i class="bi ${p.icon}"></i></div>
+    <span>${p.label}</span>
+  </div>`).join('');
+
+// ─── INDUSTRIES ──────────────────────────────────────────────────────────────
+document.getElementById('industryTags').innerHTML = machine.industryList.map(il => `
+  <div class="industry-tag"><i class="bi ${il.icon}"></i>${il.label}</div>`).join('');
+
+// ─── RELATED ─────────────────────────────────────────────────────────────────
+const related = machines.filter(m => m.id !== machine.id).slice(0, 4);
+document.getElementById('relatedGrid').innerHTML = related.map(m => `
+  <div class="col-6 col-md-3">
+    <a class="rel-card" href="machine-detail.html?id=${m.id}">
+      <div class="rel-img">
+        <img src="${m.images[0]}" alt="${m.name}" loading="lazy"
+          onerror="this.src='https://placehold.co/300x160/e8f5e9/6ab04c?text=${encodeURIComponent(m.name)}'" />
+      </div>
+      <div class="rel-body">
+        <div class="rel-cat">${m.categoryLabel}</div>
+        <div class="rel-name">${m.name}</div>
+        <div class="rel-desc">${m.desc.substring(0, 70)}…</div>
+        <div class="rel-link">View Details <i class="bi bi-arrow-right"></i></div>
+      </div>
+    </a>
+  </div>`).join('');
+
+// ─── ENQUIRY ─────────────────────────────────────────────────────────────────
+function submitEnquiry() {
+  document.getElementById('enqSuccess').style.display = 'block';
+  setTimeout(() => document.getElementById('enqSuccess').style.display = 'none', 5000);
+}
+</script>
+</body>
+</html>
