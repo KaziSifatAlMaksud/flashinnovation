@@ -64,7 +64,7 @@
     .btn-outline-green:hover { background: var(--green); color: #fff; }
 
     /* IMAGE GALLERY */
-    .gallery-main { border-radius: 12px; overflow: hidden; background: #f0f5ee; height: 380px; position: relative; }
+    .gallery-main { border-radius: 12px; overflow: hidden; background: #f0f5ee; height: 680px; position: relative; }
     .gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .3s; }
     .gallery-thumbs { display: flex; gap: .6rem; margin-top: .8rem; flex-wrap: wrap; }
     .thumb { width: 70px; height: 60px; border-radius: 6px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color .2s; flex-shrink: 0; }
@@ -176,24 +176,21 @@
   <div class="container">
     <a class="navbar-brand" href="flash-innovations.html">
       <div style="display:flex;align-items:center;gap:.5rem">
-        <div style="background:#1a2a18;padding:6px 8px;border-radius:4px"><i class="bi bi-grid-3x3-gap-fill" style="color:var(--green);font-size:1.4rem"></i></div>
-        <div>
-          <div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:1.05rem;color:#1a1a1a;line-height:1">FLASH<br><span style="color:var(--green)">INNOVATIONS</span></div>
-          <div style="font-size:.55rem;color:#888;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif">YOUR VENDING SOLUTION</div>
-        </div>
+           <img src="image33.webp" alt="Flash Innovations Logo" style="height:60px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.1))" onerror="this.src='https://placehold.co/120x40/1a2a18/6ab04c?text=Logo'" />
       </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="flash-innovations.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-        <li class="nav-item"><a class="nav-link active" href="our-machines.html">Our Solution</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Industries</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Our Impact</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
-        <li class="nav-item ms-lg-2"><a class="nav-link btn-assess" href="#">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a></li>
-      </ul>
+     <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+       <li class="nav-item"><a class="nav-link " href="#">Home</a></li>
+       <li class="nav-item"><a class="nav-link" href="about_us.html">About Us</a></li>
+       <li class="nav-item"><a class="nav-link" href="our_solution.html">Our Solution</a></li>
+       <li class="nav-item"><a class="nav-link active" href="our_machines.html">Our Machines</a></li>
+       <li class="nav-item"><a class="nav-link" href="contact_us.html">Contact Us</a></li>
+       <li class="nav-item ms-lg-2">
+         <a class="nav-link btn-assess" href="request_assessment.html">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
+       </li>
+     </ul>
     </div>
   </div>
 </nav>
@@ -207,7 +204,7 @@
         <li class="breadcrumb-item"><a href="our-machines.html">Our Machines</a></li>
         <li class="breadcrumb-item active" id="breadcrumbName">Loading…</li>
       </ol>
-      <a href="our-machines.html" class="back-btn"><i class="bi bi-arrow-left"></i> All Machines</a>
+      <a href="our_machines.html" class="back-btn"><i class="bi bi-arrow-left"></i> All Machines</a>
     </div>
   </div>
 </div>
@@ -218,7 +215,7 @@
     <div class="row g-5 align-items-start">
 
       <!-- IMAGE GALLERY -->
-      <div class="col-lg-5">
+      <div class="col-lg-8">
         <div class="gallery-main">
           <img id="mainImg" src="" alt="" />
           <span class="gallery-tag" id="galleryTag">1 / 4</span>
@@ -227,7 +224,7 @@
       </div>
 
       <!-- MACHINE INFO -->
-      <div class="col-lg-7">
+      <div class="col-lg-4">
         <span class="machine-badge" id="heroBadge" style="display:none"></span>
         <span class="machine-category-tag" id="heroCat"></span>
         <h1 class="machine-name" id="heroName"></h1>
@@ -424,13 +421,13 @@
 </div>
 
 <!-- RELATED MACHINES -->
-<section class="related-section">
+<!-- <section class="related-section">
   <div class="container">
     <h2 class="section-title">YOU MAY ALSO LIKE</h2>
     <div class="section-underline"></div>
     <div class="row g-4" id="relatedGrid"></div>
   </div>
-</section>
+</section> -->
 
 <!-- CTA -->
 <section class="cta-bar">
@@ -441,7 +438,7 @@
         <p>Request your free site assessment today and start earning monthly revenue.</p>
       </div>
       <div class="col-lg-4 text-lg-end">
-        <a href="contact-us.html" class="btn-cta-white">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
+        <a href="contact_us.html" class="btn-cta-white">Request Free Assessment &nbsp;<i class="bi bi-arrow-right"></i></a>
       </div>
     </div>
   </div>
@@ -499,13 +496,11 @@
 // ─── MACHINE DATA ─────────────────────────────────────────────────────────────
 const machines = [
   {
-    id: 1, name: "SnackPro 600", category: "snack", categoryLabel: "Snack & Food",
+    id: 1, name: "VM_H5", category: "snack", categoryLabel: "Snack & Food",
     badge: "popular", badgeLabel: "Popular",
     images: [
-      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
-      "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=800&q=80",
-      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80",
-      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80"
+      "machine/vm-h5.png",
+      "machine/VM_H5_img.png"
     ],
     desc: "Our best-selling snack machine. Holds up to 600 items across 50+ selection columns. Perfect for large offices, warehouses and high-traffic spaces. Features a 7-inch touchscreen with product imagery, real-time stock tracking, and remote telemetry.",
     specs: ["600 Capacity", "50 Selections", "Touchscreen", "Cashless"],
@@ -551,13 +546,11 @@ const machines = [
     ]
   },
   {
-    id: 2, name: "CoolDrink 480", category: "drink", categoryLabel: "Drinks & Beverage",
+    id: 2, name: "VM3", category: "snack", categoryLabel: "Snack & Food",
     badge: "new", badgeLabel: "New",
     images: [
-      "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80",
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
-      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
-      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80"
+      "machine/vm3.png",
+      "machine/VM3_img.png"
     ],
     desc: "Chilled beverage machine with smart dual-zone temperature control. Stocks cans, bottles, and cartons. Perfect for gyms, colleges, and healthcare environments. Maintains optimal temperature for maximum freshness.",
     specs: ["480 Cans", "Dual-Zone Cooling", "LED Display", "Cashless"],
@@ -602,13 +595,11 @@ const machines = [
     ]
   },
   {
-    id: 3, name: "ComboMax Pro", category: "combo", categoryLabel: "Combo Unit",
+    id: 3, name: "VM3.1", category: "snack", categoryLabel: "Snack & Food",
     badge: null, badgeLabel: null,
     images: [
-      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80",
-      "https://images.unsplash.com/photo-1621617374867-86b29113a8f0?w=800&q=80",
-      "https://images.unsplash.com/photo-1604719312566-8912e9c5d044?w=800&q=80",
-      "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?w=800&q=80"
+      "machine/vm3.1.png",
+      "machine/VM3.1_img.png"
     ],
     desc: "Two machines in one — snacks on top, chilled drinks below. Ideal for smaller spaces that need variety without the footprint of two separate machines. The smart choice for hotels, boutique offices, and college common rooms.",
     specs: ["Dual Zone", "300+180 Cap.", "Touchscreen", "Cashless"],
@@ -652,13 +643,11 @@ const machines = [
     ]
   },
   {
-    id: 4, name: "FreshBox 200", category: "fresh", categoryLabel: "Fresh Food",
+    id: 4, name: "VM5", category: "fresh", categoryLabel: "Fresh Food",
     badge: "new", badgeLabel: "New",
     images: [
-      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80",
-      "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80",
-      "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
-      "https://images.unsplash.com/photo-1585435557343-3b348031cad?w=800&q=80"
+      "machine/vm5.png",
+      "machine/VM5_img.png"
     ],
     desc: "Refrigerated fresh food machine with precision spiral dispensing. Stocks sandwiches, salads, fruit cups, and wraps. Perfect for health-conscious workplaces and healthcare environments. Date-tracking ensures only fresh items are sold.",
     specs: ["Refrigerated", "200 Items", "Spiral Motor", "Date Tracking"],
@@ -702,13 +691,11 @@ const machines = [
     ]
   },
   {
-    id: 5, name: "BrewMaster HotDrink", category: "coffee", categoryLabel: "Coffee & Hot",
+    id: 5, name: "CVM-5", category: "coffee", categoryLabel: "Coffee & Hot",
     badge: null, badgeLabel: null,
     images: [
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
-      "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=800&q=80",
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=800&q=80"
+      "machine/coffee2.png",
+      "machine/coffee.png"
     ],
     desc: "Bean-to-cup coffee machine with 12 premium hot drink selections including espresso, cappuccino, latte, hot chocolate, and multiple tea varieties. Built-in milk frother and self-cleaning cycle make it effortless to maintain.",
     specs: ["Bean-to-Cup", "12 Selections", "Milk Frother", "Self-Clean"],

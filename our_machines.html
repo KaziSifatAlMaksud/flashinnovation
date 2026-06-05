@@ -414,7 +414,7 @@ function renderCards() {
 
   grid.innerHTML = filtered.map(m => `
     <div class="col-sm-6 col-lg-4 col-xl-4" data-category="${m.category}">
-      <a class="machine-card" href="machine-detail.html?id=${m.id}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit">
+      <a class="machine-card" href="machine_detail.html?id=${m.id}" style="display:flex;flex-direction:column;height:100%;text-decoration:none;color:inherit">
         <div class="card-img-wrap">
           <img class="card-img-inner" src="${m.image}" alt="${m.name}" loading="lazy"
             onerror="this.src='https://placehold.co/600x240/e8f5e9/6ab04c?text=${encodeURIComponent(m.name)}'" />
@@ -425,7 +425,8 @@ function renderCards() {
           <div class="card-title">${m.name}</div>
         </div>
         <div class="card-footer-custom">
-          <span class="btn-view">View Details <i class="bi bi-arrow-right"></i></span>
+          
+          <span class="btn-view" onclick="viewMachine(${m.id})"> View Details <i class="bi bi-arrow-right"></i></span>
         </div>
       </a>
     </div>
